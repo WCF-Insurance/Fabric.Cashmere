@@ -7,7 +7,7 @@
             <img alt="Brand Icon" src="{{ brandIcon }}"/>
         </a>
     </div>
-    <div class="header-username" [hcPop]="_userMenu">
+    <div class="header-username" [hcPop]="userMenu">
         <span *ngIf="user?.name" class="user-avatar">
             <img *ngIf="user?.avatar" [src]="user?.avatar"/>
             <hc-icon *ngIf="!user?.avatar" fontSet="fa" fontIcon="fa-user-circle"></hc-icon>

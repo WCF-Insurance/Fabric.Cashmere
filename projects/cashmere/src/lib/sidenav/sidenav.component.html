@@ -42,7 +42,7 @@
 <ng-template #navItems>
     <nav>
         <div class="sidenav-user" *ngIf="user">
-            <div class="header-username" [hcPop]="_userMenu">
+            <div class="header-username" [hcPop]="userMenu">
                 <span class="user-avatar">
                     <img *ngIf="user.avatar" [src]="user.avatar"/>
                     <hc-icon *ngIf="!user.avatar" fontSet="fa" fontIcon="fa-user-circle"></hc-icon>

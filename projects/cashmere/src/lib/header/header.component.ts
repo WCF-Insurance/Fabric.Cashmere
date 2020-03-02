@@ -1,5 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {HcPopoverAnchorDirective} from '../pop/directives/popover-anchor.directive';
+import {Component, Input} from '@angular/core';
 import {IUser} from '../sidenav';
 
 @Component({
@@ -8,9 +7,6 @@ import {IUser} from '../sidenav';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
-    @ViewChild('userMenu')
-    _userMenu: HcPopoverAnchorDirective;
 
     /** Display name of current user */
     @Input()

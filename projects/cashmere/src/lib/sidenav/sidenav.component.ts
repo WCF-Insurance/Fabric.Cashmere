@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChild} from '@angular/core';
 import {SidenavLinkComponent} from './sidenav-link/sidenav-link.component';
 import {Drawer} from '../drawer/index';
-import {HcPopoverAnchorDirective} from '../pop';
 
 /** The navbar is a wrapper that positions branding, navigation, and other elements in a concise header. */
 @Component({
@@ -13,9 +12,6 @@ import {HcPopoverAnchorDirective} from '../pop';
 export class SidenavComponent {
 
     @ViewChild('leftOverDrawer') drawer: Drawer;
-
-    @ViewChild('userMenu')
-    _userMenu: HcPopoverAnchorDirective;
 
     @Input() set mobileView(isMobileView: boolean) {
         this._mobileView = isMobileView;
