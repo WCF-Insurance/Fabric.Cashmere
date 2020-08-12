@@ -20,9 +20,10 @@ import {Router} from '@angular/router';
     styleUrls: ['sidenav-link.component.scss']
 })
 export class SidenavLinkComponent implements AfterContentInit {
-    /** RouterLink uri. See https://angular.io/api/router/RouterLink */
+    /** RouterLink uri. See https://angular.io/api/router/RouterLink. */
+    /** If you use the array syntax, the first path segment must begin with '/' and none of the other segments should begin with a '/'. */
     @Input()
-    routerLink?: string;
+    routerLink?: any[] | string;
 
     /** RouterLink uri. See https://angular.io/api/router/RouterLink */
     @Input()
@@ -98,7 +99,8 @@ export class SidenavLinkComponent implements AfterContentInit {
     }
 
     _isActiveOrHasActiveChild(): boolean {
-        if (this.router.url.startsWith(this.routerLink || 'undefined')) {
+        const routerLinkString = this._convertRouterLinkToString(this.routerLink);
+        if (this.router.url === routerLinkString) {
             return true;
         }
 
@@ -116,6 +118,13 @@ export class SidenavLinkComponent implements AfterContentInit {
         }
 
         return false;
+    }
+
+    _convertRouterLinkToString(routerLink: any[] | string | undefined) {
+        if (typeof this.routerLink === 'object') {
+            return (routerLink as any[]).join('/');
+        }
+        return routerLink;
     }
 
     get children() {
