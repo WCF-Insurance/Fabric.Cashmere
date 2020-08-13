@@ -5,6 +5,7 @@
         [title]="linkText"
         [routerLink]="routerLink"
         routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
         class="sidenav-link"
         (click)="_stop($event)"
     >
@@ -13,8 +14,8 @@
     <div class="toggle-button" #toggle *ngIf="children?.length">
         <hc-icon fontSet="fa" fontIcon="fa-chevron-down" class="show-all" hcIconSm (click)="_toggleChildren()"></hc-icon>
     </div>
-
 </ng-template>
+
 <ng-template #hrefTemplate>
     <a [title]="linkText" [href]="uri" class="sidenav-link" target="_blank" (click)="_stop($event)">
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>

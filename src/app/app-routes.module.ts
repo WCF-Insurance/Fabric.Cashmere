@@ -20,6 +20,18 @@ const routes: Routes = [
                 component: SidenavDemoComponent
             },
             {
+                path: 'sidenav/:id/child/:childId',
+                component: SidenavDemoComponent
+            },
+            {
+                path: 'sidenav/:id/child/:childId/grandchild',
+                component: SidenavDemoComponent
+            },
+            {
+                path: 'sidenav/:id',
+                component: SidenavDemoComponent
+            },
+            {
                 path: 'header',
                 component: HeaderDemoComponent
             }
