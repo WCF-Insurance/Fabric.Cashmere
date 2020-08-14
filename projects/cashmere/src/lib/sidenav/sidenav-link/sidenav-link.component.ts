@@ -55,6 +55,7 @@ export class SidenavLinkComponent implements AfterContentInit {
 
     // indicate if this is a top-level link (it's parent is the sidenav component)
     _topLevel = false;
+    _active = false;
 
     @ContentChildren(SidenavLinkComponent)
     private _children?: QueryList<SidenavLinkComponent>;
@@ -101,8 +102,11 @@ export class SidenavLinkComponent implements AfterContentInit {
     _isActiveOrHasActiveChild(): boolean {
         const routerLinkString = this._convertRouterLinkToString(this.routerLink);
         if (this.router.url === routerLinkString) {
+            this._active = true;
             return true;
         }
+
+        this._active = false;
 
         if (this._children) {
             return this._children.toArray().some(child => {
