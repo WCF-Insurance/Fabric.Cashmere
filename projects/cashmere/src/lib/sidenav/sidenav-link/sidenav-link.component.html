@@ -4,7 +4,9 @@
     <a
         [title]="linkText"
         [routerLink]="routerLink"
-        [ngClass]="{'sidenav-link': true, 'active': _active}"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="sidenav-link"
         (click)="_stop($event)"
     >
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
