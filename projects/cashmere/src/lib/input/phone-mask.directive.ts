@@ -48,20 +48,14 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
     phoneValidate(id: string) {
         this.sub = this._phoneControl.valueChanges.subscribe(data => {
             let preInputValue: string = this._preValue;
-            let lastChar: string = preInputValue.substr(preInputValue.length - 1);
+
             // Allow only numeric characters
             let newVal = data.replace(/\D/g, '');
             let start = this.renderer.selectRootElement(id).selectionStart;
             let end = this.renderer.selectRootElement(id).selectionEnd;
-            // If deleting input characters
-            if (data.length < preInputValue.length) {
-                // Adjustment if character removed is ')'
-                if (preInputValue.length < start) {
-                    if (lastChar === ')') {
-                        newVal = newVal.substr(0, newVal.length - 1);
-                    }
-                }
 
+            // If deleting input characters
+            if (newVal.length < preInputValue.length) {
                 newVal = this._getFormattedValue(newVal);
                 this._phoneControl.setValue(newVal, {emitEvent: false});
                 this.renderer.selectRootElement(id).setSelectionRange(start, end);
@@ -102,7 +96,7 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
             newVal = '';
         } else if (newVal.length <= 3) {
             // Don't show braces for empty groups at the end
-            newVal = newVal.replace(/^(\d{0,3})/, '($1)');
+            newVal = newVal.replace(/^(\d{0,3})/, '($1');
         } else if (newVal.length <= 6) {
             newVal = newVal.replace(/^(\d{0,3})(\d{0,3})/, '($1) $2');
         } else if (newVal.length <= 10) {
