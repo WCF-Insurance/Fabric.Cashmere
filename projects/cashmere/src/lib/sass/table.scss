@@ -198,6 +198,10 @@ $row-selected-border-color: $white;
 
 @mixin hc-table-sort-header-right() {
     justify-content: right;
+
+    .hc-sort-header-button {
+        text-align: right;
+    }
 }
 
 @mixin hc-table-header-sortable() {

@@ -104,9 +104,11 @@ that the table will be included in a composition of components that fills out it
 you can add sorting to the table by using HcSort and mutating the data provided to the table according to
 their outputs.
 
+#### Text Justification
+
 The text alignment of a column may be set using the `justify` property on the `ng-container` of a column.
-It defaults to a value of `left`, but my be set to `right` or `center`. Columns containing numerical data
-should typically be right aligned.
+It defaults to a value of `left`, but may be set to `right` or `center`. Columns containing numerical data
+should typically be right aligned. Please note that if the justification is set to `right`, the header filter indicator should be placed on the left side with `arrowPosition="before"`.
 
 To simplify the use case of having a table that can sort, and filter an array of data,
 the Cashmere library comes with a `HcTableDataSource` that has already implemented
