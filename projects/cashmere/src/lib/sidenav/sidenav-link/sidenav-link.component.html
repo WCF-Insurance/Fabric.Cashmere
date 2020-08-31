@@ -12,7 +12,7 @@
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
     </a>
     <div class="toggle-button" #toggle *ngIf="children?.length">
-        <hc-icon fontSet="fa" fontIcon="fa-chevron-down" class="show-all" hcIconSm (click)="_toggleChildren()"></hc-icon>
+        <hc-icon fontSet="fa" fontIcon="fa-chevron-down" class="show-all" hcIconSm (click)="_toggleChildren($event)"></hc-icon>
     </div>
 </ng-template>
 
@@ -21,7 +21,7 @@
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
     </a>
     <div class="toggle-button" #toggle *ngIf="children?.length">
-        <hc-icon fontSet="fa" fontIcon="fa-chevron-down" class="show-all" hcIconSm (click)="_toggleChildren()"></hc-icon>
+        <hc-icon fontSet="fa" fontIcon="fa-chevron-down" class="show-all" hcIconSm (click)="_toggleChildren($event)"></hc-icon>
     </div>
 </ng-template>
 
