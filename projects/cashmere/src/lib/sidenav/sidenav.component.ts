@@ -124,7 +124,7 @@ export class SidenavComponent implements AfterContentInit {
 
     private _autoExpandSidenav(link: SidenavLinkComponent) {
         if (link._topLevel && link._isActiveOrHasActiveChild()) {
-            setTimeout(() => link._toggleChildren(true));
+            setTimeout(() => link._toggleChildren(null, true));
         }
     }
 

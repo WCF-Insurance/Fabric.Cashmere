@@ -136,7 +136,11 @@ export class SidenavLinkComponent implements AfterContentInit {
         return this._linkChildren;
     }
 
-    _toggleChildren(expanded?: boolean) {
+    _toggleChildren(event, expanded?: boolean) {
+        if (event) {
+            this._stop(event);
+        }
+
         this._childrenShown = expanded || !this._childrenShown;
 
         if (this._resultToggle) {
