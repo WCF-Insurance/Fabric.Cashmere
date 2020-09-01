@@ -5,8 +5,8 @@ $table-border: 1px solid $slate-gray-300 !default;
 $table-border-transparent: 1px solid transparent;
 $table-condensed-font-size: 13px;
 $header-border-thick: 1px solid $slate-gray-300 !default;
-$cell-padding: 8px 16px !default;
-$cell-padding-condensed: 6px 16px !default;
+$cell-padding: 8px 8px !default;
+$cell-padding-condensed: 6px 8px !default;
 $thead-font-size: 16px !default;
 $thead-font-color: $dark-blue !default;
 $thead-active-font-color: $green !default;
@@ -181,6 +181,10 @@ table.hc-table {
 
         .hc-sort-header-container {
             justify-content: right;
+            
+            .hc-sort-header-button {
+                text-align: right;
+            }
         }
     }
 
