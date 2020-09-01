@@ -397,6 +397,7 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
                 tempDate.setHours( curHours - 12 );
             }
             this.selectedChange.emit(tempDate);
+            console.log(tempDate)
             this._userSelected();
         }
     }
@@ -539,7 +540,11 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
             curHour++;
             const tempCycle = this._hourCycle > 12 ? 23 : 12;
             if ( curHour > tempCycle ) {
-                curHour = tempCycle;
+                if (tempCycle === 23) {
+                    curHour = 0;
+                } else {
+                    curHour = 1;
+                }
             }
             this.hours = curHour.toString();
         }
@@ -553,7 +558,11 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
             curHour--;
             const tempCycle = this._hourCycle > 12 ? 0 : 1;
             if ( curHour < tempCycle ) {
-                curHour = tempCycle;
+                if (tempCycle === 0) {
+                    curHour = 23;
+                } else {
+                    curHour = 12;
+                }
             }
             this.hours = curHour.toString();
         }
@@ -566,7 +575,7 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
             let curMin = +this.minutes;
             curMin++;
             if ( curMin > 59 ) {
-                curMin = 59;
+                curMin = 0;
             }
             this.minutes = curMin.toString();
         }
@@ -578,8 +587,8 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
         } else {
             let curMin = +this.minutes;
             curMin--;
-            if ( curMin < 1 ) {
-                curMin = 1;
+            if ( curMin < 0 ) {
+                curMin = 59;
             }
             this.minutes = curMin.toString();
         }
