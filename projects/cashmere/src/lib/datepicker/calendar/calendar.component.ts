@@ -397,7 +397,6 @@ export class CalendarComponent implements AfterContentInit, AfterViewChecked, On
                 tempDate.setHours( curHours - 12 );
             }
             this.selectedChange.emit(tempDate);
-            console.log(tempDate)
             this._userSelected();
         }
     }
