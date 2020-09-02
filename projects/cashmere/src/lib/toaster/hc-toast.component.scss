@@ -1,6 +1,7 @@
 @import '../sass/colors';
 @import '../sass/functions.scss';
 @import '../sass/mixins.scss';
+
 $hc-body-font-size: 14px !default;
 $hc-header-font-size: 18px !default;
 
@@ -69,10 +70,10 @@ $hc-header-font-size: 18px !default;
 }
 
 .hc-toast-alert {
-    background-color: $red;
+    background-color: $error;
 
     &.hc-toast-dismiss:hover {
-        background-color: darken($red, 5%);
+        background-color: darken($error, 5%);
     }
 
     .hc-toast-icon {
@@ -159,12 +160,15 @@ $hc-header-font-size: 18px !default;
 .hc-toast-alert .hc-toast-progress:before {
     background-color: darken($red, 10%);
 }
+
 .hc-toast-warning .hc-toast-progress:before {
     background-color: darken($orange, 10%);
 }
+
 .hc-toast-info .hc-toast-progress:before {
     background-color: darken($blue, 10%);
 }
+
 .hc-toast-success .hc-toast-progress:before {
     background-color: darken($green, 10%);
 }
