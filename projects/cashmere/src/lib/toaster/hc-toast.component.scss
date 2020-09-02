@@ -25,10 +25,10 @@ $hc-header-font-size: 18px !default;
 }
 
 .hc-toast-success {
-    background-color: $green;
+    background-color: $success;
 
     &.hc-toast-dismiss:hover {
-        background-color: darken($green, 3%);
+        background-color: darken($success, 3%);
     }
 
     .hc-toast-icon {
@@ -40,10 +40,10 @@ $hc-header-font-size: 18px !default;
 }
 
 .hc-toast-info {
-    background-color: $blue;
+    background-color: $info;
 
     &.hc-toast-dismiss:hover {
-        background-color: darken($blue, 3%);
+        background-color: darken($info, 3%);
     }
 
     .hc-toast-icon {
@@ -55,10 +55,10 @@ $hc-header-font-size: 18px !default;
 }
 
 .hc-toast-warning {
-    background-color: $orange;
+    background-color: $warning;
 
     &.hc-toast-dismiss:hover {
-        background-color: darken($orange, 5%);
+        background-color: darken($warning, 5%);
     }
 
     .hc-toast-icon {
@@ -158,19 +158,19 @@ $hc-header-font-size: 18px !default;
 }
 
 .hc-toast-alert .hc-toast-progress:before {
-    background-color: darken($red, 10%);
+    background-color: darken($error, 10%);
 }
 
 .hc-toast-warning .hc-toast-progress:before {
-    background-color: darken($orange, 10%);
+    background-color: darken($warning, 10%);
 }
 
 .hc-toast-info .hc-toast-progress:before {
-    background-color: darken($blue, 10%);
+    background-color: darken($info, 10%);
 }
 
 .hc-toast-success .hc-toast-progress:before {
-    background-color: darken($green, 10%);
+    background-color: darken($success, 10%);
 }
 
 @keyframes ProgressShift {
