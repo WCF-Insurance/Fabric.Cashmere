@@ -30,15 +30,15 @@
     }
 
     &::placeholder {
-        color: $slate-gray-300;
+        color: $gray-30;
     }
 
     &:-ms-input-placeholder {
-        color: $slate-gray-300;
+        color: $gray-30;
     }
 
     &::-ms-input-placeholder {
-        color: $slate-gray-300;
+        color: $gray-30;
     }
 }
 
