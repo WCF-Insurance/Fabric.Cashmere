@@ -100,7 +100,6 @@ export class SidenavLinkComponent implements AfterContentInit {
 
     _isActiveOrHasActiveChild(): boolean {
         const routerLinkString = this._convertRouterLinkToString(this.routerLink);
-        console.log(this.router.url);
         if (this.router.url === routerLinkString) {
             return true;
         }
