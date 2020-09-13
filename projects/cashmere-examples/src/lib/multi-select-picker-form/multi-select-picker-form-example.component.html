@@ -1,0 +1,23 @@
+<div [formGroup]="formGroup">
+    <hc-form-field>
+        <hc-label>Periodic Element:</hc-label>
+        <hc-multi-select-picker style="width: 300px"
+                                maxSummaryItems="5"
+                                formControlName="elements"
+                                required="true"
+                                [nonSelectedValues]="elementValues"
+                                [placeholder]="'Choose Element'"
+                                (change)="basicExampleChange($event)">
+        </hc-multi-select-picker>
+        <hc-hint>This is a hint!</hc-hint>
+        <hc-error>An element is required</hc-error>
+    </hc-form-field>
+</div>
+
+<button hc-button title="Primary Button" buttonStyle="primary" (click)="invalidateForms()">Invalidate Form</button>
+
+<br><br>
+<div>
+    <div>Touched: {{formGroup.touched}}</div>
+    <div>Valid: {{formGroup.valid}}</div>
+</div>

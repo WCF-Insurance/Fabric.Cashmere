@@ -1,0 +1,16 @@
+@import "colors";
+
+.multi-select-picker-panel {
+    background-color: white;
+    border: 1px solid $gray-300;
+    flex-direction: column;
+    //box-sizing: content-box;
+    //padding: 1px;
+}
+
+.clear-backdrop {
+    background-color: transparent;
+}
+
+
+
