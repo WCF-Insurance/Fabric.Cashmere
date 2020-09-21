@@ -64,7 +64,7 @@ export class HcDatepickerInputEvent {
         '[attr.min]': 'min ? _dateAdapter.toIso8601(min) : null',
         '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
         '[disabled]': 'disabled',
-        '(input)': '_onInput($event.target.value)',
+        '(input)': '_onInput(_getFormattedValue($event.target.value))',
         '(change)': '_onChange()',
         '(blur)': '_onBlur()',
         '(keydown)': '_onKeydown($event)'
@@ -321,8 +321,8 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         }
     }
 
-    _onInput(value: string) {
-        let date = this._dateAdapter.parse(value, this._dateFormats.parse.dateInput);
+    _onInput(value: D | null) {
+        let date = value;
         this._lastValueValid = !date || this._dateAdapter.isValid(date);
         date = this._getValidDateOrNull(date);
 
@@ -332,6 +332,23 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
             this._valueChange.emit(date);
             this.dateInput.emit(new HcDatepickerInputEvent(this, this._elementRef.nativeElement));
         }
+    }
+
+    _getFormattedValue(newVal: string) {
+        let tempMode: string = 'date';
+        tempMode = this._datepicker.mode;
+        if (tempMode !== 'time') {
+            if (newVal.length < 3) {
+                newVal = newVal.replace(/^(\d{0,2})/, '$1');
+            } else if (newVal.length < 5) {
+                newVal = newVal.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
+            } else if (newVal.length < 11) {
+                newVal = newVal.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+            } else {
+                newVal = newVal.replace(/^(\d{2})(\d{2})(\d{4})(.*)/, '$1/$2/$3, $4');
+            }
+        }
+        return this._dateAdapter.parse(newVal, this._dateFormats.parse.dateInput);
     }
 
     _onChange() {
@@ -344,7 +361,6 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         if (this.value || this._elementRef.nativeElement.value) {
             this._formatValue(this.value);
         }
-
         this._onTouched();
     }
 

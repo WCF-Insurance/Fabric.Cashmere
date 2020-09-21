@@ -418,7 +418,7 @@ describe('DatepickerComponent', () => {
 
             it('should initialize with correct value shown in input', () => {
                 if (SUPPORTS_INTL) {
-                    expect(fixture.nativeElement.querySelector('input').value).toBe('1/1/2020');
+                    expect(fixture.nativeElement.querySelector('input').value).toBe('01/01/2020');
                 }
             });
 
@@ -712,7 +712,7 @@ describe('DatepickerComponent', () => {
             });
 
             it('should not throw when given wrong data type', () => {
-                testComponent.date = '1/1/2017' as any;
+                testComponent.date = '01/01/2017' as any;
 
                 expect(() => fixture.detectChanges()).not.toThrow();
             });
@@ -1132,7 +1132,7 @@ describe('DatepickerComponent', () => {
                 dispatchFakeEvent(inputEl, 'blur');
                 fixture.detectChanges();
 
-                expect(inputEl.value).toBe('1/1/2001');
+                expect(inputEl.value).toBe('01/01/2001');
             });
 
             it('should not reformat invalid dates on blur if there is an empty string in the input', () => {
