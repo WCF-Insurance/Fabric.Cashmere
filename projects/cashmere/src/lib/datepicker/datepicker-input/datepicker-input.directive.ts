@@ -322,7 +322,6 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     }
 
     _onInput(value: D | null) {
-        console.log("OnInput Value: ", value);
         let date = value;
         this._lastValueValid = !date || this._dateAdapter.isValid(date);
         date = this._getValidDateOrNull(date);
