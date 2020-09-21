@@ -13,9 +13,9 @@ export const HC_NATIVE_DATE_FORMATS: HcDateFormats = {
         dateInput: null
     },
     display: {
-        dateInput: {year: 'numeric', month: 'numeric', day: 'numeric'},
+        dateInput: {year: 'numeric', month: '2-digit', day: '2-digit'},
         timeInput: {hour: 'numeric', minute: '2-digit', hour12: true},
-        dateTimeInput: {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true},
+        dateTimeInput: {year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: '2-digit', hour12: true},
         monthYearLabel: {year: 'numeric', month: 'short'},
         dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
         monthYearA11yLabel: {year: 'numeric', month: 'long'}
