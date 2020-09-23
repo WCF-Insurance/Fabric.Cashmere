@@ -110,8 +110,7 @@ export class SidenavComponent implements AfterContentInit {
         this._navLinks.changes.subscribe(() => {
             this._navLinks.toArray().forEach(link => {
                 link._setTopLevel(true);
-                setTimeout(() => this._autoExpandSidenav(link));
-
+                this._autoExpandSidenav(link);
                 // Subscribe to top level link children's events for when descendants are added/removed
                 link._refreshChildren.subscribe(linkUpdated => this._autoExpandSidenav(linkUpdated));
             });
