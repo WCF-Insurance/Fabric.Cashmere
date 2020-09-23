@@ -5,7 +5,7 @@
         [title]="linkText"
         [routerLink]="routerLink"
         routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
+        [routerLinkActiveOptions]="{exact: true, __change_detection_hack__: routerLink}"
         class="sidenav-link"
         (click)="_stop($event)"
     >
