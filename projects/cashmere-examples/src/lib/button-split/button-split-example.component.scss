@@ -1,3 +1,7 @@
 hc-split-button {
-    margin: 10px;
+    margin: 16px;
+
+    &:first-child {
+        margin-left: 0;
+    }
 }

@@ -1,7 +1,7 @@
 button {
-    margin: 10px;
-}
+    margin: 16px;
 
-.icon-left {
-    margin-right: 5px;
+    &:first-child {
+        margin-left: 0;
+    }
 }
