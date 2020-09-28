@@ -48,14 +48,14 @@
     }
     &.active {
         border-bottom: $wcf-red 4px solid;
-        color: $offblack;
+        color: $wcf-blue;
         font-weight: bold;
     }
 }
 
 @mixin hc-tab-horizontal-active() {
     border-bottom: $wcf-red 4px solid;
-    color: $offblack;
+    color: $wcf-blue;
     font-weight: bold;
 }
 
