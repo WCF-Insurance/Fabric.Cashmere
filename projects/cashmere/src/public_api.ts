@@ -18,7 +18,6 @@ export * from './lib/dialog/index';
 export * from './lib/drawer/index';
 export * from './lib/environment-ribbon/index';
 export * from './lib/file-input/index';
-export * from './lib/footer/index';
 export * from './lib/form-field/index';
 export * from './lib/header/index';
 export * from './lib/icon/index';
