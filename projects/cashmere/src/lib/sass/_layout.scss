@@ -8,19 +8,3 @@ body {
     height: 100%;
     margin: 0 5%;
 }
-
-.page-content-footer {
-    padding-bottom: 150px;
-}
-
-@media (max-width: 767px) {
-    .page-content-footer {
-        padding-bottom: 175px;
-    }
-}
-
-@media (max-width: 468px) {
-    .page-content-footer {
-        padding-bottom: 225px;
-    }
-}
