@@ -13,24 +13,30 @@
 
 .hc-wcf-tab-bar-vertical {
     padding: 0;
-    background-color: $slate-gray-100;
-    border-left: 1px solid $gray-30;
     width: 20%;
     .hc-wcf-tab-width {
         &:last-child {
-            border-bottom: $gray-30 1px solid;
+            .hc-wcf-tab-vertical {
+                border-bottom: $gray-10 1px solid;
+            }
         }
     }
 }
 
 .hc-wcf-tab-vertical {
+    font-family: 'Montserrat';
     background-color: $gray-05;
-    color: $offblack;
-    font-size: 16px;
-    padding: 20px 20px 18px;
+    color: $gray-50;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 24px;
+    margin-left: 4px;
     display: block;
     text-decoration: none;
-    border-right: 1px solid $gray-30;
+    border-right: 1px solid $gray-10;
+    border-left: 4px solid $gray-10;
+    border-top: 1px solid $gray-10;
+    border-radius: 4px 0 0 4px;
     &:hover {
         cursor: pointer;
     }
@@ -38,14 +44,15 @@
         background-color: $white;
         border-left: $wcf-red 4px solid;
         border-right: 1px solid $white;
-        font-weight: 600;
-        padding-left: 21px;
+        color: $wcf-blue;
+        font-weight: 500;
+        margin-left: 0;
     }
 }
 
 .hc-wcf-tab-content-vertical {
     width: 80%;
-    border: 1px solid $gray-30;
+    border: 1px solid $gray-10;
     border-left: none;
 }
 
@@ -53,28 +60,31 @@
     background-color: inherit;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: flex-end;
     .hc-wcf-tab-width {
         &:last-child {
-            border-right: $gray-30 1px solid;
+            .hc-wcf-tab-horizontal {
+                border-right: $gray-10 1px solid;
+            }
         }
     }
 }
 
 .hc-wcf-tab-width {
     min-width: 0;
-    border-top: 1px solid $gray-30;
 }
 
 .hc-wcf-tab-horizontal {
+    font-family: 'Montserrat';
     background-color: $gray-05;
-    border-top: $gray-05 4px solid;
-    border-left: $gray-30 1px solid;
-    border-bottom: $gray-30 1px solid;
-    color: $offblack;
-    font-size: 16px;
-    line-height: 21px;
-    padding: 10px 23px;
+    border-top: $gray-10 4px solid;
+    border-left: $gray-10 1px solid;
+    border-bottom: $gray-10 1px solid;
+    border-radius: 4px 4px 0 0;
+    color: $gray-50;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 24px 8px;
     text-decoration: none;
     display: block;
     min-width: 100px;
@@ -85,8 +95,9 @@
     &.active {
         border-top: $wcf-red 4px solid;
         border-bottom: $white 1px solid;
-        color: $offblack;
-        font-weight: bold;
+        color: $wcf-blue;
+        padding: 12px 24px;
+        font-weight: 500;
         background-color: $white;
     }
 }
