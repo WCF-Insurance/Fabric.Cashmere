@@ -1,0 +1,27 @@
+<form>
+    <div class="form-container">
+        <hc-form-field>
+            <hc-label>Zip Code:</hc-label>
+            <input hcInput hcZipCodeMask
+                   [formControl]="formDemoZip"
+                   [preValue]="formDemoZip.value">
+            <hc-error>A valid zip code is required</hc-error>
+        </hc-form-field>
+
+        <hc-form-field>
+            <hc-label>Zip Code (with initial value):</hc-label>
+            <input hcInput hcZipCodeMask
+                   [formControl]="formDemoZipInitVal"
+                   [preValue]="formDemoZipInitVal.value">
+            <hc-error>A valid zip code is required</hc-error>
+        </hc-form-field>
+
+        <hc-form-field>
+            <hc-label>Zip Code (with initial value preformatted):</hc-label>
+            <input hcInput hcZipCodeMask
+                   [formControl]="formDemoZipFormattedInitVal"
+                   [preValue]="formDemoZipFormattedInitVal.value">
+            <hc-error>A valid zip code is required</hc-error>
+        </hc-form-field>
+    </div>
+</form>
