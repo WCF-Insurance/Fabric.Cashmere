@@ -1,23 +1,13 @@
-import {AfterViewInit, Directive, forwardRef, Input, OnDestroy, Renderer2, ViewContainerRef} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
+import {AfterViewInit, Directive, Input, OnDestroy, OnInit, Renderer2, ViewContainerRef} from '@angular/core';
+import {NgControl} from '@angular/forms';
 import {SubscriptionLike} from 'rxjs';
 
 @Directive({
-    selector: '[hcZipCodeMask]',
-    providers: [
-        {provide: NG_VALIDATORS, useExisting: forwardRef(() => ZipCodeMaskDirective), multi: true}
-    ]
+    selector: '[hcZipCodeMask]'
 })
-export class ZipCodeMaskDirective implements AfterViewInit, OnDestroy, Validator {
-    private _digitPattern = RegExp(/^\d*$/);
-    private _zipPattern = RegExp(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
-    private _zipControl: AbstractControl;
+export class ZipCodeMaskDirective implements AfterViewInit, OnDestroy, OnInit {
+    private _zipControl;
     private _preValue: string;
-
-    @Input()
-    set zipControl(control: AbstractControl) {
-        this._zipControl = control;
-    }
 
     @Input()
     set preValue(value: string) {
@@ -26,7 +16,11 @@ export class ZipCodeMaskDirective implements AfterViewInit, OnDestroy, Validator
 
     private sub: SubscriptionLike;
 
-    constructor(private renderer: Renderer2, private _view: ViewContainerRef) {
+    constructor(private renderer: Renderer2, private _view: ViewContainerRef, private directiveControl: NgControl) {
+    }
+
+    ngOnInit() {
+        this._zipControl = this.directiveControl.control;
     }
 
     ngAfterViewInit() {
@@ -93,15 +87,6 @@ export class ZipCodeMaskDirective implements AfterViewInit, OnDestroy, Validator
         } else {
             newVal = newVal.replace(/^(\d{0,5})(\d{0,4})/, '$1-$2');
         }
-
         return newVal;
-    }
-
-    validate(control: AbstractControl): ValidationErrors | null {
-        if (control.value && !this._digitPattern.test(control.value) && !this._zipPattern.test(control.value)) {
-            return {invalid: true};
-        }
-
-        return null;
     }
 }
