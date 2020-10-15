@@ -1,0 +1,18 @@
+<div class="select-sample">
+    <div class="info">
+        <div>Use a hc-select with objects as the values</div>
+        <div class="fine-print">Use ngValue instead of value on the options</div>
+    </div>
+
+    <form [formGroup]="form">
+        <hc-form-field>
+            <hc-label>Numbers: (using ngValue on options)</hc-label>
+            <hc-select formControlName="selectedNumber">
+                <option *ngFor="let num of numbers" [ngValue]="num">
+                    This is number {{num.description}}
+                </option>
+            </hc-select>
+        </hc-form-field>
+        Selected Value: <p>{{form.get('selectedNumber')?.value | json}}</p>
+    </form>
+</div>
