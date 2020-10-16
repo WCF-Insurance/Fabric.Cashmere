@@ -1,0 +1,18 @@
+.select-sample {
+    max-width: 350px;
+    width: 100%;
+
+    div.info {
+        font-size: 125%;
+        margin-bottom: 25px;
+
+        div {
+            padding: 10px 0;
+
+            &.fine-print {
+                font-size: 75%;
+                font-style: italic;
+            }
+        }
+    }
+}
