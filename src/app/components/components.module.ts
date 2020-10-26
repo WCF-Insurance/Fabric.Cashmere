@@ -11,29 +11,22 @@ import {ComponentsComponent} from './components.component';
 import {ComponentsRouterModule} from './components-router.module';
 import {HighlightModule} from 'ngx-highlightjs';
 
-import xml from 'highlight.js/lib/languages/xml';
-import scss from 'highlight.js/lib/languages/scss';
-import typescript from 'highlight.js/lib/languages/typescript';
-
 /**
  * Import every language you wish to highlight here
  * NOTE: The name of each language must match the file name its imported from
  */
-export function hljsLanguages() {
+export function getHljsLanguages() {
     return [
-        {name: 'typescript', func: typescript},
-        {name: 'scss', func: scss},
-        {name: 'xml', func: xml}
+        {name: 'typescript', func: () => import('highlight.js/lib/languages/typescript')},
+        {name: 'scss', func: () => import('highlight.js/lib/languages/scss')},
+        {name: 'xml', func: () => import('highlight.js/lib/languages/xml')}
     ];
 }
 
 @NgModule({
-    imports: [
-        SharedModule,
-        ExampleModule,
-        ComponentsRouterModule,
+    imports: [SharedModule, ExampleModule, ComponentsRouterModule,
         HighlightModule.forRoot({
-            languages: hljsLanguages
+            languages: getHljsLanguages
         })
     ],
     declarations: [

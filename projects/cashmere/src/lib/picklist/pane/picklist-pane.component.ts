@@ -134,11 +134,11 @@ export class PicklistPaneComponent {
 
     public preventIEHighlightBug() {
         // for IE: https://stackoverflow.com/questions/1527751/disable-text-selection-while-pressing-shift
-        document.onselectstart = function() {
+        (document as any).onselectstart = function() {
             return false;
         };
         setTimeout(function() {
-            document.onselectstart = () => null;
+            (document as any).onselectstart = () => null;
         }, 0);
     }
 

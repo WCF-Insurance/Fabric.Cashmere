@@ -50,7 +50,7 @@ export class SelectComponent extends HcFormControlComponent implements ControlVa
     _optionMap: Map<string, any> = new Map<string, any>();
     _componentId = this._uniqueInputId;
 
-    @ViewChild('selectInput')
+    @ViewChild('selectInput', {static: false})
     _nativeSelect: ElementRef;
 
     /** Optional string of text to appear before selection is made */
