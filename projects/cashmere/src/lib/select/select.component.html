@@ -5,7 +5,6 @@
         class="hc-select-input"
         [disabled]="disabled"
         (change)="_change($event, selectInput.value)"
-        [value]="value"
         (focus)="focus.next();"
         (click)="_clickHandler($event)"
         (keyup.escape)="_clickHandler($event)"
@@ -15,6 +14,6 @@
         [required]="required"
     >
         <option *ngIf="placeholder && !value" value="" selected disabled hidden>{{ placeholder }}</option>
-        <ng-content select="option"></ng-content>
+        <ng-content></ng-content>
     </select>
 </div>
