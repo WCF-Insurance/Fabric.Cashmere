@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OnInit} from '@angular/core/src/metadata/lifecycle_hooks';
+import {OnInit} from '@angular/core';
 
 /**
  * @title Disabled Radio Buttons

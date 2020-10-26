@@ -21,7 +21,7 @@ import {Drawer} from '../drawer/index';
 })
 export class SidenavComponent implements AfterContentInit {
 
-    @ViewChild('leftOverDrawer') drawer: Drawer;
+    @ViewChild('leftOverDrawer', {static: false}) drawer: Drawer;
 
     @Input() set mobileView(isMobileView: boolean) {
         this._mobileView = isMobileView;
@@ -95,7 +95,7 @@ export class SidenavComponent implements AfterContentInit {
     @ContentChildren(SidenavLinkComponent)
     _navLinks: QueryList<SidenavLinkComponent>;
 
-    @ViewChild('navbar') navbarContent: ElementRef;
+    @ViewChild('navbar', {static: false}) navbarContent: ElementRef;
 
     sidenavOpen: boolean = false;
 

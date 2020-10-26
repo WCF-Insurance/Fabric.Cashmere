@@ -47,7 +47,7 @@ export class PaginationLoadMoreExampleComponent implements OnInit {
         return ELEMENT_DATA.length;
     }
 
-    @ViewChild(LoadMorePaginationComponent)
+    @ViewChild(LoadMorePaginationComponent, {static: false})
     loadMoreBtn: LoadMorePaginationComponent;
 
     ngOnInit(): void {

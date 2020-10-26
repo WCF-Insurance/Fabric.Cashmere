@@ -34,9 +34,9 @@ export class PicklistPaneComponent {
     public emptyMsg: string = 'No options';
     @Output()
     public moveSelectedItems = new EventEmitter<PicklistPaneComponent>();
-    @ViewChild('listContainer')
+    @ViewChild('listContainer', {static: false})
     public listContainerEl: ElementRef | undefined;
-    @ViewChild('search')
+    @ViewChild('search', {static: false})
     public searchInputEl: ElementRef | undefined;
     public companion: PicklistPaneComponent | null = null;
     public shouldExcludeCompanion = false;

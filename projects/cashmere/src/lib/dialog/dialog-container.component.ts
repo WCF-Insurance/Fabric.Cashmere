@@ -67,7 +67,7 @@ export function throwHcDialogContentAlreadyAttachedError() {
 })
 export class DialogContainerComponent extends BasePortalOutlet {
     /** The portal outlet inside of this container into which the dialog content will be loaded. */
-    @ViewChild(CdkPortalOutlet)
+    @ViewChild(CdkPortalOutlet, {static: false})
     _portalOutlet: CdkPortalOutlet;
 
     /** The class that traps and manages focus within the dialog. */

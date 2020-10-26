@@ -8,7 +8,7 @@ import {highlightBlock} from 'highlight.js';
 })
 export class MarkdownDirective implements OnChanges {
     @Input()
-    hcMarkdown: string;
+    hcMarkdown: any;
     @Input()
     sanitize: boolean;
     @Input()
@@ -18,7 +18,7 @@ export class MarkdownDirective implements OnChanges {
 
     constructor(private el: ElementRef) {}
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(_: SimpleChanges): void {
         const md = new markdownIt({html: true});
 
         // plugin to markdown-it to interpret :::
@@ -31,7 +31,7 @@ export class MarkdownDirective implements OnChanges {
             }
         });
 
-        this.el.nativeElement.innerHTML = md.render(this.hcMarkdown, {sanitize: this.sanitize});
+        this.el.nativeElement.innerHTML = md.render(this.hcMarkdown.default, {sanitize: this.sanitize});
         if (this.highlight) {
             const preTags: Array<HTMLPreElement> = this.el.nativeElement.getElementsByTagName('pre');
             for (const pre of preTags) {

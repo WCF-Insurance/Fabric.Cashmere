@@ -60,19 +60,14 @@ export class CurrencyDirective implements OnInit, AfterViewInit, OnDestroy {
     formatNumber(val: string) {
         let formatted = '';
         if (val.length === 0) {
-            console.log('length == 0');
             return formatted;
         } else if (val.length < 4) {
-            console.log('length < 4');
             formatted = val.replace(/^(\d{0,3})/, '$1');
         } else if (val.length < 7) {
-            console.log('length < 7');
             formatted = val.replace(/^(\d{1,3})(\d{3})/, '$1,$2');
         } else if (val.length < 10) {
-            console.log('length < 10');
             formatted = val.replace(/^(\d{1,3})(\d{3})(\d{3})/, '$1,$2,$3');
         }
-        console.log('result: ' + formatted);
         return formatted;
     }
 }

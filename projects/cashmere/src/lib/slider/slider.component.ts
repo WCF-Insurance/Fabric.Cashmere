@@ -33,7 +33,7 @@ export class HcSliderChange {
 export class SliderComponent extends HcFormControlComponent implements OnInit, ControlValueAccessor, DoCheck {
     private _form: NgForm | FormGroupDirective | null;
 
-    @ViewChild('inputElement') inputElement: ElementRef;
+    @ViewChild('inputElement', {static: true}) inputElement: ElementRef;
 
     @Input()
     value: number | null;
