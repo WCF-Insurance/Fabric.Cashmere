@@ -1,5 +1,3 @@
-/* tslint:disable:no-use-before-declare */
-
 import {
     Attribute,
     Component,
@@ -70,10 +68,10 @@ export class CheckboxComponent extends HcFormControlComponent implements Control
     @Output()
     change = new EventEmitter<CheckboxChangeEvent>();
 
-    @ViewChild('checkboxInput')
+    @ViewChild('checkboxInput', {static: false})
     _checkboxInput: ElementRef;
 
-    @ViewChild('hcCheckBoxOverlay')
+    @ViewChild('hcCheckBoxOverlay', {static: false})
     _checkBoxOverlay: ElementRef;
 
     @HostBinding('attr.id')

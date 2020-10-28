@@ -52,11 +52,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, AfterContentInit 
     @ContentChildren(NavbarLinkComponent)
     _navLinks: QueryList<NavbarLinkComponent>;
 
-    @ViewChild('navbar') navbarContent: ElementRef;
-    @ViewChild('rightcontainer') rightContent: ElementRef;
-    @ViewChild('navlinks') navContent: ElementRef;
+    @ViewChild('navbar', {static: false}) navbarContent: ElementRef;
+    @ViewChild('rightcontainer', {static: false}) rightContent: ElementRef;
+    @ViewChild('navlinks', {static: false}) navContent: ElementRef;
 
-    @ViewChild('moreLink')
+    @ViewChild('moreLink', {static: false})
     _navbarMore: HcPopoverAnchorDirective;
 
     private _logoReady: Subject<boolean> = new Subject();

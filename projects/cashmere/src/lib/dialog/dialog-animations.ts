@@ -23,11 +23,7 @@ const animationBody = [
  */
 export const hcDialogAnimations: {
     readonly dialogContainer: AnimationTriggerMetadata;
-    readonly slideDialog: AnimationTriggerMetadata;
 } = {
     /** Animation that is applied on the dialog container by defalt. */
     dialogContainer: trigger('dialogContainer', animationBody),
-
-    /** @deprecated @breaking-change 8.0.0 Use `hcDialogAnimations.dialogContainer` instead. */
-    slideDialog: trigger('slideDialog', animationBody)
 };

@@ -1,5 +1,3 @@
-/* tslint:disable:no-use-before-declare */
-
 import {CheckboxChangeEvent, HcModal, ModalOptions, ModalService} from '@wcf-insurance/cashmere';
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ModalOverviewExampleModalComponent} from './modal-overview-example-modal.component';

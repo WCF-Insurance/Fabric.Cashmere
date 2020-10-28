@@ -66,10 +66,10 @@ export class ToggleSwitchComponent extends HcFormControlComponent implements Con
     @Output()
     change = new EventEmitter<ToggleSwitchChangeEvent>();
 
-    @ViewChild('toggleSwitchInput')
+    @ViewChild('toggleSwitchInput', {static: false})
     _toggleSwitchInput: ElementRef;
 
-    @ViewChild('hcToggleSwitchOverlay')
+    @ViewChild('hcToggleSwitchOverlay', {static: false})
     _toggleSwitchOverlay: ElementRef;
 
     @HostBinding('attr.id')

@@ -84,8 +84,8 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     @ContentChildren(TypeaheadItemComponent)
     _options: QueryList<TypeaheadItemComponent>;
 
-    @ViewChild('input') _inputRef: ElementRef;
-    @ViewChild('results') _resultPanel: ElementRef;
+    @ViewChild('input', {static: true}) _inputRef: ElementRef;
+    @ViewChild('results', {static: true}) _resultPanel: ElementRef;
 
     _optionSubscriptions: Array<Subscription> = new Array<Subscription>();
 

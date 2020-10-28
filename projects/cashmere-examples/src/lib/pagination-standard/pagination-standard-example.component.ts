@@ -49,7 +49,7 @@ export class PaginationStandardExampleComponent implements OnInit {
         return ELEMENT_DATA.length;
     }
 
-    @ViewChild(PaginationComponent)
+    @ViewChild(PaginationComponent, {static: false})
     paginator: PaginationComponent;
 
     ngOnInit(): void {

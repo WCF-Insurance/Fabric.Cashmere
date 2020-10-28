@@ -64,15 +64,6 @@ export class DialogService implements OnDestroy {
         return this._parentDialog ? this._parentDialog.afterOpened : this._afterOpenedAtThisLevel;
     }
 
-    /**
-     * Stream that emits when a dialog has been opened.
-     * @deprecated Use `afterOpened` instead.
-     * @breaking-change 8.0.0
-     */
-    get afterOpen(): Subject<HcDialogRef<any>> {
-        return this.afterOpened;
-    }
-
     get _afterAllClosed(): Subject<void> {
         const parent = this._parentDialog;
         return parent ? parent._afterAllClosed : this._afterAllClosedAtThisLevel;

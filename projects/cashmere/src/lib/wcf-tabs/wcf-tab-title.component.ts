@@ -7,6 +7,6 @@ import {Component, ViewEncapsulation, TemplateRef, ViewChild} from '@angular/cor
     encapsulation: ViewEncapsulation.None
 })
 export class HcWcfTabTitleComponent {
-    @ViewChild('wcfTabTitle')
+    @ViewChild('wcfTabTitle', {static: false})
     public wcfTabTitle: TemplateRef<any>;
 }

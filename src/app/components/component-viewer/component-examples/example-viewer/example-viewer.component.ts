@@ -10,7 +10,7 @@ import {EXAMPLE_COMPONENTS} from '@wcf-insurance/cashmere-examples';
     styleUrls: ['example-viewer.component.scss']
 })
 export class ExampleViewerComponent implements OnInit {
-    @ViewChild('exampleContainer', {read: ViewContainerRef})
+    @ViewChild('exampleContainer', { read: ViewContainerRef, static: true })
     exampleContainer: ViewContainerRef;
 
     isInitialized = false;

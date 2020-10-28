@@ -19,9 +19,8 @@ import {DateAdapter} from '../datetime/date-adapter';
 import {HcFormControlComponent} from '../../form-field/hc-form-control.component';
 import {HcFormFieldComponent} from '../../form-field/hc-form-field.component';
 
-// tslint:disable:use-host-property-decorator
+// tslint:disable:no-host-metadata-property
 // tslint:disable:member-ordering
-// tslint:disable:no-use-before-declare
 
 /** @docs-private */
 export const HC_DATEPICKER_VALUE_ACCESSOR: any = {
