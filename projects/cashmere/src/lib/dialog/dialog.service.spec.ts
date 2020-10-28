@@ -49,7 +49,7 @@ class ComponentWithOnPushViewContainer {
     `
 })
 class ComponentWithChildViewContainerComponent {
-    @ViewChild(DirectiveWithViewContainerDirective, /* TODO: add static flag */ {})
+    @ViewChild(DirectiveWithViewContainerDirective, {static: false})
     childWithViewContainer: DirectiveWithViewContainerDirective;
 
     get childViewContainer() {
@@ -67,7 +67,7 @@ class ComponentWithTemplateRefComponent {
     localValue: string;
     dialogRef: HcDialogRef<any>;
 
-    @ViewChild(TemplateRef, /* TODO: add static flag */ {})
+    @ViewChild(TemplateRef, {static: false})
     templateRef: TemplateRef<any>;
 
     setDialogRef(dialogRef: HcDialogRef<any>): string {
@@ -111,7 +111,7 @@ class ContentElementDialogComponent {}
     `
 })
 class ComponentWithContentElementTemplateRefComponent {
-    @ViewChild(TemplateRef, /* TODO: add static flag */ {})
+    @ViewChild(TemplateRef, {static: false})
     templateRef: TemplateRef<any>;
 }
 
