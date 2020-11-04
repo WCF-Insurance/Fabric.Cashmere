@@ -1,17 +1,19 @@
 <div class="drawer-container">
     <hc-drawer-container>
         <hc-drawer align="left" #leftDrawer>
-            Left drawer content
+            <div class="drawer-content">Left drawer content</div>
         </hc-drawer>
         <hc-drawer align="right" #rightDrawer>
-            Right drawer content
+            <div class="drawer-content">Right drawer content</div>
         </hc-drawer>
 
-        <button hc-button buttonStyle="primary" (click)="leftDrawer.toggle()" class="demo-button">
-            Toggle Left Drawer
-        </button>
-        <button hc-button buttonStyle="primary" (click)="rightDrawer.toggle()" class="demo-button">
-            Toggle Right Drawer
-        </button>
+        <div class="drawer-content">
+            <button hc-button buttonStyle="secondary" (click)="leftDrawer.toggle()" class="demo-button">
+                Toggle Left Drawer
+            </button>
+            <button hc-button buttonStyle="secondary" (click)="rightDrawer.toggle()" class="demo-button">
+                Toggle Right Drawer
+            </button>
+        </div>
     </hc-drawer-container>
 </div>
