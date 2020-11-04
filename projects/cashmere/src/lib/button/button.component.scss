@@ -20,7 +20,7 @@
     }
 
     &.hc-secondary {
-        @include hc-button-secondary();
+        @include hc-button-primary-alt();
     }
 
     &.hc-minimal {
@@ -79,7 +79,7 @@
         }
 
         &.hc-secondary {
-            @include hc-button-secondary-toggle();
+            @include hc-split-button-toggle();
         }
         &.hc-minimal {
             @include hc-button-secondary-toggle();

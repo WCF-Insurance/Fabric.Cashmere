@@ -1,6 +1,8 @@
+@import '../../../../cashmere/src/lib/sass/colors';
+
 .wcf-tab-content {
     padding: 55px 15px;
-    border: 1px solid #afb2b4;
+    border: 1px solid $gray-10;
     margin-top: -1px;
 }
 

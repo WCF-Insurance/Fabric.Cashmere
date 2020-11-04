@@ -48,7 +48,7 @@ export class SidenavLinkComponent implements AfterContentInit {
     @HostBinding('style.position') position = 'relative';
     @HostBinding('style.display') display = 'block';
 
-    @ViewChild('toggle') _resultToggle: ElementRef;
+    @ViewChild('toggle', {static: false}) _resultToggle: ElementRef;
 
     private _linkChildren;
     _childrenShown: boolean = false;

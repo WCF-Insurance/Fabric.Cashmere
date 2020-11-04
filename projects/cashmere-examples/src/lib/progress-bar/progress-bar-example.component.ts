@@ -7,7 +7,7 @@ import {ProgressBarComponent, ProgressItem, ProgressItemStatus} from '@wcf-insur
     styleUrls: ['./progress-bar-example.component.scss']
 })
 export class ProgressBarExampleComponent {
-    @ViewChild('progressBarComponent') progressBarComponent: ProgressBarComponent;
+    @ViewChild('progressBarComponent', {static: false}) progressBarComponent: ProgressBarComponent;
     currentSelectedItem: ProgressItem;
     progressBarCompleted = false;
     progressItems: ProgressItem[] = [

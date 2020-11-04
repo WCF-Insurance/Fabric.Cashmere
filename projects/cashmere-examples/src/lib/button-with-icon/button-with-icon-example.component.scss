@@ -1,0 +1,15 @@
+button {
+    margin: 16px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.icon-left {
+    margin-right: 8px;
+}
+
+.icon-right {
+    margin-left: 8px;
+}

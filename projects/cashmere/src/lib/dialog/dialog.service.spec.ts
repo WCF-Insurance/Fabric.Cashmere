@@ -49,7 +49,7 @@ class ComponentWithOnPushViewContainer {
     `
 })
 class ComponentWithChildViewContainerComponent {
-    @ViewChild(DirectiveWithViewContainerDirective)
+    @ViewChild(DirectiveWithViewContainerDirective, {static: false})
     childWithViewContainer: DirectiveWithViewContainerDirective;
 
     get childViewContainer() {
@@ -67,7 +67,7 @@ class ComponentWithTemplateRefComponent {
     localValue: string;
     dialogRef: HcDialogRef<any>;
 
-    @ViewChild(TemplateRef)
+    @ViewChild(TemplateRef, {static: false})
     templateRef: TemplateRef<any>;
 
     setDialogRef(dialogRef: HcDialogRef<any>): string {
@@ -111,7 +111,7 @@ class ContentElementDialogComponent {}
     `
 })
 class ComponentWithContentElementTemplateRefComponent {
-    @ViewChild(TemplateRef)
+    @ViewChild(TemplateRef, {static: false})
     templateRef: TemplateRef<any>;
 }
 
@@ -330,7 +330,7 @@ describe('DialogService', () => {
                 const beforeCloseCallback = jasmine.createSpy('beforeClosed callback');
                 const afterCloseCallback = jasmine.createSpy('afterClosed callback');
 
-                dialogRef.beforeClose().subscribe(beforeCloseCallback);
+                dialogRef.beforeClosed().subscribe(beforeCloseCallback);
                 dialogRef.afterClosed().subscribe(afterCloseCallback);
 
                 scrolledSubject.next();

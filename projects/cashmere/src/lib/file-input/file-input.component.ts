@@ -42,7 +42,7 @@ export class FileInputComponent extends HcFormControlComponent implements Contro
     @Input()
     chipColor: string = 'neutral';
 
-    @ViewChild('fileInput')
+    @ViewChild('fileInput', {static: false})
     _fileInput: ElementRef<HTMLInputElement>;
 
     private readonly onDestroy: Subject<void> = new Subject<void>();

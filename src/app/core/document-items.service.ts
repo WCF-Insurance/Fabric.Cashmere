@@ -31,7 +31,8 @@ const docs: DocItem[] = [
         id: 'button',
         name: 'Button',
         category: 'buttons',
-        examples: ['button-type', 'button-split', 'button-size', 'button-anchor', 'button-link', 'button-icon']
+        examples: ['button-type', 'button-split', 'button-size', 'button-anchor', 'button-link', 'button-with-icon', 'button-icon'],
+        usageDoc: true
     },
     {
         id: 'checkbox',
@@ -91,12 +92,6 @@ const docs: DocItem[] = [
             'file-input-custom-label-and-color'
         ]
     },
-    {
-        id: 'footer',
-        name: 'Footer',
-        category: 'layout',
-        examples: ['footer-overview']
-    },
     {id: 'form-field', name: 'Form Field', category: 'forms', examples: ['form-field-overview']},
     {
         id: 'header',
@@ -116,7 +111,7 @@ const docs: DocItem[] = [
         name: 'Input',
         category: 'forms',
         usageDoc: true,
-        examples: ['input-required', 'input-hint', 'input-suffix', 'input-prefix', 'input-text-area', 'input-toggle-visible', 'input-phone-number', 'input-currency', 'input-password']
+        examples: ['input-required', 'input-hint', 'input-suffix', 'input-prefix', 'input-text-area', 'input-toggle-visible', 'input-phone-number', 'input-zipcode', 'input-currency', 'input-password']
     },
     {id: 'list', name: 'List', category: 'layout', examples: ['list-overview']},
     {
@@ -194,7 +189,7 @@ const docs: DocItem[] = [
         id: 'select',
         name: 'Select',
         category: 'forms',
-        examples: ['select-standard', 'select-disabled', 'select-validation', 'select-forms'],
+        examples: ['select-standard', 'select-disabled', 'select-validation', 'select-forms', 'select-object'],
         usageDoc: true
     },
     {

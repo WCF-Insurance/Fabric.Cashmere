@@ -179,24 +179,6 @@ export class HcDialogRef<T, R = any> {
         return this;
     }
 
-    /**
-     * Gets an observable that is notified when the dialog is finished opening.
-     * @deprecated Use `afterOpened` instead.
-     * @breaking-change 8.0.0
-     */
-    afterOpen(): Observable<void> {
-        return this.afterOpened();
-    }
-
-    /**
-     * Gets an observable that is notified when the dialog has started closing.
-     * @deprecated Use `beforeClosed` instead.
-     * @breaking-change 8.0.0
-     */
-    beforeClose(): Observable<R | undefined> {
-        return this.beforeClosed();
-    }
-
     /** Fetches the position strategy object from the overlay ref. */
     private _getPositionStrategy(): GlobalPositionStrategy {
         return this._overlayRef.getConfig().positionStrategy as GlobalPositionStrategy;

@@ -32,7 +32,7 @@ export function getControlMissing(): Error {
 export class HcFormFieldComponent implements AfterContentInit {
     private _inline: boolean = false;
 
-    @ContentChild(HcFormControlComponent)
+    @ContentChild(HcFormControlComponent, {static: false})
     _control: HcFormControlComponent;
     @ContentChildren(HcErrorComponent)
     _errorChildren: QueryList<HcErrorComponent>;
