@@ -1,0 +1,10 @@
+<hc-multi-select-picker style="width: 300px"
+    maxSummaryItems="5"
+    [pickerItemFilterResolver]="locationInfoPickerItemFilterForComponentExample"
+    [selectedValues]="selectedLocationValues"
+    [nonSelectedValues]="locationValues"
+    [placeholder]="'Choose Location'"
+    [summaryTextItemResolver]="locationInfoResolverFunction"
+    (change)="componentExampleChange($event)">
+        <hc-location-info *hcPickerItem="let item" [locationInfo]="item"></hc-location-info>
+</hc-multi-select-picker>

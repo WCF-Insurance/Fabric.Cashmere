@@ -57,9 +57,9 @@ export class ExampleViewerComponent implements OnInit {
         if (fileName.includes('.module.ts')) {
             return 'Module';
         }
-        if (fileName.includes('.component.')) {
+        if (fileName.includes(`${this.example}-example.component.`)) {
             const parts = fileName.split('.component.');
-            return `${parts[0]} (${parts[1].toUpperCase()})`;
+            return `${parts[1].toUpperCase()}`;
         }
         return fileName;
     }
@@ -79,12 +79,19 @@ export class ExampleViewerComponent implements OnInit {
         this.allExampleFiles = await this.httpClient.get<FileHash>(`/assets/docs/examples/${this.example}.json`).toPromise();
         const exampleRoot = `src/app/${this.example}/`;
         this.exampleFiles = Object.keys(this.allExampleFiles)
-            .filter(path => path.startsWith(exampleRoot))
+            .filter(path => path.startsWith(exampleRoot) && !this.fileIsNestedInExampleDirectory(path, exampleRoot))
             .map(path => ({
-                name: path.substr(exampleRoot.length + this.example.length + 1),
+                name: path.split(/[/]+/).pop() || '',
                 contents: this.allExampleFiles[path]
             }))
             .sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    private fileIsNestedInExampleDirectory(path: string, exampleRoot: string) {
+        return path.split(exampleRoot) &&
+            path.split(exampleRoot).pop() &&
+            // @ts-ignore
+            path.split(exampleRoot).pop().includes('/');
     }
 
     async launchStackBlitz() {

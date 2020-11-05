@@ -25,6 +25,7 @@ export * from './lib/input/index';
 export * from './lib/list/index';
 export * from './lib/modal/index';
 export * from './lib/model/index';
+export * from './lib/multi-select-picker/index';
 export * from './lib/navbar/index';
 export * from './lib/pagination/index';
 export * from './lib/pipes/index';
