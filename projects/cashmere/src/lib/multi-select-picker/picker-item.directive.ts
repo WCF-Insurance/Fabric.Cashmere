@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import {Directive} from '@angular/core';
 
 /**
  * Serves as an anchor to be able to target this element / component / template that this
@@ -8,10 +8,8 @@ import { Directive } from '@angular/core';
  * Attach hcPickerItem to the element you want to describe as your stamp / template.
  */
 @Directive({
-  selector: '[hcPickerItem]'
+    selector: '[hcPickerItem]'
 })
 export class PickerItemDirective {
-
-  constructor() { }
 
 }
