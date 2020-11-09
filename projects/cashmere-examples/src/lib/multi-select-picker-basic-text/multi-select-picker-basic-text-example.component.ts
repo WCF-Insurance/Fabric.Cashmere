@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
 
@@ -7,7 +7,7 @@ import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
     templateUrl: './multi-select-picker-basic-text-example.component.html',
     styleUrls: ['./multi-select-picker-basic-text-example.component.scss']
 })
-export class MultiSelectPickerBasicTextExampleComponent implements OnInit {
+export class MultiSelectPickerBasicTextExampleComponent {
 
     elementValues: string[] = [
         'Helium',
@@ -18,11 +18,6 @@ export class MultiSelectPickerBasicTextExampleComponent implements OnInit {
     ];
 
     selectedElementValues: string[] = ['Hydrogen'];
-
-    constructor() {
-    }
-
-    ngOnInit() {}
 
     change(event: MultiSelectPickerChangeEvent<string>): void {
         console.log("basic example changed:", event);

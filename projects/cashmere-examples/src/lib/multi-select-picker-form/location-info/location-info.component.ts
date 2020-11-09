@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import {LocationInfo} from './location-info.model';
 
@@ -7,21 +7,16 @@ import {LocationInfo} from './location-info.model';
     templateUrl: './location-info.component.html',
     styleUrls: ['./location-info.component.scss']
 })
-export class LocationInfoComponent implements OnInit {
+export class LocationInfoComponent {
 
     @Input()
     set locationInfo(value) {
         this._locationInfo = value;
     }
+
     get locationInfo(): LocationInfo {
         return this._locationInfo;
     }
+
     _locationInfo: LocationInfo;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
 }

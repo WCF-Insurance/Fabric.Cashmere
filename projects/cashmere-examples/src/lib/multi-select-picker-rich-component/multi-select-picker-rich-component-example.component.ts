@@ -8,7 +8,7 @@ import {LocationInfo} from './location-info/location-info.model';
     templateUrl: './multi-select-picker-rich-component-example.component.html',
     styleUrls: ['./multi-select-picker-rich-component-example.component.scss']
 })
-export class MultiSelectPickerRichComponentExampleComponent implements OnInit {
+export class MultiSelectPickerRichComponentExampleComponent {
 
     locationValues: LocationInfo[] = [
         {
@@ -48,10 +48,6 @@ export class MultiSelectPickerRichComponentExampleComponent implements OnInit {
             address: '1234 Cow St Ste 1'
         }
     ];
-
-    constructor() {}
-
-    ngOnInit() {}
 
     locationInfoPickerItemFilterForComponentExample(filter: string, item: MultiSelectItem<LocationInfo>): boolean {
         return (

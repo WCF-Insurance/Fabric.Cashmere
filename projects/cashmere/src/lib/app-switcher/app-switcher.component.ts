@@ -84,7 +84,6 @@ export class AppSwitcherComponent implements OnInit, OnDestroy {
     }
 
     private handleError(error: any) {
-        console.error('Failed to load applications from the app switcher service.', error);
         this.loadFailed = true;
     }
 

@@ -510,7 +510,6 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
         if (item && item.payload && typeof item.payload === 'string') {
             return item.payload.toLowerCase().includes(filter.toLowerCase());
         }
-        console.error("Fallback filtering must be used with MultiSelectItem options whose payloads are basic strings.");
         return false;
     };
 

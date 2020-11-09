@@ -1,8 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {
-    MultiSelectPickerChangeEvent
-} from '@wcf-insurance/cashmere';
+import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
 import {LocationInfo} from './location-info/location-info.component';
 
 @Component({
@@ -10,7 +8,7 @@ import {LocationInfo} from './location-info/location-info.component';
     templateUrl: './multi-select-picker-rich-template-example.component.html',
     styleUrls: ['./multi-select-picker-rich-template-example.component.scss']
 })
-export class MultiSelectPickerRichTemplateExampleComponent implements OnInit {
+export class MultiSelectPickerRichTemplateExampleComponent {
 
     locationValues: LocationInfo[] = [
         {
@@ -50,10 +48,6 @@ export class MultiSelectPickerRichTemplateExampleComponent implements OnInit {
             address: '1234 Cow St Ste 1'
         }
     ];
-
-    constructor() {}
-
-    ngOnInit() {}
 
     locationInfoFilterForTemplateExample(filter: string, item: LocationInfo): boolean {
         return (

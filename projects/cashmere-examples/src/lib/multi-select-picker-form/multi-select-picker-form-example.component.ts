@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {
-    MultiSelectPickerChangeEvent
-} from '@wcf-insurance/cashmere';
+import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -10,8 +8,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
     styleUrls: ['./multi-select-picker-form-example.component.scss']
 })
 export class MultiSelectPickerFormExampleComponent implements OnInit {
-
-    // standAloneControl = new FormControl(); // TODO Make a standalone control example
 
     elementValues: string[] = [
         'Helium',
@@ -29,8 +25,6 @@ export class MultiSelectPickerFormExampleComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.standAloneControl.setValue(this.items); // TODO Make a standalone control example
-
         this.formGroup = this.fb.group({
             elements: [this.selectedElementValues, Validators.required]
         });

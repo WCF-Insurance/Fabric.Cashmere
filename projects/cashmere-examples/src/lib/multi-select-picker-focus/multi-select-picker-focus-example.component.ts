@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
 
@@ -7,7 +7,7 @@ import {MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
     templateUrl: './multi-select-picker-focus-example.component.html',
     styleUrls: ['./multi-select-picker-focus-example.component.scss']
 })
-export class MultiSelectPickerFocusExampleComponent implements OnInit {
+export class MultiSelectPickerFocusExampleComponent {
 
     elementValues: string[] = [
         'Helium',
@@ -19,14 +19,10 @@ export class MultiSelectPickerFocusExampleComponent implements OnInit {
 
     selectedElementValues: string[] = ['Hydrogen'];
 
-    constructor() {
-    }
-
-    ngOnInit() {}
-
     elementChange(event: MultiSelectPickerChangeEvent<string>): void {
         console.log("element changed:", event);
     }
+
     anotherElementChange(event: MultiSelectPickerChangeEvent<string>): void {
         console.log("another element changed:", event);
     }

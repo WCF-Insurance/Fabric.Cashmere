@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, Input } from '@angular/core';
+import {AfterContentInit, Directive, ElementRef} from '@angular/core';
 
 /**
  * Handles auto-focusing the element that this directive is attached to.
@@ -15,11 +15,7 @@ export class AutofocusDirective implements AfterContentInit {
     public ngAfterContentInit() {
 
         setTimeout(() => {
-
             this.el.nativeElement.focus();
-
         }, 1);
-
     }
-
 }
