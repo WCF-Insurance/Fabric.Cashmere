@@ -1,4 +1,10 @@
+@import '../../../../cashmere/src/lib/sass/_typography.scss';
+
 .hc-drawer {
-    background-color: #384655;
-    color: #c0c5cc;
+    background-color: $wcf-blue;
+    color: $gray-10;
+}
+
+.drawer-content {
+    padding: 15px;
 }
