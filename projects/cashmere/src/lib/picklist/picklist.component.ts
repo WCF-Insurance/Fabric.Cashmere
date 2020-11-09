@@ -139,7 +139,6 @@ export class PicklistComponent implements ControlValueAccessor {
      */
     public setActiveValueType(type: 'values' | 'valueSets') {
         if (!this._available) {
-            console.warn('Available picklist pane not available yet.');
             return;
         }
         if (!this.settings.useValuesets) {
@@ -161,8 +160,6 @@ export class PicklistComponent implements ControlValueAccessor {
         const selectedOptions = pane.listService.moveOutSelectedOptions(shouldBreakValuesets);
         if (pane.companion) {
             pane.companion.listService.addOptions(selectedOptions);
-        } else {
-            console.warn('This pane does not have a companion pane to move the select options in to.');
         }
         pane.filterService.reloadIfEmpty();
         this.applyChangeToModel();
@@ -176,7 +173,6 @@ export class PicklistComponent implements ControlValueAccessor {
 
     private resetPanes(settings: IPicklistSettings) {
         if (!(this._available && this._confirmed)) {
-            console.warn('Picklist panes not available yet.');
             return;
         }
 
@@ -192,7 +188,6 @@ export class PicklistComponent implements ControlValueAccessor {
 
     private applyChangeToModel() {
         if (!(this._available && this._confirmed)) {
-            console.warn('Picklist panes not available yet.');
             return;
         }
 

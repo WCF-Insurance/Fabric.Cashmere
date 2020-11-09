@@ -105,7 +105,6 @@ export class PicklistService {
                 });
             },
             () => {
-                console.warn('Unable to load values for valueset');
                 valueset.showValues = false;
             },
             () => {
