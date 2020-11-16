@@ -15,21 +15,21 @@
  */
 
 /***************************************************************************************************
-* BROWSER POLYFILLS
-*/
+ * BROWSER POLYFILLS
+ */
 
-import 'core-js/es7/array';
+import 'core-js/es/array';
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es6/reflect';
+import 'core-js/es/reflect';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js/dist/zone'; // Included with Angular CLI.
-// import 'core-js/es6/regexp';
-// import 'core-js/es6/map';
-// import 'core-js/es6/weak-map';
-// import 'core-js/es6/set';
+// import 'core-js/es/regexp';
+// import 'core-js/es/map';
+// import 'core-js/es/weak-map';
+// import 'core-js/es/set';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
