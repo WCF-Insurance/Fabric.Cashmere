@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 /**
@@ -9,8 +9,12 @@ import {FormControl} from '@angular/forms';
     templateUrl: 'select-forms-example.component.html',
     styleUrls: ['select-forms-example.component.scss']
 })
-export class SelectFormsExampleComponent {
+export class SelectFormsExampleComponent implements OnInit {
     selectControl = new FormControl('chicken');
+
+    ngOnInit() {
+        this.selectControl.setValue('collard');
+    }
 
     setTaters() {
         this.selectControl.setValue('taters');
