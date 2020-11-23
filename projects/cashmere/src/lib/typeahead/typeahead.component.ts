@@ -388,11 +388,8 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     }
 
     _focusHandler(event) {
-        const clickTarget = event.target as HTMLElement;
-        if (clickTarget === this._inputRef.nativeElement && this._resultPanelHidden === true) {
-            this._resultPanelHidden = false;
-            this.valueChange.emit('');
-        }
+        this._resultPanelHidden = false;
+        this.valueChange.emit('');
     }
 
     _getHighlightedIndex() {
