@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     DoCheck,
     ElementRef,
@@ -41,7 +42,7 @@ export function _buildValueString(id: string | null, value: any): string {
     encapsulation: ViewEncapsulation.None,
     providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => SelectComponent)}]
 })
-export class SelectComponent extends HcFormControlComponent implements ControlValueAccessor, DoCheck {
+export class SelectComponent extends HcFormControlComponent implements ControlValueAccessor, DoCheck, AfterViewInit {
     private _uniqueInputId = `hc-select-${uniqueId++}`;
     private _form: NgForm | FormGroupDirective | null;
     private _value: any = '';
@@ -157,6 +158,10 @@ export class SelectComponent extends HcFormControlComponent implements ControlVa
     private onTouched: (val: any) => void = () => {
     };
 
+    ngAfterViewInit() {
+        this._applyValue();
+    }
+
     registerOnChange(fn: any) {
         this.onChange = fn;
     }
@@ -167,15 +172,19 @@ export class SelectComponent extends HcFormControlComponent implements ControlVa
 
     writeValue(value: any) {
         this._value = value;
-        const id: string | null = this._getOptionId(value);
+        this._applyValue();
+    }
+
+    _applyValue() {
+        const id: string | null = this._getOptionId(this._value);
         if (!this._nativeSelect) {
             return;
         }
         if (id == null) {
             const selectedIndex = this.placeholder ? 0 : -1;
-            this._renderer.setProperty(this._nativeSelect.nativeElement, 'selectedIndex', -1);
+            this._renderer.setProperty(this._nativeSelect.nativeElement, 'selectedIndex', selectedIndex);
         }
-        const valueString = _buildValueString(id, value);
+        const valueString = _buildValueString(id, this._value);
         this._renderer.setProperty(this._nativeSelect.nativeElement, 'value', valueString);
     }
 

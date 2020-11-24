@@ -43,9 +43,6 @@ export class SidenavComponent implements AfterContentInit {
     readonly align = 'left';
     readonly mode = 'side';
 
-    @HostBinding()
-    tabindex = -1;
-
     @HostBinding('class.hc-sidenav')
     _sideNavClass = true;
 

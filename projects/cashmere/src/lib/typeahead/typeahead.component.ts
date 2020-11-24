@@ -111,7 +111,6 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     ngOnInit() {
         this._searchTerm = new FormControl(this._value);
         this._resultPanelHidden = true;
-        document.body.addEventListener('click', this.handleClick.bind(this));
 
         // add subscription and debouncer for value changing in input field
         fromEvent(this._inputRef.nativeElement, 'keyup').pipe(
@@ -146,36 +145,6 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
             );
         });
     }
-
-    private handleClick(event) {
-        const clickTarget = event.target as HTMLElement;
-        let clickedTypeahead = false;
-
-        // open results panel on click
-        if (clickTarget === this._inputRef.nativeElement) {
-            if (this._resultPanelHidden === true) {
-                this._resultPanelHidden = false;
-                this.valueChange.emit('');
-                clickedTypeahead = true;
-            } else {
-                clickedTypeahead = true;
-            }
-        }
-
-        // check if results exist
-        if (this._resultPanel) {
-            if (clickTarget === this._resultPanel.nativeElement ||
-                this._resultPanel.nativeElement.contains(clickTarget)) {
-                clickedTypeahead = true;
-            }
-        }
-
-        // if the click was not in the typeahead then close the results panel
-        if (!clickedTypeahead) {
-            this.hideResultPanel();
-        }
-    }
-
 
     private listenForSelection() {
         this._options.toArray().forEach(option => {
@@ -416,6 +385,11 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
         this._markAsTouched();
         this.hideResultPanel();
         this.blur.emit(event);
+    }
+
+    _focusHandler(event) {
+        this._resultPanelHidden = false;
+        this.valueChange.emit('');
     }
 
     _getHighlightedIndex() {
