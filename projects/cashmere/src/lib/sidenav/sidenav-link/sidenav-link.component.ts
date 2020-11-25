@@ -12,6 +12,7 @@ import {
     ViewChild
 } from '@angular/core';
 import {Router} from '@angular/router';
+import {SidenavService} from '../sidenav.service';
 
 /** Primary navigation links */
 @Component({
@@ -59,7 +60,7 @@ export class SidenavLinkComponent implements AfterContentInit {
     @ContentChildren(SidenavLinkComponent)
     private _children?: QueryList<SidenavLinkComponent>;
 
-    constructor(private renderer: Renderer2, private router: Router) {
+    constructor(private renderer: Renderer2, private router: Router, private sidenavService: SidenavService) {
     }
 
     ngAfterContentInit() {
@@ -138,7 +139,7 @@ export class SidenavLinkComponent implements AfterContentInit {
 
     _toggleChildren(event, expanded?: boolean) {
         if (event) {
-            this._stop(event);
+            event.stopPropagation();
         }
 
         this._childrenShown = expanded || !this._childrenShown;
@@ -152,7 +153,8 @@ export class SidenavLinkComponent implements AfterContentInit {
         }
     }
 
-    _stop(event: Event) {
+    _linkClickHandler(event: Event) {
+        this.sidenavService.emitNavClickEvent(event);
         event.stopPropagation();
     }
 
