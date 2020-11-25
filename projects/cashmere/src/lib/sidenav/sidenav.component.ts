@@ -1,6 +1,5 @@
 import {
     AfterContentInit,
-    ChangeDetectionStrategy,
     Component,
     ContentChildren,
     ElementRef,
@@ -11,13 +10,14 @@ import {
 } from '@angular/core';
 import {SidenavLinkComponent} from './sidenav-link/sidenav-link.component';
 import {Drawer} from '../drawer/index';
+import {SidenavService} from './sidenav.service';
 
 /** The navbar is a wrapper that positions branding, navigation, and other elements in a concise header. */
 @Component({
     selector: 'hc-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [SidenavService]
 })
 export class SidenavComponent implements AfterContentInit {
 
@@ -42,9 +42,6 @@ export class SidenavComponent implements AfterContentInit {
 
     readonly align = 'left';
     readonly mode = 'side';
-
-    @HostBinding()
-    tabindex = -1;
 
     @HostBinding('class.hc-sidenav')
     _sideNavClass = true;
@@ -99,6 +96,9 @@ export class SidenavComponent implements AfterContentInit {
 
     sidenavOpen: boolean = false;
 
+    constructor(private sidenavService: SidenavService) {
+    }
+
     ngAfterContentInit(): void {
         // Check all of the top level links for active state and expand as necessary
         this._navLinks.toArray().forEach(link => {
@@ -120,11 +120,24 @@ export class SidenavComponent implements AfterContentInit {
         this._navLinks.toArray().forEach(link => {
             link._refreshChildren.subscribe(linkUpdated => this._autoExpandSidenav(linkUpdated));
         });
+
+        // Subscribe to clicks on sidenav links so that if it is mobile view
+        // we can close the sidenav.
+        this.sidenavService.navClick.subscribe(event => {
+            this._closeMobileSidenav();
+        });
     }
 
     private _autoExpandSidenav(link: SidenavLinkComponent) {
         if (link._topLevel && link._isActiveOrHasActiveChild()) {
             setTimeout(() => link._toggleChildren(null, true));
+        }
+    }
+
+    private _closeMobileSidenav() {
+        if (this.drawer) {
+            this.drawer.toggleClose().then();
+            this.sidenavOpen = false;
         }
     }
 

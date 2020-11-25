@@ -1,0 +1,66 @@
+<div #pickerMainControl class="picker-main-control origin" [ngClass]="{'hide': _pickerOverlayOpen}" tabIndex="-1">
+    <div class="inner-container">
+        <div class="input-container">
+            <div class="input-placeholder" (click)="_placeholderClicked()">{{placeholder}}</div>
+        </div>
+        <div class="picker-trigger" (click)="_triggerClicked()">
+            <span class="select-chevron"></span>
+        </div>
+    </div>
+</div>
+<div class="summary" tabIndex="-1">
+    <div *ngIf="!maxSummaryItems || _selectedItemsCommitted?.length > maxSummaryItems" class="text-summary text-summary--default">
+        <span>Selected: {{_selectedItemsCommitted?.length}}&nbsp;</span><span *ngIf="_selectedItemsCommitted?.length === 1">item</span><span *ngIf="_selectedItemsCommitted?.length !== 1">items</span>
+    </div>
+    <div *ngIf="maxSummaryItems && _selectedItemsCommitted?.length <= maxSummaryItems" class="text-summary">
+        Selected: {{_selectedItemsCommitted | multiSelectPickerSummary: summaryTextItemResolver}}
+    </div>
+</div>
+
+<ng-template #overlayContent>
+    <!-- popover version of picker-main-control -->
+    <div class="picker-main-control popover" tabIndex="-1">
+        <div class="inner-container">
+            <div class="input-container">
+                <div class="input-placeholder" *ngIf="!_inputActive" (click)="_popoverPlaceholderClicked()">{{placeholder}}</div>
+                <input class="input-control" type="text" *ngIf="_inputActive" (blur)="_hideInput()" (input)="_input($event.target.value)" hcAutoFocus>
+            </div>
+            <div class="picker-trigger" (click)="_popoverTriggerClicked()">
+                <span class="select-chevron" [ngClass]="{'open': _pickerOverlayOpen}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="picker-content" tabIndex="-1">
+        <!-- Selected Items TODO  -->
+        <ng-container *ngFor="let item of _filteredItems; last as lastItem">
+            <ng-container *ngIf="item.checked">
+                <div class="picker-item" [ngClass]="{'lastItem': lastItem}" (click)="_itemCheckboxChange(item)">
+                    <hc-checkbox [checked]="item.checked" (click)="$event.preventDefault()"></hc-checkbox>
+                    <div class="item-content">
+                        <span class="basic-item" *ngIf="!_listItemTemplate">{{item.payload}}</span>
+                        <ng-container *ngTemplateOutlet="_listItemTemplate; context: {$implicit: item.payload, multiSelectItem: item}"></ng-container>
+                        <!-- There might be a better way to allow a user to get the multiSelectItem that has the checked property instead of just item.payload if we offer an alternative directive and ng-container here tied to it. Then the user can choose which one -->
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Unselected Items -->
+        <ng-container *ngFor="let item of _filteredItems; last as lastItem">
+            <ng-container *ngIf="!item.checked">
+                <div class="picker-item" [ngClass]="{'lastItem': lastItem}" (click)="_itemCheckboxChange(item)">
+                    <hc-checkbox [checked]="item.checked" (click)="$event.preventDefault()"></hc-checkbox>
+                    <div class="item-content">
+                        <span class="basic-item" *ngIf="!_listItemTemplate">{{item.payload}}</span>
+                        <ng-container *ngTemplateOutlet="_listItemTemplate; context: {$implicit: item.payload, multiSelectItem: item}"></ng-container>
+                        <!-- There might be a better way to allow a user to get the multiSelectItem that has the checked property instead of just item.payload if we offer an alternative directive and ng-container here tied to it. Then the user can choose which one -->
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="picker-footer" tabIndex="-1">
+        <button hc-button title="Link Button" buttonStyle="link-inline" size="sm" (click)="_cancel()">Cancel</button>
+        <button hc-button title="Primary Button" buttonStyle="primary" size="sm" [disabled]="required && _selectedItems?.length === 0" (click)="_submit()">Submit</button>
+    </div>
+</ng-template>

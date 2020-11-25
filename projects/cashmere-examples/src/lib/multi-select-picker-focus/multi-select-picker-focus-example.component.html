@@ -1,0 +1,14 @@
+<hc-multi-select-picker
+    maxSummaryItems="5"
+    [selectedValues]="selectedElementValues"
+    [nonSelectedValues]="elementValues"
+    [placeholder]="'Choose Element'"
+    (change)="elementChange($event)">
+</hc-multi-select-picker>
+<hc-multi-select-picker style="width: 300px"
+                        maxSummaryItems="5"
+                        [selectedValues]="selectedElementValues"
+                        [nonSelectedValues]="elementValues"
+                        [placeholder]="'Choose Another Element'"
+                        (change)="anotherElementChange($event)">
+</hc-multi-select-picker>

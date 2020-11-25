@@ -122,6 +122,13 @@ const docs: DocItem[] = [
         usageDoc: true
     },
     {
+        id: 'multi-select-picker',
+        name: 'Multi-Select Picker',
+        category: 'forms',
+        examples: ['multi-select-picker-basic-text', 'multi-select-picker-rich-component', 'multi-select-picker-rich-template', 'multi-select-picker-form', 'multi-select-picker-focus', 'multi-select-picker-form-disabled'],
+        usageDoc: true
+    },
+    {
         id: 'navbar',
         name: 'Navbar',
         category: 'nav',

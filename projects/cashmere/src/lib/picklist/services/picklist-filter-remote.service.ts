@@ -45,7 +45,6 @@ export class PicklistFilterRemoteService {
 
     public filter(type: PicklistValueType = 'both', shouldAppend = false, selectAllCount: number | null = null): Subscription {
         if (!this.stateService.optionsSource.getOptions) {
-            console.warn('Remote query callback not provided for this picklist.');
             return from([]).subscribe();
         }
 
@@ -64,7 +63,6 @@ export class PicklistFilterRemoteService {
                 this.processIncomingRemoteOptions(options, type, shouldAppend);
             },
             () => {
-                console.warn('Unable to filter options');
                 this.clearLists('both');
                 return of({});
             },
