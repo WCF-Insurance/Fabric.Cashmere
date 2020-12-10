@@ -2,11 +2,24 @@
     <form [formGroup]="form">
         <hc-form-field [inline]="true">
             <hc-label>States:</hc-label>
-            <hc-typeahead formControlName="item" (valueChange)="filterData($event)" (optionSelected)="optionSelected($event)" placeholder="Click to search">
+            <hc-typeahead formControlName="item" (valueChange)="filterData($event)" (optionSelected)="optionSelected($event)"
+                          placeholder="Click to search">
                 <hc-typeahead-item *ngFor="let item of filteredData" [value]="item">
                     {{item}}
                 </hc-typeahead-item>
             </hc-typeahead>
         </hc-form-field>
+
+        <div style="padding-top: 20px;">
+            <hc-form-field [inline]="true">
+                <hc-label>Disabled:</hc-label>
+                <hc-typeahead formControlName="item" (valueChange)="filterData($event)" (optionSelected)="optionSelected($event)"
+                              placeholder="Click to search" [disabled]="true">
+                    <hc-typeahead-item *ngFor="let item of filteredData" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+            </hc-form-field>
+        </div>
     </form>
 </div>
