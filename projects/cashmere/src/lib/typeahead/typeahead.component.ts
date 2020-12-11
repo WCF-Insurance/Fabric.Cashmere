@@ -339,7 +339,11 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
 
     set disabled(disabledVal) {
         if (this._searchTerm) {
-            this._searchTerm.patchValue({disabled: disabledVal});
+            if (disabledVal) {
+                this._searchTerm.disable();
+            } else {
+                this._searchTerm.enable();
+            }
         }
         this._isDisabled = parseBooleanAttribute(disabledVal);
     }
