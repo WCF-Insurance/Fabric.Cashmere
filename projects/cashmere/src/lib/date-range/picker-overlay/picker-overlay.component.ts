@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList} from '@angular/core';
-import {DateRangeOptions} from '../model/model';
+import {DateRangeOptions, PeriodDurationOptions} from '../model/model';
 import {OverlayRef} from '@angular/cdk/overlay';
 import {ConfigStoreService} from '../services/config-store.service';
 import {DateRange} from '../model/model';
@@ -22,6 +22,7 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
     _toDate: D | undefined;
     _disabled: boolean;
     _selectedPreset: DateRange | null;
+    maxDate: Date | undefined;
 
     @ViewChildren(CalendarWrapperComponent)
     calendarWrappers: QueryList<CalendarWrapperComponent>;
@@ -150,6 +151,47 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
                 }
 
                 return options.toMinMax.fromDate < this._fromDate ? this._fromDate : options.toMinMax.fromDate;
+            })
+        );
+    }
+
+    _periodMaxDate(): Observable<Date | undefined> {
+        return this.options$.pipe(
+            map((options: DateRangeOptions) => {
+
+                // return new Date(2020, 10, 26);
+
+                // if (!this.maxDate) {
+                //     this.maxDate = new Date(2020, 10, 26);
+                // }
+                // return this.maxDate;
+
+                if (!options.periodDurationOptions) {
+                    this.maxDate = this._toDate;
+                    return this.maxDate;
+                }
+
+                if (options.periodDurationOptions.lengthInDays) {
+                    if (this._fromDate) {
+                        const periodMax = new Date(this._fromDate.getTime());
+                        periodMax.setHours(0, 0, 0, 0);
+                        periodMax.setDate(this._fromDate.getDate() + options.periodDurationOptions.lengthInDays);
+
+                        if (!this.maxDate || this.maxDate.getTime() !== periodMax.getTime()) {
+                            this.maxDate = periodMax;
+                        }
+
+                        return this.maxDate;
+                    }
+                }
+
+                if (options.periodDurationOptions.maxDate) {
+                    this.maxDate = options.periodDurationOptions.maxDate;
+                    return this.maxDate;
+                }
+
+                this.maxDate = this._toDate;
+                return this.maxDate;
             })
         );
     }
