@@ -23,6 +23,9 @@ export class TypeaheadOverviewExampleComponent implements OnInit {
         'Georgia'
     ];
 
+    disabled = false;
+    buttonLabel = 'Disable';
+
     constructor(private fb: FormBuilder) {
     }
 
@@ -50,5 +53,10 @@ export class TypeaheadOverviewExampleComponent implements OnInit {
         if (control) {
             control.setValue(item);
         }
+    }
+
+    toggleDisabled() {
+        this.disabled = !this.disabled;
+        this.buttonLabel = this.disabled ? 'Enable' : 'Disable';
     }
 }
