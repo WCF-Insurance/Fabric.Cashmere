@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList} from '@angular/core';
-import {DateRangeOptions, PeriodDurationOptions} from '../model/model';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
+import {DateRange, DateRangeOptions} from '../model/model';
 import {OverlayRef} from '@angular/cdk/overlay';
 import {ConfigStoreService} from '../services/config-store.service';
-import {DateRange} from '../model/model';
 import {D} from '../../datepicker/datetime/date-formats';
 import {CalendarWrapperComponent} from '../calendar-wrapper/calendar-wrapper.component';
 import {Observable} from 'rxjs';
@@ -86,10 +85,10 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
         this._toDate = range.toDate;
 
         setTimeout(() => {
-            if ( this._fromDate ) {
+            if (this._fromDate) {
                 this.calendarWrappers.first.hcCalendar.activeDate = this._fromDate;
             }
-            if ( this._toDate ) {
+            if (this._toDate) {
                 this.calendarWrappers.last.hcCalendar.activeDate = this._toDate;
             }
         });
@@ -158,14 +157,6 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
     _periodMaxDate(): Observable<Date | undefined> {
         return this.options$.pipe(
             map((options: DateRangeOptions) => {
-
-                // return new Date(2020, 10, 26);
-
-                // if (!this.maxDate) {
-                //     this.maxDate = new Date(2020, 10, 26);
-                // }
-                // return this.maxDate;
-
                 if (!options.periodDurationOptions) {
                     this.maxDate = this._toDate;
                     return this.maxDate;
