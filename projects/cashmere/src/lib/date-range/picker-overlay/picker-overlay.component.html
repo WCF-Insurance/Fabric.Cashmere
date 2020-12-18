@@ -1,34 +1,71 @@
 <div class="hc-date-range-calendar-container" *ngIf="(options$ | async) as options">
-    <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
-        <hc-calendar-wrapper
-            [prefixLabel]="options.startDatePrefix"
-            [selectedDate]="_fromDate"
-            [minDate]="options.fromMinMax?.fromDate"
-            [maxDate]="_fromMaxDate | async"
-            (selectedDateChange)="_updateFromDate($event)"
-            [excludeWeekends]="options.excludeWeekends"
-            [dateFormat]="options.dateFormat"
-            [invalidDateLabel]="options.invalidDateLabel"
-            [mode]="options.mode"
-            [hourCycle]="options.hourCycle"
-        >
-        </hc-calendar-wrapper>
-    </div>
-    <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
-        <hc-calendar-wrapper
-            [prefixLabel]="options.endDatePrefix"
-            [selectedDate]="_toDate"
-            [minDate]="_ToMinDate | async"
-            [maxDate]="options.toMinMax?.toDate"
-            (selectedDateChange)="_updateToDate($event)"
-            [excludeWeekends]="options.excludeWeekends"
-            [dateFormat]="options.dateFormat"
-            [invalidDateLabel]="options.invalidDateLabel"
-            [mode]="options.mode"
-            [hourCycle]="options.hourCycle"
-        >
-        </hc-calendar-wrapper>
-    </div>
+    <ng-container *ngIf="options.periodDurationOptions; then periodDurationConstrictedCalendars; else defaultCalendars;"></ng-container>
+
+    <ng-template #periodDurationConstrictedCalendars>
+        <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
+            <hc-calendar-wrapper
+                [prefixLabel]="options.startDatePrefix"
+                [selectedDate]="_fromDate"
+                [minDate]="options.periodDurationOptions.minDate"
+                [maxDate]="options.periodDurationOptions.maxDate"
+                (selectedDateChange)="_updateFromDate($event)"
+                [excludeWeekends]="options.excludeWeekends"
+                [dateFormat]="options.dateFormat"
+                [invalidDateLabel]="options.invalidDateLabel"
+                [mode]="options.mode"
+                [hourCycle]="options.hourCycle"
+            >
+            </hc-calendar-wrapper>
+        </div>
+        <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
+            <hc-calendar-wrapper
+                [prefixLabel]="options.endDatePrefix"
+                [selectedDate]="_toDate"
+                [minDate]="_fromDate"
+                [maxDate]="_periodMaxDate() | async"
+                (selectedDateChange)="_updateToDate($event)"
+                [excludeWeekends]="options.excludeWeekends"
+                [dateFormat]="options.dateFormat"
+                [invalidDateLabel]="options.invalidDateLabel"
+                [mode]="options.mode"
+                [hourCycle]="options.hourCycle"
+            >
+            </hc-calendar-wrapper>
+        </div>
+    </ng-template>
+
+    <ng-template #defaultCalendars>
+        <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
+            <hc-calendar-wrapper
+                [prefixLabel]="options.startDatePrefix"
+                [selectedDate]="_fromDate"
+                [minDate]="options.fromMinMax?.fromDate"
+                [maxDate]="_fromMaxDate | async"
+                (selectedDateChange)="_updateFromDate($event)"
+                [excludeWeekends]="options.excludeWeekends"
+                [dateFormat]="options.dateFormat"
+                [invalidDateLabel]="options.invalidDateLabel"
+                [mode]="options.mode"
+                [hourCycle]="options.hourCycle"
+            >
+            </hc-calendar-wrapper>
+        </div>
+        <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
+            <hc-calendar-wrapper
+                [prefixLabel]="options.endDatePrefix"
+                [selectedDate]="_toDate"
+                [minDate]="_ToMinDate | async"
+                [maxDate]="options.toMinMax?.toDate"
+                (selectedDateChange)="_updateToDate($event)"
+                [excludeWeekends]="options.excludeWeekends"
+                [dateFormat]="options.dateFormat"
+                [invalidDateLabel]="options.invalidDateLabel"
+                [mode]="options.mode"
+                [hourCycle]="options.hourCycle"
+            >
+            </hc-calendar-wrapper>
+        </div>
+    </ng-template>
     <div class="hc-date-range-calendar-item">
         <div class="hc-date-range-menu">
             <hc-label class="presets">Quick Select</hc-label>
