@@ -25,7 +25,9 @@
     <!-- Symbol Column -->
     <ng-container hcColumnDef="symbol">
         <th hc-header-cell *hcHeaderCellDef>Symbol</th>
-        <td hc-cell *hcCellDef="let element">{{ element.symbol }}</td>
+        <td hc-cell *hcCellDef="let element">
+            <hc-chip color="yellow">{{ element.symbol }}</hc-chip>
+        </td>
     </ng-container>
 
     <tr hc-header-row *hcHeaderRowDef="displayedColumns"></tr>
