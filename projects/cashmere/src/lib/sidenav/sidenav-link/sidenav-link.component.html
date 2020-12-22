@@ -26,9 +26,11 @@
 </ng-template>
 
 <ng-template #linkContent>
-    <div class="top-most-link">
+    <div class="top-most-link" [ngClass]="{'link-text-sm': !children?.length && !routerLink}">
         <hc-icon class="icon-left" fontSet="fa" [fontIcon]="fontIcon"></hc-icon>
-        {{ linkText }}
+        <div class="link-text-container">
+            <span class="actual-text">{{ linkText }}</span>
+        </div>
         <span *ngIf="!routerLink" class="external-icon"><hc-icon hcIconSm fontSet="fas" fontIcon="fa-external-link-alt"></hc-icon></span>
     </div>
     <div [ngClass]="{children:true, shown:_childrenShown}" *ngIf="children?.length">
