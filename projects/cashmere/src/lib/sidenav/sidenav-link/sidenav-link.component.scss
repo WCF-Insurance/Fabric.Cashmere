@@ -10,7 +10,13 @@ a {
     .link-text-container {
         display: inline-block;
         position: relative;
-        max-width: 164px;
+        max-width: 182px;
+    }
+
+    .children {
+        .link-text-container {
+            max-width: 164px;
+        }
     }
 
     .top-most-link {
@@ -74,12 +80,6 @@ a {
                 padding-left: 62px;
             }
         }
-    }
-}
-
-a.sidenav-link > .top-most-link {
-    .link-text-container {
-        max-width: 185px;
     }
 }
 
