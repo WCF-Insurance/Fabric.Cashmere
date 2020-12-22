@@ -7,14 +7,22 @@ a {
     width: 100%;
     display: block;
 
-    div {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+    .link-text-container {
+        display: inline-block;
+        position: relative;
+        max-width: 182px;
+    }
+
+    .children {
+        .link-text-container {
+            max-width: 164px;
+        }
     }
 
     .top-most-link {
         padding: 15px 15px 14px 26px;
+        display: flex;
+        align-items: center;
 
         &:hover {
             background-color: $wcf-blue;
@@ -27,6 +35,12 @@ a {
 
         &:active {
             background-color: $wcf-blue;
+        }
+
+        &.link-text-sm {
+            .link-text-container {
+                max-width: 145px;
+            }
         }
     }
 
