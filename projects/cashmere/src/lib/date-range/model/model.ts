@@ -44,4 +44,17 @@ export interface DateRangeOptions {
     invalidDateLabel?: string;
     /** Begining Daterange */
     range?: DateRange;
+    /** Options to configure a restriction in period length / duration.
+     * Note using this disrupts default behavior in favor of a more specific behavior to restrict selectable range length */
+    periodDurationOptions?: PeriodDurationOptions;
+}
+
+/** Options for restricting the length of the range selectable. See Usage for more information */
+export interface PeriodDurationOptions {
+    /** The number of total days, including the start date, that the user can select */
+    lengthInDays: number;
+    /** Optional: Min date that the start calendar can select */
+    minDate?: Date;
+    /** Optional: Max date that the start calendar can select */
+    maxDate?: Date;
 }

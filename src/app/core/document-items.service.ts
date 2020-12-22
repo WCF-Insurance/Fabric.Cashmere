@@ -58,7 +58,7 @@ const docs: DocItem[] = [
         id: 'date-range',
         name: 'DateRange',
         category: 'forms',
-        examples: ['date-range', 'date-range-time'],
+        examples: ['date-range', 'date-range-duration-constricted', 'date-range-time'],
         usageDoc: true
     },
     {
