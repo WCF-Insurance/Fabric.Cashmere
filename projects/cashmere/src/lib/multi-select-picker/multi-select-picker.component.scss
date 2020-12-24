@@ -74,12 +74,7 @@
             padding-left: 6px;
         }
 
-        box-shadow: 0 0 5px #4890d9;
-        border-color: $wcf-blue !important;
-        -webkit-transition: all 0.25s;
-        -moz-transition: all 0.25s;
-        -ms-transition: all 0.25s;
-        -o-transition: all 0.25s;
+        @include formFieldFocusedState();
     }
 
     .select-chevron {

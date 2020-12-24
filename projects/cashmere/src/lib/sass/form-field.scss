@@ -104,6 +104,7 @@ $wrapper-padding-bottom: ($error-margin-top + $line-height) * $error-font-scale;
     white-space: nowrap;
     flex: none;
     position: relative;
+    top: .1em;
 }
 
 @mixin hc-form-field-prefix-suffix-disabled {
