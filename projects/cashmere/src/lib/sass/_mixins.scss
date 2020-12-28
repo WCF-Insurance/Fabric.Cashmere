@@ -41,7 +41,15 @@
 }
 
 @mixin formFieldFocusedState() {
-    box-shadow: 0 0 5px $blue-glow;
+    box-shadow: none;
+    border-color: $info !important;
+    outline: none;
+
+    @include formFieldFocusTransition();
+}
+
+@mixin formFieldFocusedButtonState() {
+    box-shadow: 0 0 0 2px $info;
     border-color: $wcf-blue !important;
     outline: none;
 

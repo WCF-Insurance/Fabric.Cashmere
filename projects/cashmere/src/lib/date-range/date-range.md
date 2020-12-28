@@ -47,3 +47,27 @@ The following are default values if the options are not setup
     range: { fromDate: undefined, toDate: undefined }
 }
 ```
+
+### Restricting the selectable range
+
+You can restrict length of the period range the user can select by providing a `periodDurationOptions` object as a part of `options`.
+
+`minDate` and `maxDate` are optional and will only restrict the start calendar as the end calendar valid range is derived from lengthInDays from and including selected start date, in this example 365 days.
+
+NOTE! Using periodDurationOptions infers a narrowing of feature scope. Some behavior may be different or not present as a result of this choice.
+```typescript
+        this.options = {
+            presets: [],
+            format: 'mediumDate',
+            range: { fromDate: today, toDate: today },
+            applyLabel: 'Apply',
+            ...
+            periodDurationOptions: {
+                lengthInDays: 365,
+                minDate: fromMin, // Optional
+                maxDate: toMax    // Optional
+            }
+        };
+``` 
+
+

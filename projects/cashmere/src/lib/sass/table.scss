@@ -65,6 +65,8 @@ $row-selected-border-color: $white;
 }
 
 @mixin hc-table-body-row() {
+    height: 48px;
+    
     &:nth-child(2n) {
         background-color: $row-color;
     }
@@ -79,7 +81,7 @@ $row-selected-border-color: $white;
 }
 
 @mixin hc-table-body-cell() {
-    vertical-align: top;
+    vertical-align: middle;
     border-bottom: none !important;
 }
 

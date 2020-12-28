@@ -64,22 +64,14 @@
 
     &.popover {
         height: 34px;
-        border-left: 1px solid transparent;
-        border-top: none;
-        border-right: 1px solid transparent;
-        border-bottom: 1px solid $gray-300;
         padding-bottom: 1px;
 
         .input-placeholder {
             padding-left: 6px;
         }
 
-        box-shadow: 0 0 5px #4890d9;
-        border-color: $wcf-blue !important;
-        -webkit-transition: all 0.25s;
-        -moz-transition: all 0.25s;
-        -ms-transition: all 0.25s;
-        -o-transition: all 0.25s;
+        @include formFieldFocusedState();
+        border-width: 2px;
     }
 
     .select-chevron {
