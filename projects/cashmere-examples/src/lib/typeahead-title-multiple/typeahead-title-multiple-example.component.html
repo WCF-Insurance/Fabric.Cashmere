@@ -1,21 +1,25 @@
 <div class="example-content">
     <form [formGroup]="form">
-        <hc-typeahead-title>
-            <hc-typeahead formControlName="stateItem" (valueChange)="filterStateData($event)"
-                          (optionSelected)="stateSelected($event)" placeholder="Find a state">
-                <hc-typeahead-item *ngFor="let item of filteredStateData" [value]="item">
-                    {{item}}
-                </hc-typeahead-item>
-            </hc-typeahead>
-        </hc-typeahead-title>
+        <hc-form-field>
+            <hc-typeahead-title>
+                <hc-typeahead formControlName="stateItem" (valueChange)="filterStateData($event)"
+                              (optionSelected)="stateSelected($event)" placeholder="Find a state">
+                    <hc-typeahead-item *ngFor="let item of filteredStateData" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+            </hc-typeahead-title>
+        </hc-form-field>
 
-        <hc-typeahead-title>
-            <hc-typeahead formControlName="cityItem" (valueChange)="filterCityData($event)"
-                          (optionSelected)="citySelected($event)" placeholder="Find a city">
-                <hc-typeahead-item *ngFor="let item of filteredCityData" [value]="item">
-                    {{item}}
-                </hc-typeahead-item>
-            </hc-typeahead>
-        </hc-typeahead-title>
+        <hc-form-field>
+            <hc-typeahead-title>
+                <hc-typeahead formControlName="cityItem" (valueChange)="filterCityData($event)"
+                              (optionSelected)="citySelected($event)" placeholder="Find a city">
+                    <hc-typeahead-item *ngFor="let item of filteredCityData" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+            </hc-typeahead-title>
+        </hc-form-field>
     </form>
 </div>
