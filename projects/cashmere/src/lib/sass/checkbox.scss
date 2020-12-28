@@ -58,7 +58,6 @@
 
 @mixin hc-checkbox-focused {
     @include formFieldFocusedState();
-    //border-color: transparent; TODO remove
 }
 
 @mixin hc-checkbox-overlay-disabled() {
