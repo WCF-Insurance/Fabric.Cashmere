@@ -23,6 +23,6 @@
     height: 32px;
 
     &:focus {
-        @include formFieldFocusedState();
+        @include formFieldFocusedButtonState();
     }
 }
