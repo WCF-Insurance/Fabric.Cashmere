@@ -64,10 +64,6 @@
 
     &.popover {
         height: 34px;
-        border-left: 1px solid transparent;
-        border-top: none;
-        border-right: 1px solid transparent;
-        border-bottom: 1px solid $gray-300;
         padding-bottom: 1px;
 
         .input-placeholder {
@@ -75,6 +71,7 @@
         }
 
         @include formFieldFocusedState();
+        border-width: 2px;
     }
 
     .select-chevron {
