@@ -1,0 +1,14 @@
+<div class="example-content">
+    <form [formGroup]="form">
+        <hc-form-field>
+            <hc-typeahead-title [alertOnEmpty]="false">
+                <hc-typeahead formControlName="item" (valueChange)="filterData($event)"
+                              (optionSelected)="optionSelected($event)" placeholder="Find a state">
+                    <hc-typeahead-item *ngFor="let item of filteredData" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+            </hc-typeahead-title>
+        </hc-form-field>
+    </form>
+</div>

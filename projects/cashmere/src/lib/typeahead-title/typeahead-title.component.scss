@@ -19,6 +19,10 @@
     transition: 0.2s;
     margin-left: -12px;
 
+    &.alert {
+        border: 2px solid $wcf-red;
+    }
+
     span.title-text {
         font-size: 20px;
         font-family: 'Montserrat', Arial, Helvetica, sans-serif;
