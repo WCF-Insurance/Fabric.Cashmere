@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChildren, QueryList} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, Input} from '@angular/core';
 
 import {TypeaheadComponent} from '../typeahead/typeahead.component';
 
@@ -10,38 +10,42 @@ import {TypeaheadComponent} from '../typeahead/typeahead.component';
 export class TypeaheadTitleComponent implements AfterViewInit {
     DEFAULT_PLACEHOLDER = 'Typeahead Placeholder';
 
+    /** Whether or not the component should show the alert effect (red border) when it is empty. */
+    @Input()
+    alertOnEmpty: boolean = true;
+
     _isTypeaheadShown: boolean = false;
     _value: string;
     _placeholder: string;
     _displayValue: string;
 
-    @ContentChildren(TypeaheadComponent)
-    _typeahead: QueryList<TypeaheadComponent>;
+    @ContentChild(TypeaheadComponent, {static: false})
+    _typeahead: TypeaheadComponent;
 
     _hideTitle() {
         this._isTypeaheadShown = true;
         setTimeout(() => {
-            this._typeahead.first.setFocus();
+            this._typeahead.setFocus();
         });
     }
 
     ngAfterViewInit() {
-        if (this._typeahead.first) {
-            this._placeholder = this._typeahead.first._inputRef.nativeElement.getAttribute('placeholder');
-            this._typeahead.first.optionSelected.subscribe(option => {
+        if (this._typeahead) {
+            this._placeholder = this._typeahead._inputRef.nativeElement.getAttribute('placeholder');
+            this._typeahead.optionSelected.subscribe(option => {
                 this._isTypeaheadShown = false;
             });
 
-            this._typeahead.first.registerOnChange(this._updateValue.bind(this));
+            this._typeahead.registerOnChange(this._updateValue.bind(this));
 
-            this._typeahead.first.blur.subscribe(event => {
+            this._typeahead.blur.subscribe(event => {
                 // Prevents the click on the result panel causing the typeahead to disappear before the value can be sent
-                if (this._typeahead.first._resultPanelHidden === true) {
+                if (this._typeahead._resultPanelHidden === true) {
                     this._isTypeaheadShown = false;
                 }
             });
 
-            setTimeout(() => this._updateValue(this._typeahead.first.value));
+            setTimeout(() => this._updateValue(this._typeahead.value));
         }
 
         this._refreshDisplayValue();
@@ -56,5 +60,9 @@ export class TypeaheadTitleComponent implements AfterViewInit {
         setTimeout(() => {
             this._displayValue = this._value || this._placeholder || this.DEFAULT_PLACEHOLDER;
         });
+    }
+
+    _drawAttention() {
+        return this.alertOnEmpty && this._typeahead && !this._typeahead._value;
     }
 }

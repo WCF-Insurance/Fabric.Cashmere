@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-    selector: 'hc-typeahead-title-example',
-    templateUrl: './typeahead-title-example.component.html'
+    selector: 'hc-typeahead-title-no-alert-example',
+    templateUrl: './typeahead-title-no-alert-example.component.html'
 })
-export class TypeaheadTitleExampleComponent implements OnInit {
+export class TypeaheadTitleNoAlertExampleComponent implements OnInit {
 
     form: FormGroup;
     filteredData: string[] = [];

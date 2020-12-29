@@ -35,7 +35,7 @@ export class TypeaheadTitleMultipleExampleComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            stateItem: [''],
+            stateItem: ['Colorado'],
             cityItem: ['']
         });
     }
