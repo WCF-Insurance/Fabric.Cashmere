@@ -279,7 +279,7 @@ const docs: DocItem[] = [
         id: 'typeahead-title',
         name: 'Typeahead Title',
         category: 'forms',
-        examples: ['typeahead-title', 'typeahead-title-multiple']
+        examples: ['typeahead-title', 'typeahead-title-multiple', 'typeahead-title-no-alert']
     },
     {
         id: 'xanthos-file-upload',
