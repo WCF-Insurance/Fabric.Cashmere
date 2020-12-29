@@ -8,6 +8,8 @@
 
 .typeahead-title {
     width: 100%;
+    background-color: $white;
+    border-radius: 4px;
 }
 
 .typeahead-before {
@@ -18,6 +20,7 @@
     cursor: pointer;
     transition: 0.2s;
     margin-left: -12px;
+    background-color: $white;
 
     &.alert {
         border: 2px solid $wcf-red;
