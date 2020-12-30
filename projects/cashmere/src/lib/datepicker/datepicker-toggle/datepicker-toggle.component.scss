@@ -22,7 +22,7 @@
     width: 32px;
     height: 32px;
 
-    &:focus {
-        @include formFieldFocusedButtonState();
+    &:focus .hc-icon {
+        color: $info;
     }
 }
