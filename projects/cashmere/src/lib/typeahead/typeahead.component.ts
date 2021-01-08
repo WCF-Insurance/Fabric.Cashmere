@@ -57,11 +57,13 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     @Input()
     placeholder: string = '';
 
-    /** DebounceTime is the amount of time in milliseconds to delay between keystrokes before emitting the valueChange event for the input, default 200 */
+    /** The amount of time in milliseconds to delay between keystrokes */
+    /** before emitting the valueChange event for the input, default 200 */
     @Input()
     debounceTime: number = 200;
 
-    /** Toggle to show and hide the searching filter to give user feedback (it does not automatically turn on and off, you need to manually control it), default false */
+    /** Toggle to show and hide the searching filter to give user feedback */
+    /** (it does not automatically turn on and off, you need to manually control it), default false */
     @Input()
     showSpinner: boolean = false;
 
