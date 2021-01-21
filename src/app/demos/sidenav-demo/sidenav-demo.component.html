@@ -9,7 +9,7 @@
     </hc-sidenav-link>
 
     <hc-sidenav-link *ngIf="showActiveLink" routerLink="/components/button/examples" fontIcon="fa-credit-card"
-                     linkText="Button Examples">
+                     linkText="Button Examples (open)" [open]="true">
         <hc-sidenav-link *ngIf="showActiveLinkLater" uri="https://www.bing.com" fontIcon="fa-credit-card" linkText="Child Example">
             <hc-sidenav-link *ngIf="showActiveLinkWayLater"
                              routerLink="/demo/sidenav/bob" fontIcon="fa-credit-card"
