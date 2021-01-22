@@ -8,8 +8,10 @@ import {
     HostBinding,
     Input,
     Optional,
-    Output, Renderer2,
-    Self, ViewChild,
+    Output,
+    Renderer2,
+    Self,
+    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
 import {ControlValueAccessor, FormGroupDirective, NgControl, NgForm} from '@angular/forms';
@@ -103,6 +105,10 @@ export class SelectComponent extends HcFormControlComponent implements ControlVa
             this.onChange(val);
         }
     }
+
+    /** Set the display method of the select to be borderless instead of a standard select. Default false */
+    @Input()
+    borderless: boolean = false;
 
     @Output()
     readonly focus: EventEmitter<void> = new EventEmitter<void>();

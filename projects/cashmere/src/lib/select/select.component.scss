@@ -75,6 +75,11 @@
         background-color: $slate-gray-100;
         color: tint($text, 60%);
     }
+
+    &.borderless {
+        border: none;
+        background-color: inherit;
+    }
 }
 
 .hc-select-disabled {

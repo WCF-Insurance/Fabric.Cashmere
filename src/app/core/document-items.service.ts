@@ -196,7 +196,7 @@ const docs: DocItem[] = [
         id: 'select',
         name: 'Select',
         category: 'forms',
-        examples: ['select-standard', 'select-disabled', 'select-validation', 'select-forms', 'select-object'],
+        examples: ['select-standard', 'select-disabled', 'select-borderless', 'select-validation', 'select-forms', 'select-object'],
         usageDoc: true
     },
     {
