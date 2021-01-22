@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 /**
- * @title Standard Select Component
+ * @title Standard Select Component using objects for values
  */
 @Component({
     selector: 'hc-select-object-example',
