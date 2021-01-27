@@ -3,6 +3,7 @@
     <select
         #selectInput
         class="hc-select-input"
+        [ngClass]="{borderless: borderless}"
         [disabled]="disabled"
         (change)="_change($event, selectInput.value)"
         (focus)="focus.next();"
