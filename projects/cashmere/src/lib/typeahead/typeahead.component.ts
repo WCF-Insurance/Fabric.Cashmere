@@ -62,7 +62,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     @Input()
     debounceTime: number = 200;
 
-    /** Toggle to show and hide the searching filter to give user feedback */
+    /** Toggle to show and hide the searching spinner to provide the user with feedback */
     /** (it does not automatically turn on and off, you need to manually control it), default false */
     @Input()
     showSpinner: boolean = false;
