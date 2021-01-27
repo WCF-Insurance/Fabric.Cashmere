@@ -38,6 +38,10 @@ export class SidenavLinkComponent implements AfterContentInit {
     @Input()
     linkText: string;
 
+    /** If this link should initialize to open (show children), assuming it has children. Default false. */
+    @Input()
+    open: boolean;
+
     // non-top level links emit this when their children change
     @Output()
     _childrenChanged: EventEmitter<SidenavLinkComponent> = new EventEmitter<SidenavLinkComponent>();
@@ -73,6 +77,8 @@ export class SidenavLinkComponent implements AfterContentInit {
 
             this._subscribeToChildrenChanges();
         }
+
+        this._childrenShown = this.open;
     }
 
     // Subscribe to children's events for when the child has children added/removed

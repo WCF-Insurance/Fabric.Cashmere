@@ -1,5 +1,11 @@
 @import '../../sass/colors';
 
+:host {
+    &:focus {
+        outline: none;
+    }
+}
+
 a {
     color: $white;
     font-size: 16px;
