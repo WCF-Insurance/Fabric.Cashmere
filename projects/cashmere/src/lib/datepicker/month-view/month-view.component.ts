@@ -303,8 +303,8 @@ export class MonthViewComponent implements AfterContentInit {
         return (
             !!date &&
             (!this.dateFilter || this.dateFilter(date)) &&
-            (!this.minDate || this._dateAdapter.compareDate(date, this.minDate) >= 0) &&
-            (!this.maxDate || this._dateAdapter.compareDate(date, this.maxDate) <= 0)
+            (!this.minDate || this._dateAdapter.compareDatesByDatePart(date, this.minDate) >= 0) &&
+            (!this.maxDate || this._dateAdapter.compareDatesByDatePart(date, this.maxDate) <= 0)
         );
     }
 

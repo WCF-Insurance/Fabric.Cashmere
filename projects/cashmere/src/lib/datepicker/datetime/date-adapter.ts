@@ -248,6 +248,21 @@ export abstract class DateAdapter<D> {
     }
 
     /**
+     * Compares two dates only using date parts and not time parts
+     * @param first The first date to compare.
+     * @param second The second date to compare.
+     * @returns 0 if the dates are equal, a number less than 0 if the first date is earlier,
+     *     a number greater than 0 if the first date is later.
+     */
+    compareDatesByDatePart(first: D, second: D): number {
+        return (
+            this.getYear(first) - this.getYear(second) ||
+            this.getMonth(first) - this.getMonth(second) ||
+            this.getDate(first) - this.getDate(second)
+        );
+    }
+
+    /**
      * Checks if two dates are equal.
      * @param first The first date to check.
      * @param second The second date to check.
