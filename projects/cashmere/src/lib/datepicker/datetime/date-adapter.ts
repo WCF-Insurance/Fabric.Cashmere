@@ -31,6 +31,7 @@ export abstract class DateAdapter<D> {
     get localeChanges(): Observable<void> {
         return this._localeChanges;
     }
+
     protected _localeChanges = new Subject<void>();
 
     /**
@@ -55,6 +56,7 @@ export abstract class DateAdapter<D> {
     abstract getDate(date: D): number;
 
     abstract getHours(date: D): number;
+
     abstract getMinutes(date: D): number;
 
     /**
@@ -244,6 +246,21 @@ export abstract class DateAdapter<D> {
             this.getDate(first) - this.getDate(second) ||
             this.getHours(first) - this.getHours(second) ||
             this.getMinutes(first) - this.getMinutes(second)
+        );
+    }
+
+    /**
+     * Compares two dates only using date parts and not time parts
+     * @param first The first date to compare.
+     * @param second The second date to compare.
+     * @returns 0 if the dates are equal, a number less than 0 if the first date is earlier,
+     *     a number greater than 0 if the first date is later.
+     */
+    compareDatesByDatePart(first: D, second: D): number {
+        return (
+            this.getYear(first) - this.getYear(second) ||
+            this.getMonth(first) - this.getMonth(second) ||
+            this.getDate(first) - this.getDate(second)
         );
     }
 
