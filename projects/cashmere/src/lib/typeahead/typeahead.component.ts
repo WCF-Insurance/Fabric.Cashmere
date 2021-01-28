@@ -49,19 +49,21 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     public _value = '';
     private _form: NgForm | FormGroupDirective | null;
 
-    /** Number of characters required before the typehead will begin searching */
+    /** Number of characters required before the typehead will begin searching, default 1 */
     @Input()
-    minChars = 1;
+    minChars: number = 1;
 
-    /** Placeholder text for the input box of the typeahead */
+    /** Placeholder text for the input box of the typeahead, no default */
     @Input()
-    placeholder = '';
+    placeholder: string = '';
 
-    /** DebounceTime is the amount of time to delay between keystrokes before emitting the valueChange event for the input */
+    /** The amount of time in milliseconds to delay between keystrokes */
+    /** before emitting the valueChange event for the input, default 200 */
     @Input()
-    debounceTime: number = 500;
+    debounceTime: number = 200;
 
-    /** Toggle to show and hide the searching filter to give user feedback */
+    /** Toggle to show and hide the searching spinner to provide the user with feedback */
+    /** (it does not automatically turn on and off, you need to manually control it), default false */
     @Input()
     showSpinner: boolean = false;
 
@@ -262,7 +264,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
 
     private setHighlighted(index: number, highlighted: boolean, resetAll: boolean) {
         if (resetAll) {
-            this._options.toArray().forEach((opt, ind) => {
+            this._options.toArray().forEach(opt => {
                 opt._highlighted = false;
             });
         }
@@ -328,7 +330,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
         }
     }
 
-    /** Enables or disables the component */
+    /** Enables or disables the component, default false */
     @Input()
     get disabled(): boolean {
         if (this._ngControl && this._ngControl.disabled) {
