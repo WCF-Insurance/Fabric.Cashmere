@@ -61,11 +61,6 @@
     @include formFieldFocusedState();
 }
 
-@mixin hc-checkbox-overlay-disabled() {
-    background-color: $gray-02;
-    border: 2px solid $gray-10 !important;
-}
-
 @mixin hc-checkbox-overlay-hover() {
     border: 2px solid $wcf-blue;
 }
@@ -78,6 +73,15 @@
     }
 }
 
+@mixin hc-checkbox-overlay-disabled() {
+    background-color: $gray-02;
+    border: 2px solid $gray-10 !important;
+}
+
+@mixin hc-checkbox-overlay-checked-and-disabled() {
+    background-color: $gray-10 !important;
+}
+
 @mixin hc-checkbox-overlay-indeterminate() {
     border: 2px solid $wcf-blue;
     &:after {
@@ -85,6 +89,12 @@
         border-color: $wcf-blue;
         transform: none;
         border-left: none;
+    }
+}
+
+@mixin hc-checkbox-overlay-indeterminate-disabled() {
+    &:after {
+        border-color: $gray-10;
     }
 }
 
