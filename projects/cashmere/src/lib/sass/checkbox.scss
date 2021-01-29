@@ -28,6 +28,7 @@
 
 @mixin hc-checkbox-label() {
     padding: 3px 0 3px 16px;
+    font-size: 16px;
 }
 
 @mixin hc-checkbox-overlay() {
@@ -78,9 +79,10 @@
 }
 
 @mixin hc-checkbox-overlay-indeterminate() {
+    border: 2px solid $wcf-blue;
     &:after {
         opacity: 1;
-        border-color: $gray-300;
+        border-color: $wcf-blue;
         transform: none;
         border-left: none;
     }
