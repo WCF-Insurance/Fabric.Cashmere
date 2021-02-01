@@ -38,7 +38,7 @@ const docs: DocItem[] = [
         id: 'checkbox',
         name: 'Checkbox',
         category: 'forms',
-        examples: ['checkbox-standard', 'checkbox-disabled', 'checkbox-forms'],
+        examples: ['checkbox-standard', 'checkbox-disabled', 'checkbox-forms', 'checkbox-indeterminate'],
         usageDoc: true
     },
     {

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'hc-datepicker-min-max-example',
@@ -11,11 +12,17 @@ export class DatepickerMinMaxExampleComponent implements OnInit {
     min = new Date();
     max = new Date();
 
-    constructor() {
+    form: FormGroup;
+
+    constructor(private fb: FormBuilder) {
     }
 
     ngOnInit() {
         this.min.setFullYear(this.min.getFullYear() - 1);
         this.max.setFullYear(this.max.getFullYear() + 1);
+
+        this.form = this.fb.group({
+            maxDateControl: ['', Validators.required]
+        });
     }
 }

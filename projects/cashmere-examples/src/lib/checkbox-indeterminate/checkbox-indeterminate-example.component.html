@@ -3,7 +3,7 @@
 </hc-checkbox>
 
 <form [formGroup]="checkboxGroup" class="checkbox-group">
-    <div *ngFor="let control of getChecks()">
+    <div class="checkbox-row" *ngFor="let control of getChecks()">
         <hc-checkbox [formControl]="control">Child Checkbox</hc-checkbox>
     </div>
 </form>

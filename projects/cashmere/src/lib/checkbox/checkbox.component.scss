@@ -39,16 +39,23 @@
         @include hc-checkbox-overlay-hover();
     }
 
-    .hc-checkbox-disabled & {
-        @include hc-checkbox-overlay-disabled();
-    }
-
     .hc-checkbox-indeterminate & {
         @include hc-checkbox-overlay-indeterminate();
     }
 
     input[type='checkbox']:checked + & {
         @include hc-checkbox-overlay-checked();
+    }
+    
+    .hc-checkbox-disabled & {
+        @include hc-checkbox-overlay-disabled();
+    }
+
+    .hc-checkbox-checked.hc-checkbox-disabled & {
+        @include hc-checkbox-overlay-checked-and-disabled();
+    }
+    .hc-checkbox-indeterminate.hc-checkbox-disabled & {
+        @include hc-checkbox-overlay-indeterminate-disabled();
     }
 }
 
