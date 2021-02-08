@@ -1,6 +1,16 @@
 <form>
     <div class="form-container">
         <hc-form-field>
+            <hc-label>Amount (initially null):</hc-label>
+            <hc-icon hcPrefix fontSet="fa" fontIcon="fa-dollar-sign"></hc-icon>
+            <input hcInput hcCurrency
+                   [formControl]="formDemoCurrencyNull"
+                   maxlength="14"
+                   [ngClass]="(formDemoCurrencyNull.invalid)? 'errmsg' : 'validmsg'">
+            <hc-error>A valid amount is required</hc-error>
+        </hc-form-field>
+
+        <hc-form-field>
             <hc-label>Amount:</hc-label>
             <hc-icon hcPrefix fontSet="fa" fontIcon="fa-dollar-sign"></hc-icon>
             <input hcInput hcCurrency

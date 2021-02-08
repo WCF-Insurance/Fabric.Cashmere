@@ -10,6 +10,8 @@ import {FormControl, Validators} from '@angular/forms';
     styleUrls: ['input-currency-example.component.scss']
 })
 export class InputCurrencyExampleComponent {
+    formDemoCurrencyNull = new FormControl(null,
+        [Validators.pattern(/^(\d{0,3},)?(\d{0,3},)?(\d{1,3})(\.\d{2})/), Validators.required]);
     formDemoCurrency = new FormControl('',
         [Validators.pattern(/^(\d{0,3},)?(\d{0,3},)?(\d{1,3})(\.\d{2})/), Validators.required]);
     formDemoCurrencyInitVal = new FormControl('52000.23',

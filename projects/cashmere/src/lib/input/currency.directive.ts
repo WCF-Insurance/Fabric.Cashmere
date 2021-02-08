@@ -35,25 +35,27 @@ export class CurrencyDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     currencyValidate(data) {
-        // Allow only numbers and "." to be typed
-        let newVal = data.replace(/[^.\d]/g, '');
-        let decimalPlace = newVal.indexOf('.');
+        if (data) {
+            // Allow only numbers and "." to be typed
+            let newVal = data.replace(/[^.\d]/g, '');
+            let decimalPlace = newVal.indexOf('.');
 
-        // If there is a decimal
-        if (decimalPlace > -1) {
-            let beforeDecimal = newVal.slice(0, decimalPlace);
-            let afterDecimal = newVal.slice(decimalPlace);
+            // If there is a decimal
+            if (decimalPlace > -1) {
+                let beforeDecimal = newVal.slice(0, decimalPlace);
+                let afterDecimal = newVal.slice(decimalPlace);
 
-            beforeDecimal = this.formatNumber(beforeDecimal);
-            if (afterDecimal.length > 3) {
-                afterDecimal = afterDecimal.substr(0, afterDecimal.length - 1);
+                beforeDecimal = this.formatNumber(beforeDecimal);
+                if (afterDecimal.length > 3) {
+                    afterDecimal = afterDecimal.substr(0, afterDecimal.length - 1);
+                }
+                newVal = beforeDecimal + afterDecimal;
+                this._currencyControl.setValue(newVal, {emitEvent: false});
+                // If there is no decimal
+            } else {
+                newVal = this.formatNumber(newVal);
+                this._currencyControl.setValue(newVal, {emitEvent: false});
             }
-            newVal = beforeDecimal + afterDecimal;
-            this._currencyControl.setValue(newVal, {emitEvent: false});
-            // If there is no decimal
-        } else {
-            newVal = this.formatNumber(newVal);
-            this._currencyControl.setValue(newVal, {emitEvent: false});
         }
     }
 
