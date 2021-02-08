@@ -37,7 +37,7 @@ export class CurrencyDirective implements OnInit, AfterViewInit, OnDestroy {
     currencyValidate(data) {
         if (data) {
             // Allow only numbers and "." to be typed
-            let newVal = data.replace(/[^.\d]/g, '');
+            let newVal = data.toString().replace(/[^.\d]/g, '');
             let decimalPlace = newVal.indexOf('.');
 
             // If there is a decimal
