@@ -3,6 +3,7 @@
 
 :host {
     display: inline-block;
+    width: 100%;
 
     &:focus {
         outline: none;
@@ -13,7 +14,7 @@
 
         .picker-main-control {
             background-color: $slate-gray-100;
-            border: 1.5px solid $gray-200;
+            border: 2px solid $gray-300;
             color: tint($text, 60%);
             cursor: not-allowed;
         }
@@ -34,7 +35,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: $white;
-    border: 1px solid $gray-300;
+    border: 2px solid $gray-50;
     border-radius: 0;
     color: $text;
     cursor: pointer;
