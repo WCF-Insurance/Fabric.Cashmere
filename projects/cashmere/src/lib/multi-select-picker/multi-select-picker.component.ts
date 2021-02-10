@@ -1,19 +1,29 @@
 import {
-    AfterViewInit, ChangeDetectorRef,
-    Component, ContentChild, DoCheck,
-    ElementRef, EventEmitter, forwardRef, HostBinding, HostListener,
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ContentChild,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    HostBinding,
+    HostListener,
     Input,
-    OnInit, Optional, Output, Self,
+    OnInit,
+    Optional,
+    Output,
+    Self,
     TemplateRef,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
 import {ControlValueAccessor, FormGroupDirective, NgControl, NgForm} from '@angular/forms';
 import {Overlay, OverlayConfig, OverlayRef} from '@angular/cdk/overlay';
-import {Portal, TemplatePortal} from '@angular/cdk/portal';
+import {TemplatePortal} from '@angular/cdk/portal';
 import {take} from 'rxjs/operators';
 import * as Sugar from 'sugar';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {HcFormControlComponent} from '../form-field/hc-form-control.component';
 import {PickerItemDirective} from './picker-item.directive';
@@ -58,8 +68,8 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set nonSelectedValues(values: any[]) {
         this._nonSelectedValues = values;
         if (values && values.length && this.selectedValues.length) {
-            this.items = this.mergeValues(values, this.selectedValues);
-        }
+        this.items = this.mergeValues(values, this.selectedValues);
+    }
     }
     get nonSelectedValues() {
         return this._nonSelectedValues || [];
@@ -75,8 +85,8 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set selectedValues(values: any[]) {
         this._selectedValues = values;
         if (values && values.length && this.nonSelectedValues.length) {
-            this.items = this.mergeValues(this.nonSelectedValues, values);
-        }
+        this.items = this.mergeValues(this.nonSelectedValues, values);
+    }
     }
     get selectedValues() {
         return this._selectedValues || [];
@@ -218,11 +228,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
 
     @ViewChild('pickerMainControl', {static: false}) _pickerMainControl: ElementRef;
     @ViewChild('overlayContent', {static: false}) _overlayContent: TemplateRef<void>;
-    @ContentChild(PickerItemDirective, { read: TemplateRef, static: false }) _listItemTemplate: PickerItemDirective;
+    @ContentChild(PickerItemDirective, {read: TemplateRef, static: false}) _listItemTemplate: PickerItemDirective;
 
     @HostBinding('tabindex') _tabindex = 0;
 
-    @HostBinding('class.disabled') get _disabledClass () {
+    @HostBinding('class.disabled') get _disabledClass() {
         return this.disabled;
     }
 
@@ -339,12 +349,18 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
      * @param selectedOptions
      */
     private mergeValues(unSelectedOptions: any[], selectedOptions: any[]): MultiSelectItem<any>[] {
-        const unSelectedItems = unSelectedOptions.map((option) => {
-            return { checked: false, payload: option};
-        });
-        const selectedItems = selectedOptions.map((option) => {
-            return { checked: true, payload: option};
-        });
+        let unSelectedItems = new Array();
+        if (unSelectedOptions) {
+            unSelectedItems = unSelectedOptions.map((option) => {
+                return {checked: false, payload: option};
+            });
+        }
+        let selectedItems = new Array();
+        if (selectedOptions) {
+            selectedItems = selectedOptions.map((option) => {
+                return {checked: true, payload: option};
+            });
+        }
         return [...selectedItems, ...unSelectedItems];
     }
 
