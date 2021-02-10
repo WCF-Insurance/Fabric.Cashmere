@@ -24,6 +24,7 @@
 
 @mixin hc-checkbox-content-label-disabled() {
     cursor: not-allowed;
+    color: $gray-90;
 }
 
 @mixin hc-checkbox-label() {
