@@ -378,7 +378,6 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
                 return {checked: true, payload: option};
             });
         }
-        console.log([...selectedItems, ...unSelectedItems]);
         return [...selectedItems, ...unSelectedItems];
     }
 
