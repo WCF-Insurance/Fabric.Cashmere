@@ -7,11 +7,7 @@
         [placeholder]="'Choose Buildings'"
         [summaryTextItemResolver]="locationInfoResolverFunction"
         (change)="templateItemsExampleChange($event)">
-        <!-- *hcPickerItem="let item" is very similar to an *ngFor="let item of items" in that it specifies what this template will refer to the context object as for each iteration of the yet to be provided list.
-        The difference with *ngFor is that we don't specify the list of items as that is handled by the <hc-multi-select-component> and the html below this comment is really just a template that <hc-multi-select-component> stamps out for every selectedValues and nonSelectedValues.-->
-        <div *hcPickerItem="let item"><!-- This allows referencing an item that has yet to be provided to be used in the template -->
-            <!--        <ng-template let-multiSelectItem="multiSelectItem">Checked: {{multiSelectItem.checked}}</ng-template>-->
-            <!-- TODO:ahunt: I can't remember why I have this line. It might have been for temporary debugging. leaving here for now. -->
+        <div *hcPickerItem="let item">
             <div class="building"><b>{{item.building.title}} - {{item.building.subtitle}}</b></div>
             <div class="address">{{item.address}}</div>
         </div>
@@ -28,11 +24,7 @@
         [placeholder]="'Choose Buildings'"
         [summaryTextItemResolver]="locationInfoResolverFunction"
         (change)="templateItemsExampleChange($event)">
-        <!-- *hcPickerItem="let item" is very similar to an *ngFor="let item of items" in that it specifies what this template will refer to the context object as for each iteration of the yet to be provided list.
-        The difference with *ngFor is that we don't specify the list of items as that is handled by the <hc-multi-select-component> and the html below this comment is really just a template that <hc-multi-select-component> stamps out for every selectedValues and nonSelectedValues.-->
-        <div *hcPickerItem="let item"><!-- This allows referencing an item that has yet to be provided to be used in the template -->
-            <!--        <ng-template let-multiSelectItem="multiSelectItem">Checked: {{multiSelectItem.checked}}</ng-template>-->
-            <!-- TODO:ahunt: I can't remember why I have this line. It might have been for temporary debugging. leaving here for now. -->
+        <div *hcPickerItem="let item">
             <div class="building"><b>{{item.building.title}} - {{item.building.subtitle}}</b></div>
             <div class="address">{{item.address}}</div>
         </div>
@@ -49,11 +41,7 @@
         [placeholder]="'Choose Buildings'"
         [summaryTextItemResolver]="locationInfoResolverFunction"
         (change)="templateItemsExampleChange($event)">
-        <!-- *hcPickerItem="let item" is very similar to an *ngFor="let item of items" in that it specifies what this template will refer to the context object as for each iteration of the yet to be provided list.
-        The difference with *ngFor is that we don't specify the list of items as that is handled by the <hc-multi-select-component> and the html below this comment is really just a template that <hc-multi-select-component> stamps out for every selectedValues and nonSelectedValues.-->
-        <div *hcPickerItem="let item"><!-- This allows referencing an item that has yet to be provided to be used in the template -->
-            <!--        <ng-template let-multiSelectItem="multiSelectItem">Checked: {{multiSelectItem.checked}}</ng-template>-->
-            <!-- TODO:ahunt: I can't remember why I have this line. It might have been for temporary debugging. leaving here for now. -->
+        <div *hcPickerItem="let item">
             <div class="building"><b>{{item.building.title}} - {{item.building.subtitle}}</b></div>
             <div class="address">{{item.address}}</div>
         </div>
