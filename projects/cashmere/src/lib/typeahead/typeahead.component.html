@@ -1,12 +1,13 @@
 <div class="typeahead-container">
-    <hc-form-field [inline]="true">
-        <input #input hcInput [formControl]="_searchTerm" (keydown.tab)="_handleTabKey($event)"
-               (keydown.enter)="_stopPropogation($event)" (keydown.arrowup)="_stopPropogation($event)"
-               (keydown.arrowdown)="_stopPropogation($event)" [placeholder]="placeholder" [title]="_value"
-               autocomplete="disabelAutocompleteHack" name="forAutocompleteHackToWork"
-               (blur)="_blurHandler($event)" (focus)="_focusHandler($event)"/>
-        <hc-error style="display: none;">parent is showing error message</hc-error>
-    </hc-form-field>
+    <form autocomplete="off">
+        <hc-form-field [inline]="true">
+            <input #input hcInput [formControl]="_searchTerm" (keydown.tab)="_handleTabKey($event)"
+                   (keydown.enter)="_stopPropogation($event)" (keydown.arrowup)="_stopPropogation($event)"
+                   (keydown.arrowdown)="_stopPropogation($event)" [placeholder]="placeholder" [title]="_value"
+                   autocomplete="off" (blur)="_blurHandler($event)" (focus)="_focusHandler($event)"/>
+            <hc-error style="display: none;">parent is showing error message</hc-error>
+        </hc-form-field>
+    </form>
 
     <hc-icon *ngIf="!showSpinner" fontSet="fa" fontIcon="fa-search" class="search" hcIconSm></hc-icon>
     <hc-progress-spinner *ngIf="showSpinner" class="search-spinner" diameter="6" color="gray" [isCentered]="true"></hc-progress-spinner>
