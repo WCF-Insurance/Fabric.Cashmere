@@ -4,6 +4,7 @@
 :host {
     display: inline-block;
     width: 100%;
+    min-width: 225px;
 
     &:focus {
         outline: none;
