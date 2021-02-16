@@ -1,13 +1,13 @@
 <div [formGroup]="formGroup">
     <hc-form-field>
         <hc-label>Periodic Element:</hc-label>
-        <hc-multi-select-picker style="width: 300px"
-                                maxSummaryItems="5"
-                                formControlName="elements"
-                                required="true"
-                                [nonSelectedValues]="elementValues"
-                                [placeholder]="'Choose Element'"
-                                (change)="basicExampleChange($event)">
+        <hc-multi-select-picker
+            maxSummaryItems="5"
+            formControlName="elements"
+            required="true"
+            [nonSelectedValues]="elementValues"
+            [placeholder]="'Choose Element'"
+            (change)="basicExampleChange($event)">
         </hc-multi-select-picker>
         <hc-hint>This is a hint!</hc-hint>
         <hc-error>An element is required</hc-error>

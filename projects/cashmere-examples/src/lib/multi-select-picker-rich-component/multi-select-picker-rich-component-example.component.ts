@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {MultiSelectItem, MultiSelectPickerChangeEvent} from '@wcf-insurance/cashmere';
 import {LocationInfo} from './location-info/location-info.model';
