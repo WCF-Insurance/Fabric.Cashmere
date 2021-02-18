@@ -336,12 +336,12 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     _getFormattedValue(newVal: string) {
         let tempMode: string = 'date';
 
-        if(this._datepicker){
+        if (this._datepicker) {
             tempMode = this._datepicker.mode;
-        } else if (this._mode){
+        } else if (this._mode) {
             tempMode = this._mode;
         }
- 
+        
         if (tempMode !== 'time') {
             if (newVal.length < 3) {
                 newVal = newVal.replace(/^(\d{0,2})/, '$1');
@@ -375,12 +375,12 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         let tempMode: string = 'date';
         let tempCycle: number = 12;
 
-        if ( this._datepicker ) {
+        if (this._datepicker) {
             tempMode = this._datepicker.mode;
             tempCycle = +this._datepicker.hourCycle;
-        } else if ( this._mode ) {
+        } else if (this._mode) {
             tempMode = this._mode;
-            if ( this._hourCycle ) {
+            if (this._hourCycle) {
                 tempCycle = this._hourCycle;
             }
         }
