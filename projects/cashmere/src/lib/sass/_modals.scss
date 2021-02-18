@@ -33,6 +33,8 @@ $modal-border: 1px solid $gray-200;
     box-sizing: content-box;
     overflow: unset;
     flex-grow: 1;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
 }
 
 .hc-modal-close-button {
