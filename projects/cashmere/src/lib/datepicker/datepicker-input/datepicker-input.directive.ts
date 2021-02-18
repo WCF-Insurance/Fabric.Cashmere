@@ -335,7 +335,13 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
 
     _getFormattedValue(newVal: string) {
         let tempMode: string = 'date';
-        tempMode = this._datepicker.mode;
+
+        if(this._datepicker){
+            tempMode = this._datepicker.mode;
+        } else if (this._mode){
+            tempMode = this._mode;
+        }
+ 
         if (tempMode !== 'time') {
             if (newVal.length < 3) {
                 newVal = newVal.replace(/^(\d{0,2})/, '$1');
