@@ -11,12 +11,32 @@
         </hc-form-field>
 
         <hc-form-field>
-            <hc-label>Amount (with initial value):</hc-label>
+            <hc-label>Amount (initially null):</hc-label>
             <hc-icon hcPrefix fontSet="fa" fontIcon="fa-dollar-sign"></hc-icon>
             <input hcInput hcCurrency
-                   [formControl]="formDemoCurrencyInitVal"
+                   [formControl]="formDemoCurrencyNull"
                    maxlength="14"
-                   [ngClass]="(formDemoCurrencyInitVal.invalid)? 'errmsg' : 'validmsg'">
+                   [ngClass]="(formDemoCurrencyNull.invalid)? 'errmsg' : 'validmsg'">
+            <hc-error>A valid amount is required</hc-error>
+        </hc-form-field>
+
+        <hc-form-field>
+            <hc-label>Amount (with initial string value):</hc-label>
+            <hc-icon hcPrefix fontSet="fa" fontIcon="fa-dollar-sign"></hc-icon>
+            <input hcInput hcCurrency
+                   [formControl]="formDemoCurrencyInitStringVal"
+                   maxlength="14"
+                   [ngClass]="(formDemoCurrencyInitStringVal.invalid)? 'errmsg' : 'validmsg'">
+            <hc-error>A valid amount is required</hc-error>
+        </hc-form-field>
+
+        <hc-form-field>
+            <hc-label>Amount (with initial number value):</hc-label>
+            <hc-icon hcPrefix fontSet="fa" fontIcon="fa-dollar-sign"></hc-icon>
+            <input hcInput hcCurrency
+                   [formControl]="formDemoCurrencyInitNumberVal"
+                   maxlength="14"
+                   [ngClass]="(formDemoCurrencyInitNumberVal.invalid)? 'errmsg' : 'validmsg'">
             <hc-error>A valid amount is required</hc-error>
         </hc-form-field>
 

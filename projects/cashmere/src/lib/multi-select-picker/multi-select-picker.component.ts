@@ -1,19 +1,29 @@
 import {
-    AfterViewInit, ChangeDetectorRef,
-    Component, ContentChild, DoCheck,
-    ElementRef, EventEmitter, forwardRef, HostBinding, HostListener,
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ContentChild,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    HostBinding,
+    HostListener,
     Input,
-    OnInit, Optional, Output, Self,
+    OnInit,
+    Optional,
+    Output,
+    Self,
     TemplateRef,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
 import {ControlValueAccessor, FormGroupDirective, NgControl, NgForm} from '@angular/forms';
 import {Overlay, OverlayConfig, OverlayRef} from '@angular/cdk/overlay';
-import {Portal, TemplatePortal} from '@angular/cdk/portal';
+import {TemplatePortal} from '@angular/cdk/portal';
 import {take} from 'rxjs/operators';
 import * as Sugar from 'sugar';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {HcFormControlComponent} from '../form-field/hc-form-control.component';
 import {PickerItemDirective} from './picker-item.directive';
@@ -39,7 +49,8 @@ export class MultiSelectPickerChangeEvent<T> {
     constructor(
         public source: MultiSelectPickerComponent,
         public selectedValues: T[]
-    ) {}
+    ) {
+    }
 }
 
 @Component({
@@ -57,13 +68,13 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     @Input()
     set nonSelectedValues(values: any[]) {
         this._nonSelectedValues = values;
-        if (values && values.length && this.selectedValues.length) {
-            this.items = this.mergeValues(values, this.selectedValues);
-        }
+        this.items = this.mergeValues(values, this.selectedValues);
     }
+
     get nonSelectedValues() {
         return this._nonSelectedValues || [];
     }
+
     _nonSelectedValues: any[];
 
     /**
@@ -74,13 +85,13 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     @Input()
     set selectedValues(values: any[]) {
         this._selectedValues = values;
-        if (values && values.length && this.nonSelectedValues.length) {
-            this.items = this.mergeValues(this.nonSelectedValues, values);
-        }
+        this.items = this.mergeValues(this.nonSelectedValues, values);
     }
+
     get selectedValues() {
         return this._selectedValues || [];
     }
+
     _selectedValues: any[];
 
     /**
@@ -106,9 +117,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
         this._filteredItems = this.items;
         this.onChange(rawSelectedValues); // TODO:ahunt change to emit raw values or emit raw values separately?
     }
+
     get items(): MultiSelectItem<any>[] {
         return this._items;
     }
+
     _items: MultiSelectItem<any>[] = [];
     _itemsCopy: MultiSelectItem<any>[] = [];
 
@@ -120,9 +133,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set placeholder(value: string) {
         this._placeholder = value;
     }
+
     get placeholder(): string {
         return this._placeholder;
     }
+
     _placeholder: string;
 
     /**
@@ -133,9 +148,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set filterResolver(value: (searchTerm: string, item: any) => boolean) {
         this._filterResolver = value;
     }
+
     get filterResolver(): (searchTerm: string, item: any) => boolean {
         return this._filterResolver;
     }
+
     _filterResolver: (searchTerm: string, item: any) => boolean;
 
     /**
@@ -148,9 +165,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set pickerItemFilterResolver(value: (searchTerm: string, item: MultiSelectItem<any>) => boolean) {
         this._pickerItemFilterResolver = value;
     }
+
     get pickerItemFilterResolver(): (searchTerm: string, item: MultiSelectItem<any>) => boolean {
         return this._pickerItemFilterResolver;
     }
+
     _pickerItemFilterResolver: (searchTerm: string, item: MultiSelectItem<any>) => boolean;
 
     /**
@@ -160,6 +179,7 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     get required(): boolean {
         return this._isRequired;
     }
+
     set required(required) {
         this._isRequired = parseBooleanAttribute(required);
     }
@@ -174,6 +194,7 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
         }
         return this._isDisabled;
     }
+
     set disabled(disabledVal) {
         this._isDisabled = parseBooleanAttribute(disabledVal);
     }
@@ -186,9 +207,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     set summaryTextItemResolver(resolver: Function) {
         this._summaryTextItemResolver = resolver;
     }
+
     get summaryTextItemResolver() {
         return this._summaryTextItemResolver;
     }
+
     _summaryTextItemResolver: Function;
 
     /**
@@ -218,11 +241,11 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
 
     @ViewChild('pickerMainControl', {static: false}) _pickerMainControl: ElementRef;
     @ViewChild('overlayContent', {static: false}) _overlayContent: TemplateRef<void>;
-    @ContentChild(PickerItemDirective, { read: TemplateRef, static: false }) _listItemTemplate: PickerItemDirective;
+    @ContentChild(PickerItemDirective, {read: TemplateRef, static: false}) _listItemTemplate: PickerItemDirective;
 
     @HostBinding('tabindex') _tabindex = 0;
 
-    @HostBinding('class.disabled') get _disabledClass () {
+    @HostBinding('class.disabled') get _disabledClass() {
         return this.disabled;
     }
 
@@ -253,7 +276,8 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
         }
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 
     ngAfterViewInit(): void {
         this._templatePortal = new TemplatePortal(
@@ -277,6 +301,7 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     registerOnChange(fn: any) {
         this.onChange = fn;
     }
+
     /**
      * ControlValueAccessor method interface implementation
      * @param fn
@@ -284,6 +309,7 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
     registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
+
     /**
      * ControlValueAccessor method interface implementation
      * @param fn
@@ -327,6 +353,7 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
             }
         }
     }
+
     /**
      * End Control Value Accessor and related Methods
      */
@@ -339,12 +366,18 @@ export class MultiSelectPickerComponent extends HcFormControlComponent implement
      * @param selectedOptions
      */
     private mergeValues(unSelectedOptions: any[], selectedOptions: any[]): MultiSelectItem<any>[] {
-        const unSelectedItems = unSelectedOptions.map((option) => {
-            return { checked: false, payload: option};
-        });
-        const selectedItems = selectedOptions.map((option) => {
-            return { checked: true, payload: option};
-        });
+        let unSelectedItems = new Array();
+        if (unSelectedOptions) {
+            unSelectedItems = unSelectedOptions.map((option) => {
+                return {checked: false, payload: option};
+            });
+        }
+        let selectedItems = new Array();
+        if (selectedOptions) {
+            selectedItems = selectedOptions.map((option) => {
+                return {checked: true, payload: option};
+            });
+        }
         return [...selectedItems, ...unSelectedItems];
     }
 
