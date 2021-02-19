@@ -171,7 +171,7 @@ export class ProgressBarComponent implements OnInit {
 
     nextItem(): void {
         let itemIndex = this._items.indexOf(this.currentSelectedItem);
-        if (itemIndex < this._items.length - 1) {
+        if (itemIndex < this._items.length - 1 && this._canNavigateToNextItem()) {
             this.selectProgressItem(this._items[itemIndex + 1], true);
         }
         this.dropdownVisible = false;
@@ -181,8 +181,12 @@ export class ProgressBarComponent implements OnInit {
         this.dropdownVisible = !this.dropdownVisible;
     }
 
-    _canNavigateTo(item: ProgressItem) {
+    _canNavigateTo(item: ProgressItem): boolean {
         return item.focused || item.beforeSelected || this.allowSkipAhead || this._itemAndPredecessorsComplete(item);
+    }
+
+    _canNavigateToNextItem(): boolean {
+        return this._canNavigateTo(this._items[this._items.indexOf(this.currentSelectedItem) + 1]);
     }
 
     private _itemAndPredecessorsComplete(item: ProgressItem) {

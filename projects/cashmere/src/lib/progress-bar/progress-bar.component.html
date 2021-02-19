@@ -10,6 +10,7 @@
          [ngClass]="{
          'progress-item': true,
          'clickable': _canNavigateTo(item),
+         'progress-item--disabled': !_canNavigateTo(item),
          'progress-item--active': item.id === currentSelectedItem?.id,
          'progress-item--complete': item.status === ProgressItemStatus.COMPLETE,
          'progress-item--incomplete': item.status === ProgressItemStatus.INCOMPLETE,
@@ -25,7 +26,10 @@
                 </g>
             </svg>
 
-            <div class="item-title">{{item.title}}</div>
+            <div class="item-title">
+                <hc-icon hcIconSmall fontSet="fa" fontIcon="fa-lock" *ngIf="!_canNavigateTo(item)"></hc-icon>
+                <span>{{item.title}}</span>
+            </div>
 
             <div class="item-tip">
                 <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}"
@@ -64,7 +68,7 @@
     </div>
 </div>
 <div [ngClass]="{'mobile-progress-items': true, 'secondary': progressBarStyle === 'secondary'}" *ngIf="showMobile === true">
-    <button hc-button title="Previous Progress" buttonStyle="primary" [ngStyle]="{'height': height, 'width': height}"
+    <button hc-button title="Previous Progress" buttonStyle="primary" class="previous-item-action" [ngStyle]="{'height': height, 'width': height}"
             (click)="previousItem()">
         <hc-icon fontSet="fa" fontIcon="fa-arrow-circle-left"></hc-icon>
     </button>
@@ -90,6 +94,7 @@
                  [ngClass]="{
                  'progress-item': true,
                  'clickable': _canNavigateTo(item),
+                 'progress-item--disabled': !_canNavigateTo(item),
                 'progress-item--active': item.id === currentSelectedItem?.id,
                 'progress-item--complete': item.status === ProgressItemStatus.COMPLETE,
                 'progress-item--incomplete': item.status === ProgressItemStatus.INCOMPLETE,
@@ -104,12 +109,15 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="item-title">{{item.title}}</div>
+                    <div class="item-title">
+                        <hc-icon fontSet="fa" fontIcon="fa-lock" *ngIf="!_canNavigateTo(item)"></hc-icon>
+                        <span>{{item.title}}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <button hc-button title="Next Progress" buttonStyle="primary" [ngStyle]="{'height': height, 'width': height}"
+    <button hc-button title="Next Progress" buttonStyle="primary" class="next-item-action" [ngClass]="{'next-item-action--disabled': !_canNavigateToNextItem()}" [ngStyle]="{'height': height, 'width': height}"
             (click)="nextItem()">
         <hc-icon fontSet="fa" fontIcon="fa-arrow-circle-right"></hc-icon>
     </button>
