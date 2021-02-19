@@ -15,7 +15,8 @@ export class ModalOverviewExampleComponent implements OnInit {
     result: any;
     form: FormGroup;
 
-    constructor(private modalService: ModalService, private fb: FormBuilder) {}
+    constructor(private modalService: ModalService, private fb: FormBuilder) {
+    }
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -57,12 +58,21 @@ export class ModalOverviewExampleComponent implements OnInit {
         subModal.result.subscribe(res => {
             this.result = res;
             alert(
-`
+                `
 Form Value:
 ${JSON.stringify(this.form.value, null, 2)}
 `
             );
         });
+    }
+
+    openContentModal(content: TemplateRef<any>) {
+        let options: ModalOptions = {
+            ignoreEscapeKey: true,
+            ignoreOverlayClick: true,
+            size: 'lg'
+        };
+        this.modalService.open(content, options);
     }
 
     yearClicked(event: CheckboxChangeEvent, itemId) {
