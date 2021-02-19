@@ -152,7 +152,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     /** Whether the datepicker-input is disabled. */
     @Input()
     get disabled(): boolean {
-        return this._disabled;
+        return !!this._disabled;
     }
 
     set disabled(value: boolean) {
