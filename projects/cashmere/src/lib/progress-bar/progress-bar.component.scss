@@ -40,6 +40,10 @@
             font-weight: bold;
         }
 
+        &--disabled {
+            color: $gray-30;
+        }
+
         .item-body {
             height: 100%;
             display: flex;
@@ -53,6 +57,11 @@
             justify-content: center;
             align-items: center;
             white-space: nowrap;
+
+            hc-icon {
+                font-size: 1.25em;
+                margin-right: .62em;
+            }
         }
     }
 
@@ -80,8 +89,18 @@
         background-color: $wcf-red;
         border: none;
         outline: none;
-        margin: 0 5px;
         cursor: pointer;
+
+        &.previous-item-action {
+            margin-right: 5px;
+        }
+        &.next-item-action {
+            margin-left: 5px;
+            &--disabled {
+                background-color: $gray-30;
+                cursor: unset;
+            }
+        }
 
         hc-icon {
             color: white;
@@ -107,38 +126,6 @@
         border-right: 1px solid $gray-30;
         box-shadow: 0px 1px 3px $gray-10;
         z-index: 2;
-    }
-
-    .progress-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        color: $gray-50;
-        background-color: white;
-        cursor: default;
-        flex-grow: 1;
-        width: 100%;
-
-        &.clickable {
-            cursor: pointer;
-
-            &:hover {
-                background-color: $gray-05;
-                font-weight: 600;
-            }
-        }
-
-        &--active, &--before-selected {
-            color: $gray-50;
-        }
-
-        &--active {
-            font-weight: 600;
-            background-color: $gray-05;
-        }
-
-
     }
 
     .item-current {
@@ -175,21 +162,64 @@
         justify-content: center;
         align-items: center;
         white-space: nowrap;
+
+        hc-icon {
+            font-size: 1.25em;
+            margin-right: .62em;
+        }
+    }
+
+    .progress-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        color: $gray-50;
+        background-color: white;
+        cursor: default;
+        flex-grow: 1;
+        width: 100%;
+
+        &.clickable {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gray-05;
+                font-weight: 600;
+            }
+        }
+
+        &--active, &--before-selected {
+            color: $gray-50;
+        }
+
+        &--active {
+            font-weight: 600;
+            background-color: $gray-05;
+        }
+
+        &--disabled {
+            .item-title {
+                color: $gray-30;
+            }
+        }
+
     }
 
     &.secondary {
         button {
             background-color: $wcf-blue;
+            &.next-item-action {
+                &--disabled {
+                    background-color: $gray-30;
+                }
+            }
         }
 
         .item-current {
             background-color: $wcf-blue;
         }
     }
+
 }
 
-@media all and (max-width: 1024px) {
-    .progress-items {
-        display: none;
-    }
-}
