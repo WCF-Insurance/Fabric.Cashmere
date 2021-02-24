@@ -19,7 +19,7 @@
         <div class="item-body">
             <svg viewBox="0 0 22 75" [ngStyle]="{'height': height}">
                 <g>
-                    <polygon points="0 0, 22 0, 22 75, 0 75" fill="white" stroke="white"
+                    <polygon points="0 0, 22 0, 22 75, 0 75" fill="#f6f7f7" stroke="#f6f7f7"
                              *ngIf="!item.focused && !item.beforeSelected"></polygon>
                     <polygon points="0 0, 22 0, 22 75, 0 75" [attr.fill]="_fillColor" [attr.stroke]="_fillColor"
                              *ngIf="item.focused || item.beforeSelected"></polygon>
@@ -55,7 +55,7 @@
                                   stroke-width="3"></polyline>
                     </g>
                 </svg>
-                <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}" style="background-color: white"
+                <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}" style="background-color: #f6f7f7"
                      *ngIf="item.id !== currentSelectedItem?.id && !item.beforeSelected && !items[i+1]?.focused && !items[i+1]?.beforeSelected">
                     <g>
                         <polyline *ngIf="item.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
@@ -78,8 +78,7 @@
                 <div class="item-tip">
                     <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}">
                         <g>
-                            <polyline *ngIf="currentSelectedItem.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
-                                      fill="none" stroke="white" stroke-width="3"></polyline>
+                            <polyline *ngIf="currentSelectedItem.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29" stroke="white" [attr.fill]="_fillColor" stroke-width="3"></polyline>
                         </g>
                     </svg>
                 </div>
@@ -105,7 +104,7 @@
                         <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}">
                             <g>
                                 <polyline *ngIf="item.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
-                                          fill="none" [attr.stroke]="_fillColor" stroke-width="3"></polyline>
+                                          fill="#f6f7f7" [attr.stroke]="_fillColor" stroke-width="3"></polyline>
                             </g>
                         </svg>
                     </div>
