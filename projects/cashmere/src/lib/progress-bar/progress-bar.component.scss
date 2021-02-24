@@ -28,6 +28,31 @@
             cursor: pointer;
         }
 
+        .item-body {
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-grow: 1;
+
+            .item-tip {
+                background-color: $gray-02;
+            }
+        }
+
+        .item-title {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            background-color: $gray-02;
+
+            hc-icon {
+                font-size: 1.25em;
+                margin-right: .62em;
+            }
+        }
+
         &--active, &--before-selected {
             color: $white;
 
@@ -42,26 +67,6 @@
 
         &--disabled {
             color: $gray-30;
-        }
-
-        .item-body {
-            height: 100%;
-            display: flex;
-            justify-content: flex-start;
-            flex-grow: 1;
-        }
-
-        .item-title {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            white-space: nowrap;
-
-            hc-icon {
-                font-size: 1.25em;
-                margin-right: .62em;
-            }
         }
     }
 
