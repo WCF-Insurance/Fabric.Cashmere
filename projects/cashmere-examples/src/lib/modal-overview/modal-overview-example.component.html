@@ -1,17 +1,19 @@
 <ng-template #basicTemplate let-close="close" let-dismiss="dismiss" let-data="data">
     <hc-modal>
-        <hc-modal-header> Modal Title </hc-modal-header>
+        <hc-modal-header> Modal Title</hc-modal-header>
         <hc-modal-body> Data: {{data}}</hc-modal-body>
         <hc-modal-footer>
-            <button hc-button buttonStyle="link" (click)="dismiss()"> Cancel </button>
-            <button hc-button buttonStyle="primary" (click)="close()"> OK </button>
+            <button hc-button buttonStyle="link" (click)="dismiss()"> Cancel</button>
+            <button hc-button buttonStyle="primary" (click)="close()"> OK</button>
         </hc-modal-footer>
     </hc-modal>
 </ng-template>
 
 <ng-template #templateWithOnlyCloseButton let-close="close" let-dismiss="dismiss" let-data="data">
     <hc-modal>
-        <hc-modal-header>Coverage Table  <hc-icon fontSet="fa" fontIcon="fa-times-circle" hcIconMd (click)="close()"></hc-icon></hc-modal-header>
+        <hc-modal-header>Coverage Table
+            <hc-icon fontSet="fa" fontIcon="fa-times-circle" hcIconMd (click)="close()"></hc-icon>
+        </hc-modal-header>
         <hc-modal-body>
             <div class="description">Below is a reference table for coverages and their various reasons.</div>
             <div class="coverage-table">
@@ -84,8 +86,25 @@
             </div>
         </hc-modal-body>
         <hc-modal-footer>
-            <button hc-button buttonStyle="link" (click)="dismiss()"> Cancel </button>
-            <button hc-button buttonStyle="primary" (click)="close()" [disabled]="!form.valid"> Apply Changes </button>
+            <button hc-button buttonStyle="link" (click)="dismiss()"> Cancel</button>
+            <button hc-button buttonStyle="primary" (click)="close()" [disabled]="!form.valid"> Apply Changes</button>
+        </hc-modal-footer>
+    </hc-modal>
+</ng-template>
+
+<ng-template #contentTemplate let-close="close" let-dismiss="dismiss" let-data="data">
+    <hc-modal class=" hc-modal-md form-example">
+        <hc-modal-header>Scrolling Content</hc-modal-header>
+        <hc-modal-body>
+            <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+                <p>Paragraph {{i}}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper nisl nec ante tincidunt porttitor.
+                    In luctus pharetra pretium. Duis semper nulla a quam porta, non eleifend nisi consequat. Nullam malesuada posuere lorem,
+                    non dapibus diam accumsan condimentum. In ornare imperdiet vestibulum. Etiam condimentum cursus dui eu sollicitudin.
+                    Phasellus id enim fringilla, auctor nisl vitae, laoreet lectus.</p>
+            </div>
+        </hc-modal-body>
+        <hc-modal-footer>
+            <button hc-button buttonStyle="primary" (click)="dismiss()">Close</button>
         </hc-modal-footer>
     </hc-modal>
 </ng-template>
@@ -101,4 +120,8 @@
 </button>
 <button hc-button buttonStyle="secondary" (click)="openFormModal(formTemplate)" class="demo-button">
     Modal with a form
+</button>
+
+<button hc-button buttonStyle="secondary" (click)="openContentModal(contentTemplate)" class="demo-button">
+    Modal with a lot of content
 </button>

@@ -1,12 +1,12 @@
-import {forwardRef, Directive, ElementRef, Optional, Inject, Input, EventEmitter, Output, OnDestroy} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, forwardRef, Inject, Input, OnDestroy, Optional, Output} from '@angular/core';
 import {
-    NG_VALUE_ACCESSOR,
-    NG_VALIDATORS,
-    Validator,
-    ValidatorFn,
-    ValidationErrors,
     AbstractControl,
     ControlValueAccessor,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    ValidationErrors,
+    Validator,
+    ValidatorFn,
     Validators
 } from '@angular/forms';
 import {createMissingDateImplError} from '../datetime/datepicker-errors';
@@ -90,6 +90,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
             this.setDate(selected);
         });
     }
+
     _datepicker: DatepickerComponent;
 
     /** Function that can be used to filter out dates within the datepicker. */
@@ -98,6 +99,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         this._dateFilter = value;
         this._validatorOnChange();
     }
+
     _dateFilter: (date: D | null) => boolean;
 
     /** The value of the input. */
@@ -105,6 +107,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     get value(): D | null {
         return this._value;
     }
+
     set value(value: D | null) {
         value = this._dateAdapter.deserialize(value);
         this._lastValueValid = !value || this._dateAdapter.isValid(value);
@@ -117,6 +120,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
             this._valueChange.emit(value);
         }
     }
+
     private _value: D | null;
 
     /** The minimum valid date. */
@@ -124,10 +128,12 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     get min(): D | null {
         return this._min;
     }
+
     set min(value: D | null) {
         this._min = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
         this._validatorOnChange();
     }
+
     private _min: D | null;
 
     /** The maximum valid date. */
@@ -135,10 +141,12 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     get max(): D | null {
         return this._max;
     }
+
     set max(value: D | null) {
         this._max = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
         this._validatorOnChange();
     }
+
     private _max: D | null;
 
     /** Whether the datepicker-input is disabled. */
@@ -146,6 +154,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     get disabled(): boolean {
         return !!this._disabled;
     }
+
     set disabled(value: boolean) {
         const newValue = coerceBooleanProperty(value);
         const element = this._elementRef.nativeElement;
@@ -163,6 +172,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
             element.blur();
         }
     }
+
     private _disabled: boolean;
 
     /** Emits when a `change` event is fired on this `<input>`. */
@@ -183,11 +193,14 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     /** Emits when the disabled state has changed */
     _disabledChange = new EventEmitter<boolean>();
 
-    _onTouched = () => {};
+    _onTouched = () => {
+    };
 
-    private _cvaOnChange: (value: any) => void = () => {};
+    private _cvaOnChange: (value: any) => void = () => {
+    };
 
-    private _validatorOnChange = () => {};
+    private _validatorOnChange = () => {
+    };
 
     private _datepickerSubscription = Subscription.EMPTY;
 
@@ -335,7 +348,13 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
 
     _getFormattedValue(newVal: string) {
         let tempMode: string = 'date';
-        tempMode = this._datepicker.mode;
+
+        if (this._datepicker) {
+            tempMode = this._datepicker.mode;
+        } else if (this._mode) {
+            tempMode = this._mode;
+        }
+
         if (tempMode !== 'time') {
             if (newVal.length < 3) {
                 newVal = newVal.replace(/^(\d{0,2})/, '$1');
@@ -369,12 +388,12 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         let tempMode: string = 'date';
         let tempCycle: number = 12;
 
-        if ( this._datepicker ) {
+        if (this._datepicker) {
             tempMode = this._datepicker.mode;
             tempCycle = +this._datepicker.hourCycle;
-        } else if ( this._mode ) {
+        } else if (this._mode) {
             tempMode = this._mode;
-            if ( this._hourCycle ) {
+            if (this._hourCycle) {
                 tempCycle = this._hourCycle;
             }
         }

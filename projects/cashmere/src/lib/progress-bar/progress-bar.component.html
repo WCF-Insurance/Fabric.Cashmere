@@ -10,6 +10,7 @@
          [ngClass]="{
          'progress-item': true,
          'clickable': _canNavigateTo(item),
+         'progress-item--disabled': !_canNavigateTo(item),
          'progress-item--active': item.id === currentSelectedItem?.id,
          'progress-item--complete': item.status === ProgressItemStatus.COMPLETE,
          'progress-item--incomplete': item.status === ProgressItemStatus.INCOMPLETE,
@@ -18,14 +19,17 @@
         <div class="item-body">
             <svg viewBox="0 0 22 75" [ngStyle]="{'height': height}">
                 <g>
-                    <polygon points="0 0, 22 0, 22 75, 0 75" fill="white" stroke="white"
+                    <polygon points="0 0, 22 0, 22 75, 0 75" fill="#f6f7f7" stroke="#f6f7f7"
                              *ngIf="!item.focused && !item.beforeSelected"></polygon>
                     <polygon points="0 0, 22 0, 22 75, 0 75" [attr.fill]="_fillColor" [attr.stroke]="_fillColor"
                              *ngIf="item.focused || item.beforeSelected"></polygon>
                 </g>
             </svg>
 
-            <div class="item-title">{{item.title}}</div>
+            <div class="item-title">
+                <hc-icon hcIconSmall fontSet="fa" fontIcon="fa-lock" *ngIf="!_canNavigateTo(item)"></hc-icon>
+                <span>{{item.title}}</span>
+            </div>
 
             <div class="item-tip">
                 <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}"
@@ -51,7 +55,7 @@
                                   stroke-width="3"></polyline>
                     </g>
                 </svg>
-                <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}" style="background-color: white"
+                <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}" style="background-color: #f6f7f7"
                      *ngIf="item.id !== currentSelectedItem?.id && !item.beforeSelected && !items[i+1]?.focused && !items[i+1]?.beforeSelected">
                     <g>
                         <polyline *ngIf="item.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
@@ -64,7 +68,7 @@
     </div>
 </div>
 <div [ngClass]="{'mobile-progress-items': true, 'secondary': progressBarStyle === 'secondary'}" *ngIf="showMobile === true">
-    <button hc-button title="Previous Progress" buttonStyle="primary" [ngStyle]="{'height': height, 'width': height}"
+    <button hc-button title="Previous Progress" buttonStyle="primary" class="previous-item-action" [ngStyle]="{'height': height, 'width': height}"
             (click)="previousItem()">
         <hc-icon fontSet="fa" fontIcon="fa-arrow-circle-left"></hc-icon>
     </button>
@@ -74,8 +78,7 @@
                 <div class="item-tip">
                     <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}">
                         <g>
-                            <polyline *ngIf="currentSelectedItem.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
-                                      fill="none" stroke="white" stroke-width="3"></polyline>
+                            <polyline *ngIf="currentSelectedItem.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29" stroke="white" [attr.fill]="_fillColor" stroke-width="3"></polyline>
                         </g>
                     </svg>
                 </div>
@@ -90,6 +93,7 @@
                  [ngClass]="{
                  'progress-item': true,
                  'clickable': _canNavigateTo(item),
+                 'progress-item--disabled': !_canNavigateTo(item),
                 'progress-item--active': item.id === currentSelectedItem?.id,
                 'progress-item--complete': item.status === ProgressItemStatus.COMPLETE,
                 'progress-item--incomplete': item.status === ProgressItemStatus.INCOMPLETE,
@@ -100,16 +104,19 @@
                         <svg viewBox="0 0 65 75" [ngStyle]="{'height': height}">
                             <g>
                                 <polyline *ngIf="item.status === ProgressItemStatus.COMPLETE" points="10 40, 17 47.5, 34 29"
-                                          fill="none" [attr.stroke]="_fillColor" stroke-width="3"></polyline>
+                                          fill="#f6f7f7" [attr.stroke]="_fillColor" stroke-width="3"></polyline>
                             </g>
                         </svg>
                     </div>
-                    <div class="item-title">{{item.title}}</div>
+                    <div class="item-title">
+                        <hc-icon fontSet="fa" fontIcon="fa-lock" *ngIf="!_canNavigateTo(item)"></hc-icon>
+                        <span>{{item.title}}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <button hc-button title="Next Progress" buttonStyle="primary" [ngStyle]="{'height': height, 'width': height}"
+    <button hc-button title="Next Progress" buttonStyle="primary" class="next-item-action" [ngClass]="{'next-item-action--disabled': !_canNavigateToNextItem()}" [ngStyle]="{'height': height, 'width': height}"
             (click)="nextItem()">
         <hc-icon fontSet="fa" fontIcon="fa-arrow-circle-right"></hc-icon>
     </button>
