@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IUser} from '@wcf-insurance/cashmere';
 import {FormControl} from '@angular/forms';
+import {ProgressItem, ProgressItemStatus} from '../../../../dist/cashmere';
 
 @Component({
     selector: 'hc-header-demo',
@@ -20,6 +21,16 @@ export class HeaderDemoComponent {
 
     dummyContent: string[] = [];
 
+    // progress bar information
+    currentSelectedItem: ProgressItem;
+    progressItems: ProgressItem[] = [
+        {id: 'company', title: 'Company', status: ProgressItemStatus.COMPLETE},
+        {id: 'owners', title: 'Owners', status: ProgressItemStatus.INCOMPLETE},
+        {id: 'general-info', title: 'General Info', status: ProgressItemStatus.INCOMPLETE, focused: true},
+        {id: 'rating', title: 'Rating', status: ProgressItemStatus.INCOMPLETE},
+        {id: 'losses', title: 'Losses', status: ProgressItemStatus.INCOMPLETE},
+    ];
+
     addDummyContent() {
         for (let i = 0; i < 50; i++) {
             this.dummyContent.push(`Content ${i + 1}`);
@@ -38,5 +49,9 @@ export class HeaderDemoComponent {
         } else {
             this.user = null;
         }
+    }
+
+    selectedProgressItem(item: ProgressItem) {
+        this.currentSelectedItem = item;
     }
 }
