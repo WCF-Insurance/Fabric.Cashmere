@@ -12,8 +12,8 @@ export class ProgressBarExampleComponent {
     progressBarCompleted = false;
     progressItems: ProgressItem[] = [
         {id: 'company', title: 'Company', status: ProgressItemStatus.COMPLETE},
-        {id: 'owners', title: 'Owners', status: ProgressItemStatus.INCOMPLETE},
-        {id: 'general-info', title: 'General Info', status: ProgressItemStatus.INCOMPLETE, focused: true},
+        {id: 'owners', title: 'Owners', status: ProgressItemStatus.INCOMPLETE, focused: true},
+        {id: 'general-info', title: 'General Info', status: ProgressItemStatus.INCOMPLETE},
         {id: 'rating', title: 'Rating', status: ProgressItemStatus.INCOMPLETE},
         {id: 'losses', title: 'Losses', status: ProgressItemStatus.INCOMPLETE},
     ];
