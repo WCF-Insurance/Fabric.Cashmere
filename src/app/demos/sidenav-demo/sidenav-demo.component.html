@@ -31,6 +31,17 @@
 
     <div class="page-content">
         <h2 class="app-title">SideNav Demo</h2>
+
+        <hc-progress-bar
+            [allowSkipAhead]="false"
+            [showMobile]="false"
+            height="48px"
+            breakPoint="1024"
+            [items]="progressItems"
+            (progressItemSelected)="selectedProgressItem($event)"
+            (progressBarCompleted)="false">
+        </hc-progress-bar>
+
         <div class="main-content">
             <div class="row buffer">
                 <div class="col-sm-5">
