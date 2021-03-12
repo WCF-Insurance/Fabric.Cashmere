@@ -222,9 +222,7 @@ export class ProgressBarComponent implements OnInit {
     }
 
     private _predecessorComplete(item: ProgressItem) {
-
         const index = this.items.findIndex(it => it.id === item.id);
-
         if (this.items[index - 1].status === ProgressItemStatus.COMPLETE) {
             return true;
         }
