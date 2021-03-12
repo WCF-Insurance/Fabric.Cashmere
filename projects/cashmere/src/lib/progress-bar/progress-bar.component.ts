@@ -203,7 +203,7 @@ export class ProgressBarComponent implements OnInit {
     }
 
     _canNavigateTo(item: ProgressItem): boolean {
-        if(item) {
+        if (item) {
             return item.focused || item.beforeSelected || this.allowSkipAhead || this._predecessorComplete(item);
         }
         return false;
@@ -225,10 +225,9 @@ export class ProgressBarComponent implements OnInit {
 
         const index = this.items.findIndex(it => it.id === item.id);
 
-        if(this.items[index - 1].status === ProgressItemStatus.COMPLETE) {
+        if (this.items[index - 1].status === ProgressItemStatus.COMPLETE) {
             return true;
         }
-        
         return false;
     }
 }
