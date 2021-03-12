@@ -68,7 +68,7 @@
     </div>
 </div>
 <div [ngClass]="{'mobile-progress-items': true, 'secondary': progressBarStyle === 'secondary'}" *ngIf="showMobile === true">
-    <button hc-button title="Previous Progress" buttonStyle="primary" class="previous-item-action" [ngStyle]="{'height': height, 'width': height}"
+    <button hc-button title="Previous Progress" buttonStyle="primary" class="previous-item-action" [ngStyle]="{'height': height, 'width': height}" [ngClass]="{'previous-item-action--disabled': !_canNavigateToPreviousItem()}"
             (click)="previousItem()">
         <hc-icon fontSet="fa" fontIcon="fa-arrow-circle-left"></hc-icon>
     </button>
