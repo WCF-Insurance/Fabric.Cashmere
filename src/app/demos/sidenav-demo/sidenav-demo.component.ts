@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {IUser} from '@wcf-insurance/cashmere';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {FormControl} from '@angular/forms';
+import {ProgressBarComponent, ProgressItem, ProgressItemStatus} from '../../../../dist/cashmere';
 
 @Component({
     selector: 'hc-sidenav-demo',
@@ -28,6 +29,17 @@ export class SidenavDemoComponent implements OnInit {
     showActiveLink = false;
     showActiveLinkLater = false;
     showActiveLinkWayLater = false;
+
+
+    // progress bar information
+    currentSelectedItem: ProgressItem;
+    progressItems: ProgressItem[] = [
+        {id: 'company', title: 'Company', status: ProgressItemStatus.COMPLETE},
+        {id: 'owners', title: 'Owners', status: ProgressItemStatus.INCOMPLETE},
+        {id: 'general-info', title: 'General Info', status: ProgressItemStatus.INCOMPLETE, focused: true},
+        {id: 'rating', title: 'Rating', status: ProgressItemStatus.INCOMPLETE},
+        {id: 'losses', title: 'Losses', status: ProgressItemStatus.INCOMPLETE},
+    ];
 
     constructor(public breakpointObserver: BreakpointObserver) {
     }
@@ -76,5 +88,9 @@ export class SidenavDemoComponent implements OnInit {
         } else {
             this.user = null;
         }
+    }
+
+    selectedProgressItem(item: ProgressItem) {
+        this.currentSelectedItem = item;
     }
 }
