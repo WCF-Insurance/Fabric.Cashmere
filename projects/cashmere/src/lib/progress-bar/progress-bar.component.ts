@@ -150,7 +150,7 @@ export class ProgressBarComponent implements OnInit {
             }
             return itemToReturn;
         });
-        if (currentIndex < this._items.length) {
+        if (currentIndex < this._items.length - 1) {
             this.selectProgressItem(this._items[currentIndex + 1], true);
         } else {
             this.allItemsCompleted = true;
@@ -192,7 +192,7 @@ export class ProgressBarComponent implements OnInit {
 
     nextItem(): void {
         let itemIndex = this._items.indexOf(this.currentSelectedItem);
-        if (itemIndex < this._items.length - 1 && this._canNavigateToNextItem()) {
+        if (itemIndex < this._items.length && this._canNavigateToNextItem()) {
             this.selectProgressItem(this._items[itemIndex + 1], true);
         }
         this.dropdownVisible = false;
@@ -203,27 +203,29 @@ export class ProgressBarComponent implements OnInit {
     }
 
     _canNavigateTo(item: ProgressItem): boolean {
-        return item.focused || item.beforeSelected || this.allowSkipAhead || this._itemAndPredecessorsComplete(item);
+        if (item) {
+            return item.focused || item.beforeSelected || this.allowSkipAhead || this._predecessorComplete(item);
+        }
+        return false;
     }
 
     _canNavigateToNextItem(): boolean {
         return this._canNavigateTo(this._items[this._items.indexOf(this.currentSelectedItem) + 1]);
     }
 
-    private _itemAndPredecessorsComplete(item: ProgressItem) {
-        if (item.status !== ProgressItemStatus.COMPLETE) {
+    _canNavigateToPreviousItem(): boolean {
+        let itemIndex = this._items.indexOf(this.currentSelectedItem);
+        if (itemIndex === 0) {
             return false;
         }
+        return true;
+    }
 
+    private _predecessorComplete(item: ProgressItem) {
         const index = this.items.findIndex(it => it.id === item.id);
-
-        let allComplete = true;
-        for (let i = index; i > 0; i--) {
-            if (this.items[i].status !== ProgressItemStatus.COMPLETE) {
-                allComplete = false;
-            }
+        if (this.items[index - 1].status === ProgressItemStatus.COMPLETE) {
+            return true;
         }
-
-        return allComplete;
+        return false;
     }
 }

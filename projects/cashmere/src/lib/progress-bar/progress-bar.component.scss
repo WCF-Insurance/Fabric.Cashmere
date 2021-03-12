@@ -98,6 +98,10 @@
 
         &.previous-item-action {
             margin-right: 5px;
+            &--disabled {
+                background-color: $gray-30;
+                cursor: unset;
+            }
         }
         &.next-item-action {
             margin-left: 5px;
