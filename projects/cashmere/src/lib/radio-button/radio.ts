@@ -5,6 +5,8 @@ import {
     Component,
     ContentChildren,
     Directive,
+    DoCheck,
+    ElementRef,
     EventEmitter,
     forwardRef,
     HostBinding,
@@ -13,13 +15,11 @@ import {
     Optional,
     Output,
     QueryList,
-    DoCheck,
-    Self,
-    ElementRef
+    Self
 } from '@angular/core';
 import {parseBooleanAttribute} from '../util';
 import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {ControlValueAccessor, NgForm, FormGroupDirective, NgControl} from '@angular/forms';
+import {ControlValueAccessor, FormGroupDirective, NgControl, NgForm} from '@angular/forms';
 
 let nextUniqueId = 0;
 
@@ -187,6 +187,15 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
     _emitChangeEvent(): void {
         if (this._initialized) {
             this.change.emit(new RadioButtonChangeEvent(this._selected, this.value));
+        }
+    }
+
+    markAsTouched() {
+        if (this._ngControl) {
+            const control = this._ngControl.control;
+            if (control) {
+                control.markAsTouched();
+            }
         }
     }
 
@@ -386,8 +395,15 @@ export class RadioButtonComponent implements OnInit {
         this.focused = true;
     }
 
+    _markAsTouched() {
+        if (this.radioGroup) {
+            this.radioGroup._touch();
+        }
+    }
+
     _onBlur() {
         this.focused = false;
+        this._markAsTouched();
     }
 
     private _emitChangeEvent(): void {
