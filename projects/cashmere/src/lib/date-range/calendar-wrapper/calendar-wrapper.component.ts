@@ -70,6 +70,10 @@ export class CalendarWrapperComponent implements OnChanges {
     @Input()
     maxDate: D | undefined;
 
+    /** Flag to disable the input field for duration based ranges */
+    @Input()
+    disableDateInput: boolean = false;
+
     weekendFilter = () => true;
 
     constructor(public configStore: ConfigStoreService) {}
@@ -91,12 +95,12 @@ export class CalendarWrapperComponent implements OnChanges {
     }
 
     _onInputChange(event: HcDatepickerInputEvent) {
-        if ( this.mode === 'time' ) {
+        if (this.mode === 'time') {
             let tempVal = (event.value) ? new Date(1900, 1, 1, event.value.getHours(), event.value.getMinutes()) : new Date(1900, 1, 1);
             let minVal = (this.minDate) ? new Date(1900, 1, 1, this.minDate.getHours(), this.minDate.getMinutes()) : new Date(1900, 1, 1);
             let maxVal = (this.maxDate) ? new Date(1900, 1, 1, this.maxDate.getHours(), this.maxDate.getMinutes()) : new Date(1900, 1, 2);
 
-            if ( tempVal < minVal || tempVal > maxVal ) {
+            if (tempVal < minVal || tempVal > maxVal) {
                 this.selectedDate = undefined;
                 this.selectedDateChange.emit(undefined);
             } else {
