@@ -83,7 +83,6 @@ export class CalendarWrapperComponent implements OnChanges, OnInit {
     constructor(public configStore: ConfigStoreService) {}
 
     ngOnInit() {
-        console.log('onInit');
         const selectedDateControl = new FormControl(this.selectedDate, Validators.required);
         if (this.disableDateInput) {
             selectedDateControl.disable();
