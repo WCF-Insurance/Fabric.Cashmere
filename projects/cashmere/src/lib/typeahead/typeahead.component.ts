@@ -298,6 +298,8 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
                 control.markAsTouched();
             }
         }
+
+        this._searchTerm.markAllAsTouched();
     }
 
     registerOnChange(fn: any): void {
@@ -378,6 +380,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
 
         if (oldState !== newState) {
             this._errorState = newState;
+            this._markAsTouched();
         }
 
         /**
