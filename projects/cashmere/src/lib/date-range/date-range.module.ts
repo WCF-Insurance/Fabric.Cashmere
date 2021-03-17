@@ -4,7 +4,7 @@ import {DateRangeDirective} from './date-range/date-range.directive';
 import {PickerOverlayComponent} from './picker-overlay/picker-overlay.component';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CalendarWrapperComponent} from './calendar-wrapper/calendar-wrapper.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HcNativeDateModule} from '../datepicker/datetime/datetime.module';
 import {DatepickerModule} from '../datepicker/datepicker.module';
 import {FormFieldModule} from '../form-field/hc-form-field.module';
@@ -22,10 +22,12 @@ import {RadioButtonModule} from '../radio-button/radio-button.module';
         ButtonModule,
         RadioButtonModule,
         OverlayModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [DateRangeDirective, CalendarWrapperComponent, PickerOverlayComponent],
     entryComponents: [PickerOverlayComponent],
     exports: [DateRangeDirective]
 })
-export class DateRangeModule {}
+export class DateRangeModule {
+}

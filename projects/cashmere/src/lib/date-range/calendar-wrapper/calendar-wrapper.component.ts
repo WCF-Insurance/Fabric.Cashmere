@@ -1,19 +1,21 @@
 import {
-    Component,
-    ViewChild,
-    Input,
     ChangeDetectionStrategy,
-    ViewEncapsulation,
-    Output,
+    Component,
     EventEmitter,
+    HostBinding,
+    Input,
     OnChanges,
+    OnInit,
+    Output,
     SimpleChanges,
-    HostBinding
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import {ConfigStoreService} from '../services/config-store.service';
 import {CalendarComponent} from '../../datepicker/calendar/calendar.component';
 import {DatepickerInputDirective, HcDatepickerInputEvent} from '../../datepicker/datepicker-input/datepicker-input.directive';
 import {D} from '../../datepicker/datetime/date-formats';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 /** Component combining a calendar and input as a representation of a date  */
 @Component({
@@ -23,7 +25,7 @@ import {D} from '../../datepicker/datetime/date-formats';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class CalendarWrapperComponent implements OnChanges {
+export class CalendarWrapperComponent implements OnChanges, OnInit {
     @HostBinding('class.hc-calendar-wrapper')
     _hostClass = true;
 
@@ -74,9 +76,19 @@ export class CalendarWrapperComponent implements OnChanges {
     @Input()
     disableDateInput: boolean = false;
 
+    _form: FormGroup;
+
     weekendFilter = () => true;
 
     constructor(public configStore: ConfigStoreService) {}
+
+    ngOnInit() {
+        const selectedDateControl = new FormControl(this.selectedDate, Validators.required);
+        if (this.disableDateInput) {
+            selectedDateControl.disable();
+        }
+        this._form = new FormGroup({selectedDate: selectedDateControl});
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         // Necessary to force view refresh
