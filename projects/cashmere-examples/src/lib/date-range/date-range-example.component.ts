@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {DateRangeOptions, PresetItem, DateRange} from '@wcf-insurance/cashmere';
+import {Component, OnInit} from '@angular/core';
+import {DateRange, DateRangeOptions, PresetItem} from '@wcf-insurance/cashmere';
 
 @Component({
     selector: 'hc-date-range-example',
@@ -10,8 +10,6 @@ export class DateRangeExampleComponent implements OnInit {
     range: DateRange = {fromDate: new Date(), toDate: new Date()};
     options: DateRangeOptions;
     presets: Array<PresetItem> = [];
-    @ViewChild('pickerOne', {static: false})
-    pickerOne;
 
     ngOnInit() {
         const today = new Date();

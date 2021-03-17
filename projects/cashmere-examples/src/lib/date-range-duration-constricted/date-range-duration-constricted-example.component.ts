@@ -10,8 +10,6 @@ export class DateRangeDurationConstrictedExampleComponent implements OnInit {
     range: DateRange = {fromDate: new Date(), toDate: new Date()};
     options: DateRangeOptions;
     presets: Array<PresetItem> = [];
-    @ViewChild('pickerOne', {static: false})
-    pickerOne;
 
     ngOnInit() {
         const today = new Date();
