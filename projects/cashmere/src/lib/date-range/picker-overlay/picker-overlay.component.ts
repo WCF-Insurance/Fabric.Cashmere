@@ -48,7 +48,6 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         if (this.calendarWrappers.first) {
-            this.calendarWrappers.first.focusInput();
             this.cd.detectChanges();
         }
         setTimeout(() => {
@@ -66,6 +65,35 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
         }
         this._setValidity();
         this._isRangePreset();
+    }
+
+    _updateDurationFromDate(date?: D) {
+        this._fromDate = date;
+        this.options$.subscribe(options => {
+            if (options.periodDurationOptions) {
+                const duration = options.periodDurationOptions.lengthInDays;
+
+                if (this._fromDate) {
+                    this._toDate = new Date(this._fromDate.getFullYear(), this._fromDate.getMonth(), this._fromDate.getDate() + duration);
+                    this._setValidity();
+                }
+            }
+        });
+    }
+
+    _getDurationFromDateMinMax() {
+        let toDateMinMax = new Date();
+        this.options$.subscribe(options => {
+            if (options.periodDurationOptions) {
+                const duration = options.periodDurationOptions.lengthInDays;
+
+                if (this._fromDate) {
+                    toDateMinMax = new Date(this._fromDate.getFullYear(), this._fromDate.getMonth(), this._fromDate.getDate() + duration);
+                }
+            }
+        });
+
+        return toDateMinMax;
     }
 
     _updateToDate(date?: D) {
@@ -150,39 +178,6 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
                 }
 
                 return options.toMinMax.fromDate < this._fromDate ? this._fromDate : options.toMinMax.fromDate;
-            })
-        );
-    }
-
-    _periodMaxDate(): Observable<Date | undefined> {
-        return this.options$.pipe(
-            map((options: DateRangeOptions) => {
-                if (!options.periodDurationOptions) {
-                    this.maxDate = this._toDate;
-                    return this.maxDate;
-                }
-
-                if (options.periodDurationOptions.lengthInDays) {
-                    if (this._fromDate) {
-                        const periodMax = new Date(this._fromDate.getTime());
-                        periodMax.setHours(0, 0, 0, 0);
-                        periodMax.setDate(this._fromDate.getDate() + options.periodDurationOptions.lengthInDays);
-
-                        if (!this.maxDate || this.maxDate.getTime() !== periodMax.getTime()) {
-                            this.maxDate = periodMax;
-                        }
-
-                        return this.maxDate;
-                    }
-                }
-
-                if (options.periodDurationOptions.maxDate) {
-                    this.maxDate = options.periodDurationOptions.maxDate;
-                    return this.maxDate;
-                }
-
-                this.maxDate = this._toDate;
-                return this.maxDate;
             })
         );
     }

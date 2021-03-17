@@ -1,0 +1,35 @@
+<div class="progress-bar-example">
+    <div class="progress-bar-wrapper">
+        <hc-progress-bar
+            #progressBarComponent
+            [selectionMode]="selectionMode"
+            [allowSkipAhead]="allowSkipAhead"
+            [showMobile]="showMobile"
+            [height]="progressBarHeight + 'px'"
+            [breakPoint]="breakPoint"
+            [items]="progressItems"
+            (progressItemClicked)="progressItemClicked($event)"
+            (progressBarCompleted)="progressBarCompleted = true"
+        ></hc-progress-bar>
+    </div>
+    <div class="progress-bar-example-controls">
+        <div class="progress-bar-example-field">
+            <span class="progress-bar-example-field-label">Selection Mode:</span>
+            <hc-radio-group [(ngModel)]="selectionMode" inline="true">
+                <hc-radio-button [value]="selectionModeEnum.INTERNAL">Internal</hc-radio-button>
+                <hc-radio-button [value]="selectionModeEnum.EXTERNAL">External</hc-radio-button>
+            </hc-radio-group>
+        </div>
+        <div class="progress-bar-example-field">
+            <span class="progress-bar-example-field-label">Progress Item Navigation Validity:</span>
+            <hc-radio-group [(ngModel)]="progressItemNavigationIsValid" inline="true">
+                <hc-radio-button [value]="true">Valid</hc-radio-button>
+                <hc-radio-button [value]="false">Invalid</hc-radio-button>
+            </hc-radio-group>
+        </div>
+        <div class="progress-bar-example-field allow-skip-field">
+            <hc-checkbox [(ngModel)]="allowSkipAhead"></hc-checkbox>
+            <span class="progress-bar-example-field-label">Allow skip ahead</span>
+        </div>
+    </div>
+</div>

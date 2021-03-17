@@ -162,7 +162,7 @@ const docs: DocItem[] = [
         id: 'progress-bar',
         name: 'Progress Bar',
         category: 'nav',
-        examples: ['progress-bar'],
+        examples: ['progress-bar', 'progress-bar-selection-mode'],
         usageDoc: true
     },
     {

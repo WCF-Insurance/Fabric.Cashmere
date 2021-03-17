@@ -8,9 +8,9 @@
                 [selectedDate]="_fromDate"
                 [minDate]="options.periodDurationOptions.minDate"
                 [maxDate]="options.periodDurationOptions.maxDate"
-                (selectedDateChange)="_updateFromDate($event)"
+                (selectedDateChange)="_updateDurationFromDate($event)"
                 [excludeWeekends]="options.excludeWeekends"
-                [dateFormat]="options.dateFormat"
+                [dateFormat]="options.format"
                 [invalidDateLabel]="options.invalidDateLabel"
                 [mode]="options.mode"
                 [hourCycle]="options.hourCycle"
@@ -19,16 +19,17 @@
         </div>
         <div class="hc-date-range-calendar-item hc-date-range-calendar-wrapper">
             <hc-calendar-wrapper
+                #durationToDateCalendar
                 [prefixLabel]="options.endDatePrefix"
                 [selectedDate]="_toDate"
-                [minDate]="_fromDate"
-                [maxDate]="_periodMaxDate() | async"
-                (selectedDateChange)="_updateToDate($event)"
+                [minDate]="_getDurationFromDateMinMax()"
+                [maxDate]="_getDurationFromDateMinMax()"
                 [excludeWeekends]="options.excludeWeekends"
-                [dateFormat]="options.dateFormat"
+                [dateFormat]="options.format"
                 [invalidDateLabel]="options.invalidDateLabel"
                 [mode]="options.mode"
                 [hourCycle]="options.hourCycle"
+                [disableDateInput]="true"
             >
             </hc-calendar-wrapper>
         </div>
@@ -43,7 +44,7 @@
                 [maxDate]="_fromMaxDate | async"
                 (selectedDateChange)="_updateFromDate($event)"
                 [excludeWeekends]="options.excludeWeekends"
-                [dateFormat]="options.dateFormat"
+                [dateFormat]="options.format"
                 [invalidDateLabel]="options.invalidDateLabel"
                 [mode]="options.mode"
                 [hourCycle]="options.hourCycle"
@@ -58,7 +59,7 @@
                 [maxDate]="options.toMinMax?.toDate"
                 (selectedDateChange)="_updateToDate($event)"
                 [excludeWeekends]="options.excludeWeekends"
-                [dateFormat]="options.dateFormat"
+                [dateFormat]="options.format"
                 [invalidDateLabel]="options.invalidDateLabel"
                 [mode]="options.mode"
                 [hourCycle]="options.hourCycle"
@@ -68,10 +69,12 @@
     </ng-template>
     <div class="hc-date-range-calendar-item">
         <div class="hc-date-range-menu">
-            <hc-label class="presets">Quick Select</hc-label>
-            <hc-radio-group class="presets" [(ngModel)]="_selectedPreset">
+            <div *ngIf="!options.periodDurationOptions && options.presets && options.presets.length > 0">
+                <hc-label class="presets">Quick Select</hc-label>
+                <hc-radio-group class="presets" [(ngModel)]="_selectedPreset">
                 <hc-radio-button *ngFor="let p of options.presets" [value]="p.range" (change)="_updateRangeByPreset(p.range)">{{ p.presetLabel }}</hc-radio-button>
-            </hc-radio-group>
+                </hc-radio-group>
+            </div>
             <div class="hc-date-range-controls">
                 <button hc-button buttonStyle="primary" type="button" [disabled]="_disabled" (click)="_applyNewDates()">
                     {{ options.applyLabel }}

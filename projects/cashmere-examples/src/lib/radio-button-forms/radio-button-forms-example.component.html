@@ -1,6 +1,6 @@
 <hc-form-field inline="true">
     <hc-label>Select your favorite:</hc-label>
-    <hc-radio-group [(ngModel)]="favoriteShow" [inline]="true" required>
+    <hc-radio-group [(ngModel)]="favoriteShow" [inline]="true">
         <hc-radio-button *ngFor="let show of shows" [value]="show">{{show}}</hc-radio-button>
     </hc-radio-group>
     <hc-error>Favorite Show is Required</hc-error>
@@ -11,11 +11,11 @@
     Clear Selection
 </button>
 
-<h5 style="margin-top: 60px;">Reactive Form</h5>
+<h5 style="margin-top: 60px;">Reactive Form (required)</h5>
 <form [formGroup]="form">
     <hc-form-field inline="true">
         <hc-label>Select your favorite:</hc-label>
-        <hc-radio-group formControlName="favoriteTvShow" [inline]="true" required>
+        <hc-radio-group formControlName="favoriteTvShow" [inline]="true">
             <hc-radio-button *ngFor="let show of shows" [value]="show">{{show}}</hc-radio-button>
         </hc-radio-group>
         <hc-error>Favorite Show is Required</hc-error>

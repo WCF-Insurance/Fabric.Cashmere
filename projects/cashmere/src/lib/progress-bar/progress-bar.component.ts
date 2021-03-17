@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProgressItem} from './progress-item.interface';
 import {ProgressItemStatus} from './progress-item-status';
+import {ProgressBarSelectionMode} from './progress-bar-selection-mode';
+
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 
 @Component({
@@ -12,6 +14,7 @@ export class ProgressBarComponent implements OnInit {
     @Input() allowSkipAhead: boolean = true;
     @Input() height: string;
     @Input() breakPoint: string = '768';
+    @Input() selectionMode: ProgressBarSelectionMode = ProgressBarSelectionMode.INTERNAL;
 
     /**
      * Control whether the main color is $wcf-red (primary) or $wcf-blue (secondary). Default is primary.
@@ -47,6 +50,7 @@ export class ProgressBarComponent implements OnInit {
         }
     }
 
+    @Output() progressItemClicked = new EventEmitter<ProgressItem>();
     @Output() progressItemSelected = new EventEmitter<ProgressItem>();
     @Output() progressBarCompleted = new EventEmitter<boolean>();
     currentSelectedItem: ProgressItem;
@@ -92,7 +96,7 @@ export class ProgressBarComponent implements OnInit {
             : items[greatestCompletedItemIndex]; // last completed is the last item left
     }
 
-    selectProgressItem(itemToSelect: ProgressItem, emit: boolean): void {
+    selectProgressItem(itemToSelect: ProgressItem, emit = false): void {
         // TODO logic could be placed here to determine if navigation to this step is allowed by consuming component
         let previouslySelectedItem = this.currentSelectedItem;
         // Update progressItem entries to have proper focus
@@ -146,7 +150,7 @@ export class ProgressBarComponent implements OnInit {
             }
             return itemToReturn;
         });
-        if (currentIndex < this._items.length) {
+        if (currentIndex < this._items.length - 1) {
             this.selectProgressItem(this._items[currentIndex + 1], true);
         } else {
             this.allItemsCompleted = true;
@@ -154,10 +158,27 @@ export class ProgressBarComponent implements OnInit {
         }
     }
 
+    /**
+     * Handles the user clicking a progress Item.
+     *
+     * Ensures that the clicked item can be navigated to and also checks which seletion strategy (INTERNAL, EXTERNAL) should be used.
+     *
+     * INTERNAL: handles the selection all internally and then notifies (emits) the selection event.
+     *
+     * EXTERNAL: only handles the click event by emitting a notification of which item was clicked. This allows the consuming application to
+     * run validation or other logic and then can signal the ProgressBarComponent to select the item by using via @ViewChild and invoking
+     * <viewChildRefName>.selectProgressItem(item)
+     */
     itemClicked(item: ProgressItem): void {
         if (this._canNavigateTo(item)) {
-            this.selectProgressItem(item, true);
-            this.dropdownVisible = false;
+            switch (this.selectionMode) {
+                case ProgressBarSelectionMode.INTERNAL:
+                    this.selectProgressItem(item, true);
+                    this.dropdownVisible = false;
+                    break;
+                case ProgressBarSelectionMode.EXTERNAL:
+                    this.progressItemClicked.emit(item);
+            }
         }
     }
 
@@ -171,7 +192,7 @@ export class ProgressBarComponent implements OnInit {
 
     nextItem(): void {
         let itemIndex = this._items.indexOf(this.currentSelectedItem);
-        if (itemIndex < this._items.length - 1 && this._canNavigateToNextItem()) {
+        if (itemIndex < this._items.length && this._canNavigateToNextItem()) {
             this.selectProgressItem(this._items[itemIndex + 1], true);
         }
         this.dropdownVisible = false;
@@ -182,27 +203,29 @@ export class ProgressBarComponent implements OnInit {
     }
 
     _canNavigateTo(item: ProgressItem): boolean {
-        return item.focused || item.beforeSelected || this.allowSkipAhead || this._itemAndPredecessorsComplete(item);
+        if (item) {
+            return item.focused || item.beforeSelected || this.allowSkipAhead || this._predecessorComplete(item);
+        }
+        return false;
     }
 
     _canNavigateToNextItem(): boolean {
         return this._canNavigateTo(this._items[this._items.indexOf(this.currentSelectedItem) + 1]);
     }
 
-    private _itemAndPredecessorsComplete(item: ProgressItem) {
-        if (item.status !== ProgressItemStatus.COMPLETE) {
+    _canNavigateToPreviousItem(): boolean {
+        let itemIndex = this._items.indexOf(this.currentSelectedItem);
+        if (itemIndex === 0) {
             return false;
         }
+        return true;
+    }
 
+    private _predecessorComplete(item: ProgressItem) {
         const index = this.items.findIndex(it => it.id === item.id);
-
-        let allComplete = true;
-        for (let i = index; i > 0; i--) {
-            if (this.items[i].status !== ProgressItemStatus.COMPLETE) {
-                allComplete = false;
-            }
+        if (this.items[index - 1].status === ProgressItemStatus.COMPLETE) {
+            return true;
         }
-
-        return allComplete;
+        return false;
     }
 }

@@ -6,12 +6,12 @@
         <button
             hc-button
             hcDateRange
+            type="button"
             buttonStyle="link-big"
             popperPlacement="bottom"
             (selectedDateRangeChanged)="updateRange($event)"
             [selectedDate]="range"
             [options]="options"
-            #pickerOne
         >
             <span class="value"> {{ range.fromDate | date:'MM/dd/yyyy' }} - {{ range.toDate | date:'MM/dd/yyyy' }} </span>
             <hc-icon fontSet="far" fontIcon="fa-calendar"></hc-icon>

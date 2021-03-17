@@ -3,6 +3,17 @@
 
 <div class="page-content">
     <div class="container">
+        <hc-progress-bar
+            [allowSkipAhead]="false"
+            [showMobile]="false"
+            height="48px"
+            breakPoint="1024"
+            [items]="progressItems"
+            (progressItemSelected)="selectedProgressItem($event)"
+            (progressBarCompleted)="false"
+            progressBarStyle="secondary">
+        </hc-progress-bar>
+
         <div class="row">
             <div class="col-12">
                 <h3 class="app-title">Header Demo</h3>
