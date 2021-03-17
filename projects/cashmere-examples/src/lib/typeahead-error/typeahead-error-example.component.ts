@@ -51,4 +51,8 @@ export class TypeaheadErrorExampleComponent implements OnInit {
             control.setValue(item);
         }
     }
+
+    markTouched() {
+        this.form.markAllAsTouched();
+    }
 }
