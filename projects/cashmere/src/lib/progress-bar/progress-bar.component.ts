@@ -45,6 +45,9 @@ export class ProgressBarComponent implements OnInit {
             if (focusedIndex > -1) {
                 this.selectProgressItem(itemsList[focusedIndex], true);
             }
+            else {
+                this.selectProgressItem(itemsList[0], true);
+            }
         } else {
             this._items = [];
         }
