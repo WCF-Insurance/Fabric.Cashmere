@@ -111,7 +111,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     }
 
     ngOnInit() {
-        this._searchTerm = new FormControl({value: this._value, disabled: this.disabled});
+        this._searchTerm = new FormControl({value: this._value, disabled: this.isDisabled});
         this._resultPanelHidden = true;
 
         // add subscription and debouncer for value changing in input field
@@ -334,14 +334,14 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
 
     /** Enables or disables the component, default false */
     @Input()
-    get disabled(): boolean {
+    get isDisabled(): boolean {
         if (this._ngControl && this._ngControl.disabled) {
             return this._ngControl.disabled;
         }
         return this._isDisabled;
     }
 
-    set disabled(disabledVal) {
+    set isDisabled(disabledVal) {
         if (this._searchTerm) {
             if (disabledVal) {
                 this._searchTerm.disable();
