@@ -273,7 +273,7 @@ const docs: DocItem[] = [
         id: 'typeahead',
         name: 'Typeahead',
         category: 'forms',
-        examples: ['typeahead-overview', 'typeahead-stacked', 'typeahead-highlighting', 'typeahead-highlighting-object', 'typeahead-error', 'typeahead-fetch']
+        examples: ['typeahead-overview', 'typeahead-stacked', 'typeahead-highlighting', 'typeahead-highlighting-object', 'typeahead-error', 'typeahead-fetch', 'typeahead-silent-focus']
     },
     {
         id: 'typeahead-title',
