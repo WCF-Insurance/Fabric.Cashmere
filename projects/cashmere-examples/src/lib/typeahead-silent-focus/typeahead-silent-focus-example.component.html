@@ -1,0 +1,28 @@
+<div class="example-content">
+    <form [formGroup]="form">
+        <div class="container">
+            <hc-form-field [inline]="true">
+                <hc-label>Non-Silent Focus:</hc-label>
+                <hc-typeahead formControlName="item" (valueChange)="filterData($event)" (optionSelected)="optionSelected($event)"
+                              [silentFocus]="false">
+                    <hc-typeahead-item *ngFor="let item of filteredData" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+                <hc-error>A valid state is required</hc-error>
+            </hc-form-field>
+        </div>
+
+        <div class="container">
+            <hc-form-field [inline]="true">
+                <hc-label>Silent Focus (default):</hc-label>
+                <hc-typeahead formControlName="item2" (valueChange)="filterData2($event)" (optionSelected)="optionSelected2($event)">
+                    <hc-typeahead-item *ngFor="let item of filteredData2" [value]="item">
+                        {{item}}
+                    </hc-typeahead-item>
+                </hc-typeahead>
+                <hc-error>A valid state is required</hc-error>
+            </hc-form-field>
+        </div>
+    </form>
+</div>

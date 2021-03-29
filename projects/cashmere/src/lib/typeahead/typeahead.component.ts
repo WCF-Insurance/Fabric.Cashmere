@@ -49,6 +49,9 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     public _value = '';
     private _form: NgForm | FormGroupDirective | null;
 
+    // Internal variable used to know if the input received focus due to a click or not
+    private _wasClick = false;
+
     /** Number of characters required before the typehead will begin searching, default 1 */
     @Input()
     minChars: number = 1;
@@ -66,6 +69,14 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     /** (it does not automatically turn on and off, you need to manually control it), default false */
     @Input()
     showSpinner: boolean = false;
+
+    /** Whether the focus event should emit a valueChange event and show the results. */
+    /** If set to true, then it will not emit the event nor show results until the user modifies the value */
+    /** in the input or the input value is empty. */
+    /** This is necessary to enable a user to be able to tab through the typeahead without clearing its value. */
+    /** Default is true. */
+    @Input()
+    silentFocus: boolean = true;
 
     /** Event emitted after each key stroke in the typeahead box (after minChars requirement has been met) */
     @Output()
@@ -111,7 +122,7 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
     }
 
     ngOnInit() {
-        this._searchTerm = new FormControl({value: this._value, disabled: this.disabled});
+        this._searchTerm = new FormControl({value: this._value, disabled: this.isDisabled});
         this._resultPanelHidden = true;
 
         // add subscription and debouncer for value changing in input field
@@ -334,14 +345,14 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
 
     /** Enables or disables the component, default false */
     @Input()
-    get disabled(): boolean {
+    get isDisabled(): boolean {
         if (this._ngControl && this._ngControl.disabled) {
             return this._ngControl.disabled;
         }
         return this._isDisabled;
     }
 
-    set disabled(disabledVal) {
+    set isDisabled(disabledVal) {
         if (this._searchTerm) {
             if (disabledVal) {
                 this._searchTerm.disable();
@@ -399,9 +410,24 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
         this.blur.emit(event);
     }
 
+    _clickHandler(event) {
+        this._wasClick = true;
+    }
+
     _focusHandler(event) {
-        this._resultPanelHidden = false;
-        this.valueChange.emit('');
+        let shouldEmit = !this.silentFocus;
+
+        if (this._wasClick || this.value === '') {
+            shouldEmit = true;
+        }
+
+        if (shouldEmit) {
+            this._resultPanelHidden = false;
+            this.valueChange.emit('');
+        }
+
+        // reset the clicker tracker
+        this._wasClick = false;
     }
 
     _getHighlightedIndex() {

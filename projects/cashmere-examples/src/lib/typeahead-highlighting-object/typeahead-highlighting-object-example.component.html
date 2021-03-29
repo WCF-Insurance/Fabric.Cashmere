@@ -3,7 +3,7 @@
         <hc-form-field [inline]="true">
             <hc-label>States:</hc-label>
             <hc-typeahead formControlName="item" (valueChange)="filterData($event)" (optionSelected)="optionSelected($event)"
-                          [disabled]="disabled">
+                          [isDisabled]="disabled">
                 <hc-typeahead-item *ngFor="let item of filteredData" [value]="item">
                     <div>
                         <p [innerHTML]="item.name | hcHighlight: typedChars"></p>
