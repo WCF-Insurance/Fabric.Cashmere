@@ -4,7 +4,7 @@
             <input #input hcInput [formControl]="_searchTerm" (keydown.tab)="_handleTabKey($event)"
                    (keydown.enter)="_stopPropogation($event)" (keydown.arrowup)="_stopPropogation($event)"
                    (keydown.arrowdown)="_stopPropogation($event)" [placeholder]="placeholder" [title]="_value"
-                   autocomplete="off" (blur)="_blurHandler($event)" (focus)="_focusHandler($event)"/>
+                   autocomplete="off" (blur)="_blurHandler($event)" (focus)="_focusHandler($event)" (mousedown)="_clickHandler($event)"/>
             <hc-error style="display: none;">parent is showing error message</hc-error>
         </hc-form-field>
     </form>
