@@ -310,7 +310,9 @@ export class TypeaheadComponent extends HcFormControlComponent implements OnInit
             }
         }
 
-        this._searchTerm.markAllAsTouched();
+        if (this._searchTerm) {
+            this._searchTerm.markAllAsTouched();
+        }
     }
 
     registerOnChange(fn: any): void {
