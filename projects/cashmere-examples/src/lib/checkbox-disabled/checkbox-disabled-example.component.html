@@ -1,3 +1,7 @@
-<hc-checkbox id="disabled" disabled="true">Disabled Checkbox</hc-checkbox>
+<hc-checkbox id="disabled1" disabled="true">Disabled Checkbox</hc-checkbox>
 
-<hc-checkbox id="disabled" disabled="true" checked="true">Disabled and Checked Checkbox</hc-checkbox>
+<hc-checkbox id="disabled2" disabled="true" checked="true">Disabled and Checked Checkbox</hc-checkbox>
+
+<form [formGroup]="form">
+    <hc-checkbox formControlName="checkbox">Disabled through Reactive Form</hc-checkbox>
+</form>

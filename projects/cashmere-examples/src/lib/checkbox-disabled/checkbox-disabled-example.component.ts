@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 /**
  * @title Disabled Checkbox
@@ -7,5 +8,18 @@ import {Component} from '@angular/core';
     selector: 'hc-checkbox-disabled-example',
     templateUrl: 'checkbox-disabled-example.component.html'
 })
-export class CheckboxDisabledExampleComponent {
+export class CheckboxDisabledExampleComponent implements OnInit {
+
+    form: FormGroup;
+
+    constructor(private fb: FormBuilder) {
+    }
+
+    ngOnInit(): void {
+        this.form = this.fb.group({
+            checkbox: [false]
+        });
+
+        this.form.controls.checkbox.disable();
+    }
 }
