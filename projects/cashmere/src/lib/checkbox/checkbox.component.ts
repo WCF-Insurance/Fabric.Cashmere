@@ -198,7 +198,9 @@ export class CheckboxComponent extends HcFormControlComponent implements Control
 
     setDisabledState(disabledVal: boolean): void {
         this.disabled = disabledVal;
-        this._renderer.setProperty(this._checkboxInput.nativeElement, 'disabled', disabledVal);
+        if (this._checkboxInput) {
+            this._renderer.setProperty(this._checkboxInput.nativeElement, 'disabled', disabledVal);
+        }
     }
 
     /** Toggles the current checked state of the checkbox */
