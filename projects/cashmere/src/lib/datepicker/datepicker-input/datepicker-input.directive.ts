@@ -374,7 +374,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
                 let minutes, hours;
                 const timeDigits = time.replace(/[^0-9]/g, '');
                 if (timeDigits.length > 2) {
-                    minutes = Number.parseInt(timeDigits.slice(timeDigits.length - 2), 10);
+                    minutes = timeDigits.slice(timeDigits.length - 2);
                     hours = hourOffset + Number.parseInt(timeDigits.slice(0, timeDigits.length - 2), 10);
                 } else {
                     minutes = '00';
