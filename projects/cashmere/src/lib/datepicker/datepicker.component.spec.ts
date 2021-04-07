@@ -339,19 +339,19 @@ class DatepickerWithTabindexOnToggle {
 
 @Component({
     template: `
-        <input [hcDatepicker]="timepicker" />
+        <input [hcDatepicker]="timepicker"/>
         <hc-datepicker #timepicker mode="time" [hourCycle]="cycleVal"></hc-datepicker>
     `
 })
 class DatepickerWithTime {
     @ViewChild('timepicker', {static: false})
     datepicker: DatepickerComponent;
-    cycleVal:number = 12;
+    cycleVal: number = 12;
 }
 
 @Component({
     template: `
-        <input [hcDatepicker]="datetimepicker" />
+        <input [hcDatepicker]="datetimepicker"/>
         <hc-datepicker #datetimepicker mode="date-time"></hc-datepicker>
     `
 })
@@ -406,6 +406,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(StandardDatepicker, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -909,6 +910,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithStartAt, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -930,6 +932,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithStartViewYear, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -975,6 +978,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithStartViewMultiYear, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
 
@@ -1021,9 +1025,11 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithNgModel, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 fixture.whenStable().then(() => {
                     fixture.detectChanges();
+                    tick(500);
 
                     testComponent = fixture.componentInstance;
                 });
@@ -1169,6 +1175,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithFormControl, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -1230,6 +1237,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithToggle, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -1385,6 +1393,8 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(FormFieldDatepicker, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
+
                 testComponent = fixture.componentInstance;
             }));
 
@@ -1402,6 +1412,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithMinAndMaxValidation, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -1470,6 +1481,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithFilterAndValidation, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
             }));
@@ -1518,6 +1530,7 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithChangeAndInputEvents, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
 
                 testComponent = fixture.componentInstance;
                 inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
@@ -1635,6 +1648,8 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerWithEvents, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
+
                 testComponent = fixture.componentInstance;
             }));
 
@@ -1665,6 +1680,8 @@ describe('DatepickerComponent', () => {
             beforeEach(fakeAsync(() => {
                 fixture = createComponent(DatepickerOpeningOnFocus, [HcNativeDateModule]);
                 fixture.detectChanges();
+                tick(500);
+
                 testComponent = fixture.componentInstance;
                 input = fixture.debugElement.query(By.css('input')).nativeElement;
             }));
@@ -1801,6 +1818,8 @@ describe('DatepickerComponent', () => {
                 [{provide: HC_DATE_LOCALE, useValue: 'de-DE'}]
             );
             fixture.detectChanges();
+            tick(500);
+
             testComponent = fixture.componentInstance;
             input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
         }));
@@ -1832,6 +1851,8 @@ describe('DatepickerComponent', () => {
         beforeEach(fakeAsync(() => {
             fixture = createComponent(DatepickerWithCustomHeader, [HcNativeDateModule], [], [CustomHeaderForDatepicker]);
             fixture.detectChanges();
+            tick(500);
+
             testComponent = fixture.componentInstance;
         }));
 
@@ -1865,6 +1886,8 @@ describe('DatepickerComponent', () => {
         beforeEach(fakeAsync(() => {
             fixture = createComponent(DatepickerWithTime, [HcNativeDateModule]);
             fixture.detectChanges();
+            tick(500);
+
             testComponent = fixture.componentInstance;
         }));
 
@@ -1901,6 +1924,8 @@ describe('DatepickerComponent', () => {
         beforeEach(fakeAsync(() => {
             fixture = createComponent(DatepickerWithDateTime, [HcNativeDateModule]);
             fixture.detectChanges();
+            tick(500);
+
             testComponent = fixture.componentInstance;
         }));
 
