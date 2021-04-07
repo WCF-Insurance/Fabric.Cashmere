@@ -114,7 +114,10 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         value = this._getValidDateOrNull(value);
         const oldDate = this.value;
         this._value = value;
-        this._formatValue(value);
+
+        // The mode is not yet set so we need to move this to the back of the queue
+        // so that it will format initially according to the mode.
+        setTimeout(() => this._formatValue(value));
 
         if (!this._dateAdapter.sameDate(oldDate, value)) {
             this._valueChange.emit(value);
@@ -364,6 +367,24 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
                 newVal = newVal.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
             } else {
                 newVal = newVal.replace(/^(\d{2})(\d{2})(\d{4})(.*)/, '$1/$2/$3, $4');
+            }
+        } else if (tempMode === 'time') {
+            // Attempt to better format time
+            const time = newVal;
+            if (time) {
+                const hourOffset = time.toLowerCase().includes('pm') ? 12 : 0;
+
+                let minutes, hours;
+                const timeDigits = time.replace(/[^0-9]/g, '');
+                if (timeDigits.length > 2) {
+                    minutes = timeDigits.slice(timeDigits.length - 2);
+                    hours = hourOffset + Number.parseInt(timeDigits.slice(0, timeDigits.length - 2), 10);
+                } else {
+                    minutes = '00';
+                    hours = hourOffset + Number.parseInt(timeDigits, 10);
+                }
+
+                newVal = hours + ':' + minutes;
             }
         }
         return this._dateAdapter.parse(newVal, this._dateFormats.parse.dateInput);

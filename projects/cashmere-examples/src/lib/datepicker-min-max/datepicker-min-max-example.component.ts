@@ -7,10 +7,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
     styleUrls: ['./datepicker-min-max-example.component.scss']
 })
 export class DatepickerMinMaxExampleComponent implements OnInit {
-    date1 = new Date();
-
     min = new Date();
     max = new Date();
+    now = new Date();
 
     form: FormGroup;
 
@@ -18,11 +17,13 @@ export class DatepickerMinMaxExampleComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.min.setFullYear(this.min.getFullYear() - 1);
-        this.max.setFullYear(this.max.getFullYear() + 1);
+        this.min.setDate(this.min.getDate() - 3);
+        this.max.setDate(this.max.getDate() + 3);
 
         this.form = this.fb.group({
-            maxDateControl: ['', Validators.required]
+            minMaxDate: [this.now],
+            minDate: [this.now],
+            maxDate: [this.now, Validators.required]
         });
     }
 }
