@@ -114,7 +114,10 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         value = this._getValidDateOrNull(value);
         const oldDate = this.value;
         this._value = value;
-        this._formatValue(value);
+
+        // The mode is not yet set so we need to move this to the back of the queue
+        // so that it will format initially according to the mode.
+        setTimeout(() => this._formatValue(value));
 
         if (!this._dateAdapter.sameDate(oldDate, value)) {
             this._valueChange.emit(value);

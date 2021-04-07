@@ -1,32 +1,34 @@
-<div class="example-date-pickers">
-    <div class="example-date-input">
-        <hc-form-field>
-            <hc-label>Date:</hc-label>
-            <input hcInput [hcDatepicker]="picker1" [(ngModel)]="date1" placeholder="Select date..." />
-            <hc-datepicker-toggle hcSuffix [for]="picker1"></hc-datepicker-toggle>
-            <hc-datepicker #picker1></hc-datepicker>
-            <hc-error class="margin-small">Please enter a valid date</hc-error>
-        </hc-form-field>
-    </div>
+<form [formGroup]="form">
+    <div class="example-date-pickers">
+        <div class="example-date-input">
+            <hc-form-field>
+                <hc-label>Date:</hc-label>
+                <input hcInput [hcDatepicker]="datePicker" formControlName="date" placeholder="Select date..."/>
+                <hc-datepicker-toggle hcSuffix [for]="datePicker"></hc-datepicker-toggle>
+                <hc-datepicker #datePicker></hc-datepicker>
+                <hc-error class="margin-small">Please enter a valid date</hc-error>
+            </hc-form-field>
+        </div>
 
-    <div class="example-date-input">
-        <hc-form-field>
-            <hc-label>Time:</hc-label>
-            <input hcInput [hcDatepicker]="picker2" [(ngModel)]="date2" placeholder="Select time..." />
-            <hc-datepicker-toggle hcSuffix [for]="picker2"></hc-datepicker-toggle>
-            <hc-datepicker mode="time" [hourCycle]="(hourCycle) ? 24 : 12" #picker2 ></hc-datepicker>
-            <hc-error>Please enter a valid time</hc-error>
-        </hc-form-field>
-        <hc-checkbox [(ngModel)]="hourCycle">Use 24-hour clock</hc-checkbox>
-    </div>
+        <div class="example-date-input">
+            <hc-form-field>
+                <hc-label>Time:</hc-label>
+                <input hcInput [hcDatepicker]="timePicker" formControlName="time" placeholder="Select time..."/>
+                <hc-datepicker-toggle hcSuffix [for]="timePicker"></hc-datepicker-toggle>
+                <hc-datepicker mode="time" [hourCycle]="(form.controls.hourCycle.value) ? 24 : 12" #timePicker></hc-datepicker>
+                <hc-error>Please enter a valid time</hc-error>
+            </hc-form-field>
+            <hc-checkbox formControlName="hourCycle">Use 24-hour clock</hc-checkbox>
+        </div>
 
-    <div class="example-date-input">
-        <hc-form-field>
-            <hc-label>Date & Time:</hc-label>
-            <input hcInput [hcDatepicker]="picker3" [(ngModel)]="date3" placeholder="Select date & time..." />
-            <hc-datepicker-toggle hcSuffix [for]="picker3"></hc-datepicker-toggle>
-            <hc-datepicker mode="date-time" #picker3 ></hc-datepicker>
-            <hc-error>Please enter a valid date & time</hc-error>
-        </hc-form-field>
+        <div class="example-date-input">
+            <hc-form-field>
+                <hc-label>Date & Time:</hc-label>
+                <input hcInput [hcDatepicker]="dateTimePicker" formControlName="dateTime" placeholder="Select date & time..."/>
+                <hc-datepicker-toggle hcSuffix [for]="dateTimePicker"></hc-datepicker-toggle>
+                <hc-datepicker mode="date-time" #dateTimePicker></hc-datepicker>
+                <hc-error>Please enter a valid date & time</hc-error>
+            </hc-form-field>
+        </div>
     </div>
-</div>
+</form>
