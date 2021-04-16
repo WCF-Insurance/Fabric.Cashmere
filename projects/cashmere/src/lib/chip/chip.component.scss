@@ -24,26 +24,6 @@
     @include hc-chip-green();
 }
 
-.hc-chip-close-icon {
-    @include hc-chip-close-icon();
-
-    .hc-chip-neutral & {
-        @include hc-chip-close-icon-neutral();
-    }
-
-    .hc-chip-red & {
-        @include hc-chip-close-icon-red();
-    }
-
-    .hc-chip-yellow & {
-        @include hc-chip-close-icon-yellow();
-    }
-
-    .hc-chip-green & {
-        @include hc-chip-close-icon-green();
-    }
-}
-
 .hc-chip-row-contents {
     @include hc-chip-row-contents();
 }
