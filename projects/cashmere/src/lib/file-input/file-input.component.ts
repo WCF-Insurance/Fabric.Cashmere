@@ -112,7 +112,6 @@ export class FileInputComponent extends HcFormControlComponent implements Contro
     }
 
     _deleteFile() {
-        this.writeValue(null);
         this.value = null;
         this._fileInput.nativeElement.value = '';
     }
