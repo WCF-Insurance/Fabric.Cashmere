@@ -42,6 +42,10 @@ export class FileInputComponent extends HcFormControlComponent implements Contro
     @Input()
     chipColor: string = 'neutral';
 
+    /** Whether the chips that represent the uploaded files should be stacked or wrapped. Default: wrapped */
+    @Input()
+    stackedUploads: boolean = false;
+
     @ViewChild('fileInput', {static: false})
     _fileInput: ElementRef<HTMLInputElement>;
 
