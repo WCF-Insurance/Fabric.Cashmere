@@ -91,7 +91,8 @@ const docs: DocItem[] = [
             'file-input-files-total-size-validation',
             'file-input-file-type-validation',
             'file-input-custom-label-and-color'
-        ]
+        ],
+        usageDoc: true
     },
     {id: 'form-field', name: 'Form Field', category: 'forms', examples: ['form-field-overview']},
     {
