@@ -6,6 +6,11 @@
     </hc-form-field>
     <button type="submit" hc-button buttonStyle="primary" [disabled]="formGroup.invalid">Submit</button>
 </form>
+
+<p style="margin: 25px 0; font-style: italic;">
+    This example makes use of the custom <strong>filesTotalSizeValidator</strong>. See the Usage tab for more details.
+</p>
+
 <div>
     <h5>Form Value</h5>
     {{ formGroup.valueChanges | async | json }}
