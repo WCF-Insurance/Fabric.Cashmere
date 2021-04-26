@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <hc-form-field>
         <hc-label>File</hc-label>
-        <hc-file-input formControlName="file"></hc-file-input>
+        <hc-file-input formControlName="uploads"></hc-file-input>
         <hc-error>Invalid file type. Allowed file types: {{ displayAllowedFileExtensions }}</hc-error>
     </hc-form-field>
     <button type="submit" hc-button buttonStyle="primary" [disabled]="formGroup.invalid">Submit</button>

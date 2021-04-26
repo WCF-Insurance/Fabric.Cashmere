@@ -1,8 +1,8 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <hc-form-field>
-        <hc-label>File (required)</hc-label>
+        <hc-label>File</hc-label>
         <hc-file-input formControlName="uploads"></hc-file-input>
-        <hc-error>Required</hc-error>
+        <hc-error>Total size of files must be under {{ maxFilesTotalSizeBytes | hcFileSize }}</hc-error>
     </hc-form-field>
     <button type="submit" hc-button buttonStyle="primary" [disabled]="formGroup.invalid">Submit</button>
 </form>

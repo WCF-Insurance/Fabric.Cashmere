@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'hc-file-input-overview-example',
@@ -7,9 +7,10 @@ import {FormGroup, FormControl} from '@angular/forms';
 })
 export class FileInputOverviewExampleComponent {
     formGroup = new FormGroup({
-        file: new FormControl()
+        uploads: new FormControl(null, Validators.required)
     });
     submittedValue: any;
+
     onSubmit() {
         this.submittedValue = this.formGroup.value;
     }
