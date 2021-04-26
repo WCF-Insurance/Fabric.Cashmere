@@ -1,4 +1,4 @@
-import {ValidatorFn, FormControl} from '@angular/forms';
+import {FormControl, ValidatorFn} from '@angular/forms';
 import {FileUpload} from '../file-upload';
 
 /**
@@ -9,10 +9,8 @@ import {FileUpload} from '../file-upload';
  */
 export function fileSizeValidator(maxFileSizeBytes: number): ValidatorFn {
     return (control: FormControl) => {
-        const value: FileUpload = control.value || {};
-        if (value.size > maxFileSizeBytes) {
-            return {fileSize: true};
-        }
-        return null;
+        const value: FileUpload[] = control.value || [];
+        let hasError = value.some(upload => upload.size > maxFileSizeBytes);
+        return hasError ? {fileSize: true} : null;
     };
 }

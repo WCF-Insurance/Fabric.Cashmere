@@ -88,6 +88,7 @@ const docs: DocItem[] = [
         examples: [
             'file-input-overview',
             'file-input-file-size-validation',
+            'file-input-files-total-size-validation',
             'file-input-file-type-validation',
             'file-input-custom-label-and-color'
         ]

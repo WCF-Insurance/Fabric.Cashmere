@@ -7,7 +7,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class FileInputCustomLabelAndColorExampleComponent {
     formGroup = new FormGroup({
-        file: new FormControl()
+        uploads: new FormControl()
     });
     submittedValue: any;
 
