@@ -1,10 +1,8 @@
 <hc-modal>
     <hc-modal-header><h3>{{activeModal.data.heading}}</h3></hc-modal-header>
     <hc-modal-body>
-        <div class="container confirmation-content">
-            <div class="row">
-                <div [innerHTML]="activeModal.data.message"></div>
-            </div>
+        <div class="confirmation-content">
+            <div [innerHTML]="activeModal.data.message"></div>
         </div>
     </hc-modal-body>
     <hc-modal-footer>
