@@ -9,3 +9,5 @@ export {ModalHeaderComponent} from './modal-header.component';
 export {ModalOptions, ModalSize} from './modal-options';
 export {ModalOverlayComponent} from './modal-overlay.component';
 export {ModalWindowComponent} from './modal-window.component';
+export {AlertModalComponent} from './alert-modal/alert-modal.component';
+export {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
