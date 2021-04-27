@@ -60,23 +60,23 @@
                 <hc-icon fontSet="fa" fontIcon="fa-angle-down"></hc-icon>
                 <hc-pop #userMenu [showArrow]="false">
                     <div hcMenu class="profile-menu">
-                        <a hcMenuItem href="/portal" *ngIf="userMenuLinks">
+                        <a hcMenuItem href="/portal" target="_blank" *ngIf="userMenuLinks">
                             <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-briefcase"></hc-icon>
                             <span hcMenuText>My Account</span>
                         </a>
-                        <a hcMenuItem href="/myWcfOnline/updateProfile" *ngIf="userMenuLinks">
+                        <a hcMenuItem href="/myWcfOnline/updateProfile" target="_blank" *ngIf="userMenuLinks">
                             <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-id-card"></hc-icon>
                             <span hcMenuText>My Profile</span>
                         </a>
-                        <a hcMenuItem href="/manage_my_policy" *ngIf="userMenuLinks && showManageMyPolicy">
+                        <a hcMenuItem href="/manage_my_policy" target="_blank" *ngIf="userMenuLinks && showManageMyPolicy">
                             <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-university"></hc-icon>
                             <span hcMenuText>Manage My Policy</span>
                         </a>
-                        <a hcMenuItem href="/tools" *ngIf="userMenuLinks">
+                        <a hcMenuItem href="/tools" target="_blank" *ngIf="userMenuLinks">
                             <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-tools"></hc-icon>
                             <span hcMenuText>Tools</span>
                         </a>
-                        <a hcMenuItem href="/contact-us" *ngIf="userMenuLinks">
+                        <a hcMenuItem href="/contact-us" target="_blank" *ngIf="userMenuLinks">
                             <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-comments"></hc-icon>
                             <span hcMenuText>Support and Feedback</span>
                         </a>
