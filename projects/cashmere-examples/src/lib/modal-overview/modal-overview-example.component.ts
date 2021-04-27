@@ -22,7 +22,8 @@ export class ModalOverviewExampleComponent implements OnInit {
         this.form = this.fb.group({
             year: [[2019, 2018, 2017]],
             coverage: [''],
-            location: ['', Validators.required]
+            location: ['', Validators.required],
+            date: ['', Validators.required]
         });
 
         this.form.valueChanges.subscribe((value) => {
