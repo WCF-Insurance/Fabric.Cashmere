@@ -120,7 +120,7 @@ const docs: DocItem[] = [
         id: 'modal',
         name: 'Modal',
         category: 'popups',
-        examples: ['modal-overview'],
+        examples: ['modal-overview', 'modal-special-purpose'],
         usageDoc: true
     },
     {
