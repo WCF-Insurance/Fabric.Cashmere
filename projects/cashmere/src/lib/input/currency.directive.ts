@@ -12,6 +12,8 @@ export class CurrencyDirective implements AfterViewInit, Validator {
 
     private _formControl: AbstractControl;
     private _preValue: string;
+    private _digitPattern = RegExp(/[\.\d]/);
+    private _currencyPattern = RegExp(/^(\d{0,3},)?(\d{0,3},)?(\d{1,3})(\.\d{2})/);
 
     @Input()
     set formControl(control: AbstractControl) {
@@ -71,9 +73,6 @@ export class CurrencyDirective implements AfterViewInit, Validator {
     formatNumber(val: string) {
         return val.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
-
-    private _digitPattern = RegExp(/[\.\d]/);
-    private _currencyPattern = RegExp(/^(\d{0,3},)?(\d{0,3},)?(\d{1,3})(\.\d{2})/);
 
     validate(control: AbstractControl): ValidationErrors | null {
         if (control.value && !this._digitPattern.test(control.value) && !this._currencyPattern.test(control.value)) {
