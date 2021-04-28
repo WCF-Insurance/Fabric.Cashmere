@@ -18,13 +18,13 @@ export class CurrencyDirective implements AfterViewInit, Validator {
         this._formControl = control;
     }
 
-    @HostListener('focus', ['$event'])
+    @HostListener('focus')
         onFocus() {
             let val = this.handleDecimal(this._preValue);
             this._formControl.setValue(val.toString().replace(/[^\.\d]/g, ''), {emitEvent: false});
         }
 
-    @HostListener('blur', ['$event'])
+    @HostListener('blur')
     onBlur() {
         let val = this.handleDecimal(this._preValue);
         this._formControl.setValue(val, {emitEvent: false});
@@ -37,6 +37,9 @@ export class CurrencyDirective implements AfterViewInit, Validator {
         } else {
             this._preValue = "";
         }
+    }
+
+    constructor() {
     }
 
     ngAfterViewInit() {
