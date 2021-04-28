@@ -2,13 +2,13 @@
     <hc-form-field>
         <hc-label>File</hc-label>
         <hc-file-input formControlName="uploads"></hc-file-input>
-        <hc-error>Invalid file type. Allowed file types: {{ displayAllowedFileExtensions }}</hc-error>
+        <hc-error>Total size of files must be under {{ maxFilesTotalSizeBytes | hcFileSize }}</hc-error>
     </hc-form-field>
     <button type="submit" hc-button buttonStyle="primary" [disabled]="formGroup.invalid">Submit</button>
 </form>
 
 <p style="margin: 25px 0; font-style: italic;">
-    This example makes use of the custom <strong>fileTypeValidator</strong>. See the Usage tab for more details.
+    This example makes use of the custom <strong>filesTotalSizeValidator</strong>. See the Usage tab for more details.
 </p>
 
 <div>

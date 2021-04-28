@@ -1,4 +1,4 @@
-import {ValidatorFn, FormControl} from '@angular/forms';
+import {FormControl, ValidatorFn} from '@angular/forms';
 import {FileUpload} from '../file-upload';
 
 /**
@@ -9,15 +9,19 @@ import {FileUpload} from '../file-upload';
  */
 export function fileTypeValidator(allowedExtensions: string[]): ValidatorFn {
     return (control: FormControl) => {
-        if (!control.value) {
+        if (!control.value || control.value.length < 1) {
             return null;
         }
 
-        const value: FileUpload = control.value;
-        const extension: string = ((value.name || '').split(/\./g).reverse()[0] || '').toLowerCase();
-        if (allowedExtensions.length && !allowedExtensions.includes(extension)) {
-            return {fileType: true};
-        }
-        return null;
+        let hasError = false;
+        const value: FileUpload[] = control.value;
+        value.forEach(upload => {
+            const extension: string = ((upload.name || '').split(/\./g).reverse()[0] || '').toLowerCase();
+            if (allowedExtensions.length && !allowedExtensions.includes(extension)) {
+                hasError = true;
+            }
+        });
+
+        return hasError ? {fileType: true} : null;
     };
 }

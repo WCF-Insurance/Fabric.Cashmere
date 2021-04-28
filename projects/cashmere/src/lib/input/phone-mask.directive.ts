@@ -12,12 +12,12 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
     private _digitPattern = RegExp(/^\d*$/);
     private _phonePattern = RegExp(/^\(\d{3}\)\s\d{3}-\d{4}(?:\s\sext\s\d+)?$/);
 
-    private _phoneControl: AbstractControl;
+    private _formControl: AbstractControl;
     private _preValue: string;
 
     @Input()
-    set phoneControl(control: AbstractControl) {
-        this._phoneControl = control;
+    set formControl(control: AbstractControl) {
+        this._formControl = control;
     }
 
     @Input()
@@ -37,7 +37,7 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
         // Format the initial value passed in
         setTimeout(() => {
             let newVal = this._getFormattedValue(this._preValue);
-            this._phoneControl.setValue(newVal, {emitEvent: false});
+            this._formControl.setValue(newVal, {emitEvent: false});
         }, 0);
     }
 
@@ -46,7 +46,7 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
     }
 
     phoneValidate(id: string) {
-        this.sub = this._phoneControl.valueChanges.subscribe(data => {
+        this.sub = this._formControl.valueChanges.subscribe(data => {
             let preInputValue: string = this._preValue;
 
             // Allow only numeric characters
@@ -57,7 +57,7 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
             // If deleting input characters
             if (newVal.length < preInputValue.length) {
                 newVal = this._getFormattedValue(newVal);
-                this._phoneControl.setValue(newVal, {emitEvent: false});
+                this._formControl.setValue(newVal, {emitEvent: false});
                 this.renderer.selectRootElement(id).setSelectionRange(start, end);
                 // If adding input characters
             } else {
@@ -79,10 +79,10 @@ export class PhoneMaskDirective implements AfterViewInit, OnDestroy, Validator {
                             end += 3;
                             break;
                     }
-                    this._phoneControl.setValue(newVal, {emitEvent: false});
+                    this._formControl.setValue(newVal, {emitEvent: false});
                     this.renderer.selectRootElement(id).setSelectionRange(start, end);
                 } else {
-                    this._phoneControl.setValue(newVal, {emitEvent: false});
+                    this._formControl.setValue(newVal, {emitEvent: false});
                     const additionalLength = newVal.length <= 10 ? 2 : 6;
                     this.renderer.selectRootElement(id).setSelectionRange(start + additionalLength, end + additionalLength);
                 }
