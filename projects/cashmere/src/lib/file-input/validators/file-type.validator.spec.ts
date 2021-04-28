@@ -1,5 +1,5 @@
 import {fileTypeValidator} from './file-type.validator';
-import {ValidatorFn, FormControl} from '@angular/forms';
+import {FormControl, ValidatorFn} from '@angular/forms';
 import {FileUpload} from '../file-upload';
 
 describe('fileTypeValidator', () => {
@@ -45,7 +45,7 @@ function validate(fileName: string, validator: ValidatorFn) {
         type: 'test'
     };
     const formControl = ({
-        value: fileUpload
+        value: [fileUpload]
     } as Partial<FormControl>) as FormControl;
     return validator(formControl);
 }

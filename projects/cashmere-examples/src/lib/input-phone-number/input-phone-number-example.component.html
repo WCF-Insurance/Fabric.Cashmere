@@ -4,8 +4,7 @@
             <hc-label>Tel:</hc-label>
             <input hcInput hcPhoneMask
                    [formControl]="formDemoPhone"
-                   [preValue]="formDemoPhone.value"
-                   [phoneControl]="formDemoPhone">
+                   [preValue]="formDemoPhone.value">
             <hc-error>A valid phone number is required</hc-error>
         </hc-form-field>
 
@@ -13,8 +12,7 @@
             <hc-label>Tel (with initial value):</hc-label>
             <input hcInput hcPhoneMask
                    [formControl]="formDemoPhoneInitVal"
-                   [preValue]="formDemoPhoneInitVal.value"
-                   [phoneControl]="formDemoPhoneInitVal">
+                   [preValue]="formDemoPhoneInitVal.value">
             <hc-error>A valid phone number is required</hc-error>
         </hc-form-field>
 
@@ -22,8 +20,7 @@
             <hc-label>Tel (with initial value preformatted):</hc-label>
             <input hcInput hcPhoneMask
                    [formControl]="formDemoPhoneFormattedInitVal"
-                   [preValue]="formDemoPhoneFormattedInitVal.value"
-                   [phoneControl]="formDemoPhoneFormattedInitVal">
+                   [preValue]="formDemoPhoneFormattedInitVal.value">
             <hc-error>A valid phone number is required</hc-error>
         </hc-form-field>
     </div>

@@ -1,4 +1,4 @@
-export interface FileUpload {
+export class FileUpload {
     name: string;
     size: number;
     type: string;

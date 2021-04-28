@@ -84,6 +84,17 @@
                     </hc-form-field>
                 </div>
             </div>
+            <div class="form-item">
+                <div class="form-item-label">Date *</div>
+                <div>
+                    <hc-form-field>
+                        <input hcInput [hcDatepicker]="datePicker" formControlName="date" placeholder="Select date..."/>
+                        <hc-datepicker-toggle hcSuffix [for]="datePicker"></hc-datepicker-toggle>
+                        <hc-datepicker #datePicker></hc-datepicker>
+                        <hc-error class="margin-small">Please enter a valid date</hc-error>
+                    </hc-form-field>
+                </div>
+            </div>
         </hc-modal-body>
         <hc-modal-footer>
             <button hc-button buttonStyle="link" (click)="dismiss()"> Cancel</button>

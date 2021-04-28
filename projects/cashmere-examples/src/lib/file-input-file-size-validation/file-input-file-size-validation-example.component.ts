@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {fileSizeValidator} from '@wcf-insurance/cashmere';
 
 @Component({
@@ -7,11 +7,12 @@ import {fileSizeValidator} from '@wcf-insurance/cashmere';
     templateUrl: 'file-input-file-size-validation-example.component.html'
 })
 export class FileInputFileSizeValidationExampleComponent {
-    readonly maxFileSizeBytes = 1024;
+    readonly maxFileSizeBytes = 12288;
     formGroup = new FormGroup({
-        file: new FormControl(null, [fileSizeValidator(this.maxFileSizeBytes)])
+        uploads: new FormControl(null, [fileSizeValidator(this.maxFileSizeBytes)])
     });
     submittedValue: any;
+
     onSubmit() {
         this.submittedValue = this.formGroup.value;
     }

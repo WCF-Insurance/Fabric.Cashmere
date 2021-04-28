@@ -7,19 +7,32 @@ import {CommonModule} from '@angular/common';
 import {ModalHeaderComponent} from './modal-header.component';
 import {ModalBodyComponent} from './modal-body.component';
 import {ModalComponent} from './modal.component';
+import {AlertModalComponent} from './alert-modal/alert-modal.component';
+import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
+import {ButtonModule} from '../button/index';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, ButtonModule],
     declarations: [
         ModalOverlayComponent,
         ModalWindowComponent,
         ModalHeaderComponent,
         ModalBodyComponent,
         ModalFooterComponent,
-        ModalComponent
+        ModalComponent,
+        AlertModalComponent,
+        ConfirmationModalComponent
     ],
     entryComponents: [ModalOverlayComponent, ModalWindowComponent],
-    exports: [ModalHeaderComponent, ModalBodyComponent, ModalFooterComponent, ModalComponent],
+    exports: [
+        ModalHeaderComponent,
+        ModalBodyComponent,
+        ModalFooterComponent,
+        ModalComponent,
+        AlertModalComponent,
+        ConfirmationModalComponent
+    ],
     providers: [ModalService]
 })
-export class ModalModule {}
+export class ModalModule {
+}
