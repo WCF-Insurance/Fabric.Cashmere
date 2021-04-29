@@ -1,75 +1,83 @@
-import {AfterViewInit, Directive, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
-import {NgControl} from '@angular/forms';
-import {SubscriptionLike} from 'rxjs';
+import {AfterViewInit, Directive, forwardRef, HostListener, Input} from '@angular/core';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
 
 @Directive({
-    selector: '[hcCurrency]'
+    selector: '[hcCurrency]',
+    providers: [
+        {provide: NG_VALIDATORS, useExisting: forwardRef(() => CurrencyDirective), multi: true}
+    ]
 })
 
-export class CurrencyDirective implements OnInit, AfterViewInit, OnDestroy {
+export class CurrencyDirective implements AfterViewInit, Validator {
 
-    private _currencyControl;
+    private _formControl: AbstractControl;
+    private _preValue: string;
+    private _digitPattern = RegExp(/[\.\d]/);
+    private _currencyPattern = RegExp(/^(\d{0,3},)?(\d{0,3},)?(\d{1,3})(\.\d{2})/);
 
-    private sub: SubscriptionLike;
-
-    constructor(private _view: ViewContainerRef, private directiveControl: NgControl) {
+    @Input()
+    set formControl(control: AbstractControl) {
+        this._formControl = control;
     }
 
-    ngOnInit() {
-        this._currencyControl = this.directiveControl.control;
+    @HostListener('focus')
+        onFocus() {
+            let val = this.handleDecimal(this._preValue);
+            this._formControl.setValue(val.toString().replace(/[^\.\d]/g, ''), {emitEvent: false});
+        }
+
+    @HostListener('blur')
+    onBlur() {
+        let val = this.handleDecimal(this._preValue);
+        this._formControl.setValue(val, {emitEvent: false});
+    }
+
+    @Input()
+    set preValue(value: string) {
+        if (value) {
+            this._preValue = value.toString().replace(/[^\.\d]/g, '');
+        } else {
+            this._preValue = "";
+        }
+    }
+
+    constructor() {
     }
 
     ngAfterViewInit() {
-        this.sub = this._currencyControl.valueChanges.subscribe(val => {
-            this.currencyValidate(val);
-        });
-
         // Format the initial value passed in
         setTimeout(() => {
-            this.currencyValidate(this._currencyControl.value);
+            let val = this.handleDecimal(this._preValue);
+            this._formControl.setValue(val, {emitEvent: false});
         }, 0);
     }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
+    handleDecimal(val: string) {
+        let decimalPlace = val.indexOf('.');
 
-    currencyValidate(data) {
-        if (data) {
-            // Allow only numbers and "." to be typed
-            let newVal = data.toString().replace(/[^.\d]/g, '');
-            let decimalPlace = newVal.indexOf('.');
+        if (decimalPlace > -1) {
+            let beforeDecimal = val.slice(0, decimalPlace);
+            let afterDecimal = val.slice(decimalPlace);
 
-            // If there is a decimal
-            if (decimalPlace > -1) {
-                let beforeDecimal = newVal.slice(0, decimalPlace);
-                let afterDecimal = newVal.slice(decimalPlace);
+            beforeDecimal = this.formatNumber(beforeDecimal);
 
-                beforeDecimal = this.formatNumber(beforeDecimal);
-                if (afterDecimal.length > 3) {
-                    afterDecimal = afterDecimal.substr(0, afterDecimal.length - 1);
-                }
-                newVal = beforeDecimal + afterDecimal;
-                this._currencyControl.setValue(newVal, {emitEvent: false});
-                // If there is no decimal
-            } else {
-                newVal = this.formatNumber(newVal);
-                this._currencyControl.setValue(newVal, {emitEvent: false});
+            if (afterDecimal.length > 3) {
+                afterDecimal = afterDecimal.substr(0, 3);
             }
+            return beforeDecimal + afterDecimal;
+        } else {
+            return this.formatNumber(val);
         }
     }
 
     formatNumber(val: string) {
-        let formatted = '';
-        if (val.length === 0) {
-            return formatted;
-        } else if (val.length < 4) {
-            formatted = val.replace(/^(\d{0,3})/, '$1');
-        } else if (val.length < 7) {
-            formatted = val.replace(/^(\d{1,3})(\d{3})/, '$1,$2');
-        } else if (val.length < 10) {
-            formatted = val.replace(/^(\d{1,3})(\d{3})(\d{3})/, '$1,$2,$3');
+        return val.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }
+
+    validate(control: AbstractControl): ValidationErrors | null {
+        if (control.value && !this._digitPattern.test(control.value) && !this._currencyPattern.test(control.value)) {
+            return {invalid: true};
         }
-        return formatted;
+        return null;
     }
 }
