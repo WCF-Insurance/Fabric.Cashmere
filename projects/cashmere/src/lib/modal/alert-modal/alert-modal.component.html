@@ -1,0 +1,21 @@
+<hc-modal>
+    <hc-modal-header><h3>{{activeModal.data.heading}}</h3></hc-modal-header>
+    <hc-modal-body>
+        <div class="alert-content">
+            <div *ngIf="!activeModal.data.itemList">
+                <div [innerHTML]="activeModal.data.message"></div>
+            </div>
+            <div *ngIf="activeModal.data.itemList">
+                <p>{{activeModal.data.message}}</p>
+                <ul>
+                    <li *ngFor="let item of activeModal.data.itemList">{{item}}</li>
+                </ul>
+            </div>
+        </div>
+    </hc-modal-body>
+    <hc-modal-footer>
+        <button hc-button buttonStyle="primary" (click)="dismiss()" aria-label="OK">
+            {{okLabel}}
+        </button>
+    </hc-modal-footer>
+</hc-modal>

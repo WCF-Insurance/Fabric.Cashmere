@@ -12,7 +12,7 @@ export class FileInputFileTypeValidationExampleComponent {
         return this.allowedFileExtensions.map(e => e.toUpperCase()).join(', ');
     }
     formGroup = new FormGroup({
-        file: new FormControl(null, [fileTypeValidator(this.allowedFileExtensions)])
+        uploads: new FormControl(null, [fileTypeValidator(this.allowedFileExtensions)])
     });
     submittedValue: any;
     onSubmit() {

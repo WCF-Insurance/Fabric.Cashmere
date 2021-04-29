@@ -88,9 +88,11 @@ const docs: DocItem[] = [
         examples: [
             'file-input-overview',
             'file-input-file-size-validation',
+            'file-input-files-total-size-validation',
             'file-input-file-type-validation',
             'file-input-custom-label-and-color'
-        ]
+        ],
+        usageDoc: true
     },
     {id: 'form-field', name: 'Form Field', category: 'forms', examples: ['form-field-overview']},
     {
@@ -118,7 +120,7 @@ const docs: DocItem[] = [
         id: 'modal',
         name: 'Modal',
         category: 'popups',
-        examples: ['modal-overview'],
+        examples: ['modal-overview', 'modal-special-purpose'],
         usageDoc: true
     },
     {

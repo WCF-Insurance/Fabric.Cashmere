@@ -1,10 +1,18 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <hc-form-field>
-        <hc-label>File</hc-label>
-        <hc-file-input formControlName="file"></hc-file-input>
+        <hc-label>File (required)</hc-label>
+        <hc-file-input formControlName="uploads" [stackedUploads]="formGroup.controls.stacked.value"></hc-file-input>
+        <hc-error>Required</hc-error>
     </hc-form-field>
-    <button type="submit" hc-button buttonStyle="primary">Submit</button>
+    <button type="submit" hc-button buttonStyle="primary" [disabled]="formGroup.invalid">Submit</button>
+
+    <div style="margin: 25px 0;">
+        <span class="toggle-label-left">Wrap</span>
+        <hc-toggle-switch formControlName="stacked"></hc-toggle-switch>
+        <span class="toggle-label-right">Stacked</span>
+    </div>
 </form>
+
 <div>
     <h5>Form Value</h5>
     {{ formGroup.valueChanges | async | json }}
