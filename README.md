@@ -1,3 +1,5 @@
+# WCF-Cashmere is no longer maintained
+
 [![Build Status](https://travis-ci.com/WCF-Insurance/WCF-Cashmere.svg?branch=master)](https://travis-ci.com/WCF-Insurance/WCF-Cashmere)
 [![Coverage Status](https://coveralls.io/repos/github/WCF-Insurance/WCF-Cashmere/badge.svg?branch=master)](https://coveralls.io/github/WCF-Insurance/WCF-Cashmere?branch=master)
 ![Cashmere Banner](https://raw.githubusercontent.com/WCF-Insurance/WCF-Cashmere/master/CashmereBanner.png)
